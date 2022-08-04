@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "types": ["node", "jest"],
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,

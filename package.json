@@ -8,14 +8,23 @@
     "build": "./node_modules/.bin/tsc",
     "build-image": "electron-builder --mac --windows --linux",
     "release": "electron-builder --mac --windows --linux --publish always",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/electron": "^1.6.10",
+    "@types/jest": "^28.1.6",
     "electron-builder": "^23.3.3",
+    "jest": "^28.1.3",
     "typescript": "^4.7.4"
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
   },
   "build": {
     "appId": "io.codiga.assistant",
