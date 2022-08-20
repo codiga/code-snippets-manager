@@ -18,59 +18,60 @@ export default function Layout({ children }: LayoutProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <>
-      <Flex
-        flexDirection="column"
-        h="100vh"
-        w="100vw"
-        bg="neutral.25"
-        _dark={{ bg: 'base.dark' }}
-      >
-        <Titlebar openLoginModal={onOpen} />
+    <Flex
+      flexDirection="column"
+      h="100vh"
+      w="100vw"
+      overflow="hidden"
+      bg="neutral.25"
+      _dark={{ bg: 'base.dark' }}
+    >
+      <Titlebar openLoginModal={onOpen} />
 
-        <Flex flex={1}>
-          <Box
-            w="214px"
-            h="full"
-            bg="neutral.25"
-            _dark={{ bg: 'base.dark' }}
-            pt="space_16"
-          >
-            <SideMenu openLoginModal={onOpen} />
+      <Flex flex={1}>
+        <Box
+          w="214px"
+          minW="214px"
+          h="full"
+          bg="neutral.25"
+          _dark={{ bg: 'base.dark' }}
+          pt="space_16"
+        >
+          <SideMenu openLoginModal={onOpen} />
+        </Box>
+
+        <Flex
+          flex={1}
+          justifyContent="center"
+          alignItems="flex-start"
+          pt="space_16"
+          overflow="auto"
+          bg="neutral.0"
+          _dark={{ bg: 'neutral.100' }}
+        >
+          <Box w="full">
+            {/* IF THE USER'S LOGGED IN, SHOW CONTENT, OTHERWISE SHOW AN LOGIN NOTICE */}
+            {id || pathname === '/' ? (
+              children
+            ) : (
+              <EmptyState
+                title="Log in to access this section"
+                description="Add your API Token to access this section"
+                illustration="disconnected"
+                mt="space_80"
+                mx="auto"
+              >
+                <Button variant="primary" size="sm" onClick={onOpen}>
+                  Add Token
+                </Button>
+              </EmptyState>
+            )}
           </Box>
-
-          <Flex
-            flex={1}
-            justifyContent="center"
-            alignItems="flex-start"
-            pt="space_16"
-            bg="neutral.0"
-            _dark={{ bg: 'neutral.100' }}
-          >
-            <Box w="full">
-              {/* IF THE USER'S LOGGED IN, SHOW CONTENT, OTHERWISE SHOW AN LOGIN NOTICE */}
-              {id || pathname === '/' ? (
-                children
-              ) : (
-                <EmptyState
-                  title="Log in to access this section"
-                  description="Add your API Token to access this section"
-                  illustration="disconnected"
-                  mt="space_80"
-                  mx="auto"
-                >
-                  <Button variant="primary" size="sm" onClick={onOpen}>
-                    Add Token
-                  </Button>
-                </EmptyState>
-              )}
-            </Box>
-          </Flex>
         </Flex>
-
-        {/* LOGIN MODAL  */}
-        <Login isOpen={isOpen} closeModal={onClose} />
       </Flex>
-    </>
+
+      {/* LOGIN MODAL  */}
+      <Login isOpen={isOpen} closeModal={onClose} />
+    </Flex>
   );
 }
