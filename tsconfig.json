@@ -1,17 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "types": ["node", "jest"],
+    "incremental": true,
+    "target": "es2021",
     "module": "commonjs",
-    "moduleResolution": "node",
+    "lib": ["dom", "es2021"],
+    "declaration": true,
+    "declarationMap": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "pretty": true,
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "outDir": "dist",
-    "skipLibCheck": true
+    "baseUrl": "./src",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "release/app/dist"
   },
-  "exclude": ["node_modules"]
+  "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
 }
