@@ -8,6 +8,7 @@ import {
   Tbody,
   Td as ChakraTd,
   TableCellProps,
+  Link,
 } from '@chakra-ui/react';
 import {
   LockIcon,
@@ -15,9 +16,13 @@ import {
   UsersIcon,
   CodeIcon,
 } from '@codiga/codiga-components';
-import { AssistantCookbook } from 'renderer/types/assistantTypes';
+
+import { getCookbookUrl, getGroupUrl } from 'renderer/utils/urlUtils';
 import { getAvatarUrl } from 'renderer/utils/userUtils';
+import { AssistantCookbook } from 'renderer/types/assistantTypes';
+import { PageTypes } from 'renderer/types/pageTypes';
 import FavoriteCookbook from 'renderer/components/Favorite/FavoriteCookbook';
+import UserLink from 'renderer/components/UserLink';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd
@@ -31,9 +36,10 @@ const Td = (props: TableCellProps) => (
 
 type CookbookTableProps = {
   cookbooks: AssistantCookbook[];
+  page: PageTypes;
 };
 
-export default function CookbookTable({ cookbooks }: CookbookTableProps) {
+export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
   return (
     <Box w="full" overflow="auto">
       <TableContainer>
@@ -55,15 +61,30 @@ export default function CookbookTable({ cookbooks }: CookbookTableProps) {
                 >
                   <Td>
                     <Flex alignItems="center" gap="space_8">
-                      <Text size="sm" noOfLines={1}>
-                        {cookbook.name}
+                      <Text
+                        size="sm"
+                        noOfLines={1}
+                        maxWidth="300px"
+                        display="inline-block"
+                      >
+                        <Link
+                          isExternal
+                          variant="subtle"
+                          href={getCookbookUrl(
+                            page,
+                            cookbook.id,
+                            cookbook.groups?.length
+                              ? cookbook.groups[0].id
+                              : undefined
+                          )}
+                        >
+                          {cookbook.name}
+                        </Link>
                       </Text>
-                      {!cookbook.groups && (
-                        <FavoriteCookbook
-                          isSubscribed={!!cookbook.isSubscribed}
-                          cookbookId={cookbook.id}
-                        />
-                      )}
+                      <FavoriteCookbook
+                        isSubscribed={!!cookbook.isSubscribed}
+                        cookbookId={cookbook.id}
+                      />
                     </Flex>
                   </Td>
                   {cookbook.groups && cookbook.groups.length > 0 && (
@@ -71,7 +92,15 @@ export default function CookbookTable({ cookbooks }: CookbookTableProps) {
                       <Flex alignItems="center" gap="space_8">
                         <UsersIcon />
                         <Text size="xs" noOfLines={1}>
-                          {cookbook?.groups[0]?.name}
+                          <Link
+                            isExternal
+                            variant="subtle"
+                            href={`${getGroupUrl(
+                              cookbook.groups[0].id!
+                            )}/cookbooks`}
+                          >
+                            {cookbook.groups[0].name}
+                          </Link>
                         </Text>
                       </Flex>
                     </Td>
@@ -95,7 +124,7 @@ export default function CookbookTable({ cookbooks }: CookbookTableProps) {
                         src={getAvatarUrl({ id: cookbook.owner?.id })}
                       />
                       <Text size="xs" noOfLines={1}>
-                        {cookbook.owner?.displayName || 'Anonymous'}
+                        <UserLink owner={cookbook.owner} />
                       </Text>
                     </Flex>
                   </Td>

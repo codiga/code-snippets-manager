@@ -59,6 +59,8 @@ export const GET_USER_RECIPES = gql`
         }
         owner {
           id
+          hasSlug
+          slug
           displayName
         }
         tags
@@ -99,6 +101,8 @@ export const GET_USER_COOKBOOKS = gql`
         creationTimestampMs
         owner {
           id
+          hasSlug
+          slug
           displayName
         }
         upvotes
@@ -149,6 +153,8 @@ export const GET_USER_SUBSCRIBED_RECIPES = gql`
         uses
         owner {
           id
+          hasSlug
+          slug
           displayName
         }
         upvotes
@@ -188,6 +194,8 @@ export const GET_USER_SUBSCRIBED_COOKBOOKS = gql`
         recipesCount
         owner {
           id
+          hasSlug
+          slug
           displayName
         }
         upvotes
@@ -241,6 +249,8 @@ export const GET_SHARED_RECIPES = gql`
       creationTimestampMs
       owner {
         id
+        hasSlug
+        slug
         displayName
       }
       upvotes
@@ -284,6 +294,12 @@ export const GET_SHARED_COOKBOOKS = gql`
       groups {
         id
         name
+      }
+      owner {
+        id
+        hasSlug
+        slug
+        displayName
       }
       upvotes
       downvotes

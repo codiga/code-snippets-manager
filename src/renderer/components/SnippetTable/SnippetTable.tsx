@@ -9,21 +9,27 @@ import {
   Td as ChakraTd,
   Tag,
   TableCellProps,
+  Link,
 } from '@chakra-ui/react';
 import { LockIcon, Logo, Avatar, UsersIcon } from '@codiga/codiga-components';
-import { AssistantRecipeWithStats } from 'renderer/types/assistantTypes';
+
 import { getAvatarUrl } from 'renderer/utils/userUtils';
+import { getGroupUrl, getSnippetUrl } from 'renderer/utils/urlUtils';
+import { AssistantRecipeWithStats } from 'renderer/types/assistantTypes';
+import { PageTypes } from 'renderer/types/pageTypes';
 import FavoriteSnippet from 'renderer/components/Favorite/FavoriteSnippet';
+import UserLink from 'renderer/components/UserLink';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd {...props} p="space_16" pr="space_64" _last={{ pr: 'space_56' }} />
 );
 
 type SnippetTableProps = {
+  page: PageTypes;
   recipes: AssistantRecipeWithStats[];
 };
 
-export default function SnippetTable({ recipes }: SnippetTableProps) {
+export default function SnippetTable({ page, recipes }: SnippetTableProps) {
   return (
     <Box w="full" overflow="auto">
       <TableContainer>
@@ -55,22 +61,45 @@ export default function SnippetTable({ recipes }: SnippetTableProps) {
                       <Flex alignItems="center" gap="space_8">
                         <UsersIcon />
                         <Text size="xs" noOfLines={1}>
-                          {recipe?.groups[0]?.name}
+                          <Link
+                            isExternal
+                            variant="subtle"
+                            href={`${getGroupUrl(
+                              recipe.groups[0].id!
+                            )}/snippets`}
+                          >
+                            {recipe.groups[0].name}
+                          </Link>
                         </Text>
                       </Flex>
                     </Td>
                   )}
                   <Td>
                     <Flex alignItems="center" gap="space_8">
-                      <Text size="sm" noOfLines={1}>
-                        {recipe.name}
+                      <Text
+                        size="sm"
+                        noOfLines={1}
+                        maxWidth="300px"
+                        display="inline-block"
+                      >
+                        <Link
+                          isExternal
+                          variant="subtle"
+                          href={getSnippetUrl(
+                            page,
+                            recipe.id,
+                            recipe.groups?.length
+                              ? recipe.groups[0].id
+                              : undefined
+                          )}
+                        >
+                          {recipe.name}
+                        </Link>
                       </Text>
-                      {!recipe.groups && (
-                        <FavoriteSnippet
-                          isSubscribed={!!recipe.isSubscribed}
-                          recipeId={recipe.id}
-                        />
-                      )}
+                      <FavoriteSnippet
+                        isSubscribed={!!recipe.isSubscribed}
+                        recipeId={recipe.id}
+                      />
                     </Flex>
                   </Td>
                   <Td>
@@ -80,8 +109,13 @@ export default function SnippetTable({ recipes }: SnippetTableProps) {
                         name={recipe.owner?.displayName || 'Anonymous'}
                         src={getAvatarUrl({ id: recipe.owner?.id })}
                       />
-                      <Text size="xs" noOfLines={1}>
-                        {recipe.owner?.displayName || 'Anonymous'}
+                      <Text
+                        size="xs"
+                        noOfLines={1}
+                        maxW="300px"
+                        display="inline-block"
+                      >
+                        <UserLink owner={recipe.owner} />
                       </Text>
                     </Flex>
                   </Td>

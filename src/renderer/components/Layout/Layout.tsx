@@ -1,6 +1,12 @@
 import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Box, Button, Flex, useDisclosure } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  useDisclosure,
+  useColorMode,
+} from '@chakra-ui/react';
 import { EmptyState } from '@codiga/codiga-components';
 
 import Login from 'renderer/components/Login';
@@ -16,6 +22,7 @@ export default function Layout({ children }: LayoutProps) {
   const { pathname } = useLocation();
   const { id } = useUser();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode } = useColorMode();
 
   return (
     <Flex
@@ -25,6 +32,7 @@ export default function Layout({ children }: LayoutProps) {
       overflow="hidden"
       bg="neutral.25"
       _dark={{ bg: 'base.dark' }}
+      sx={{ colorScheme: colorMode }}
     >
       <Titlebar openLoginModal={onOpen} />
 
@@ -44,7 +52,6 @@ export default function Layout({ children }: LayoutProps) {
           flex={1}
           justifyContent="center"
           alignItems="flex-start"
-          pt="space_16"
           overflow="auto"
           bg="neutral.0"
           _dark={{ bg: 'neutral.100' }}

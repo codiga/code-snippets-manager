@@ -349,7 +349,7 @@ export enum UserPreferenceKey {
 
 // Common fields
 export enum RecipeSortingFields {
-  Language = 'Language',
+  // Language = 'Language',
   Name = 'Name',
   Timestamp = 'CreationTimestamp',
   Visibility = 'Visibility',
