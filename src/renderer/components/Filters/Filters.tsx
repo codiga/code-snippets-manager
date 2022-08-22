@@ -54,6 +54,7 @@ export default function Filters() {
         />
         <LanguageSelector
           minW="150px"
+          maxW="300px"
           value={language || ''}
           options={['', ...ALL_LANGUAGES]}
           emptyLabel="All Languages"
@@ -65,6 +66,7 @@ export default function Filters() {
         />
         <LibrarySelector
           minW="150px"
+          maxW="300px"
           isCreatable
           value={library || ''}
           language={language || ''}
