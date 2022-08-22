@@ -10,9 +10,10 @@ import TitlebarButton from './TitlebarButton';
 
 type TitlebarProps = {
   openLoginModal: () => void;
+  isOnline: boolean;
 };
 
-export default function Titlebar({ openLoginModal }: TitlebarProps) {
+export default function Titlebar({ openLoginModal, isOnline }: TitlebarProps) {
   const { id, username, accountType } = useUser();
 
   return (
@@ -35,35 +36,39 @@ export default function Titlebar({ openLoginModal }: TitlebarProps) {
         gridGap="space_16"
         sx={{ '-webkit-app-region': 'no-drag' }}
       >
-        <Link
-          isExternal
-          href={`${APP_URL}/assistant/snippet/create`}
-          variant="square"
-        >
-          Create Snippet
-        </Link>
-
-        <Flex w="32px" alignItems="center">
-          {id ? (
-            <Avatar
-              name={username || 'Anon'}
-              kind={accountType as any}
-              src={getAvatarUrl({ id, username, accountType })}
-              size="sm"
-            />
-          ) : (
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        {isOnline && (
+          <>
             <Link
-              as="button"
-              onClick={openLoginModal}
-              variant="solid"
-              size="sm"
-              p="0"
+              isExternal
+              href={`${APP_URL}/assistant/snippet/create`}
+              variant="square"
             >
-              Login
+              Create Snippet
             </Link>
-          )}
-        </Flex>
+
+            <Flex w="32px" alignItems="center">
+              {id ? (
+                <Avatar
+                  name={username || 'Anon'}
+                  kind={accountType as any}
+                  src={getAvatarUrl({ id, username, accountType })}
+                  size="sm"
+                />
+              ) : (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                <Link
+                  as="button"
+                  onClick={openLoginModal}
+                  variant="solid"
+                  size="sm"
+                  p="0"
+                >
+                  Login
+                </Link>
+              )}
+            </Flex>
+          </>
+        )}
 
         <Flex>
           <TitlebarButton message="minimizeApp">
