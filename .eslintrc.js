@@ -9,6 +9,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'import/no-cycle': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'react/require-default-props': [2, { functions: 'defaultArguments' }],
   },
   parserOptions: {
     ecmaVersion: 2020,
