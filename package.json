@@ -111,7 +111,7 @@
     "@apollo/client": "^3.6.9",
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.8",
-    "@codiga/codiga-components": "^1.0.3",
+    "@codiga/codiga-components": "^1.0.5",
     "@electron/remote": "^2.0.8",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
