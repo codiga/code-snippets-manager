@@ -15,6 +15,7 @@ import {
   Avatar,
   UsersIcon,
   CodeIcon,
+  Logos,
 } from '@codiga/codiga-components';
 
 import { getCookbookUrl, getGroupUrl } from 'renderer/utils/urlUtils';
@@ -107,17 +108,6 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                   )}
                   <Td>
                     <Flex alignItems="center" gap="space_8">
-                      <CodeIcon />
-                      <Text size="xs" noOfLines={1}>
-                        {cookbook?.recipesCount}
-                      </Text>
-                    </Flex>
-                  </Td>
-
-                  {/* FIXME - LANGUAGES */}
-
-                  <Td>
-                    <Flex alignItems="center" gap="space_8">
                       <Avatar
                         size="xs"
                         name={cookbook.owner?.displayName || 'Anonymous'}
@@ -142,6 +132,18 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                         {new Date(cookbook.creationTimestampMs!).toDateString()}
                       </Text>
                     </Flex>
+                  </Td>
+                  <Td>
+                    <Flex alignItems="center" gap="space_8">
+                      <CodeIcon />
+                      <Text size="xs" noOfLines={1}>
+                        {cookbook?.recipesCount}
+                      </Text>
+                    </Flex>
+                  </Td>
+
+                  <Td>
+                    <Logos values={cookbook?.languages || []} max={2} />
                   </Td>
                 </Tr>
               );

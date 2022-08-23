@@ -107,6 +107,7 @@ export const GET_USER_COOKBOOKS = gql`
         }
         upvotes
         downvotes
+        languages
         recipesCount(name: $name)
       }
       cookbooksCount: assistantCookbooksCount(name: $name)
@@ -200,6 +201,7 @@ export const GET_USER_SUBSCRIBED_COOKBOOKS = gql`
         }
         upvotes
         downvotes
+        languages
       }
       isAnyCookbook: assistantCookbooksSubscribed(howmany: 1, skip: 0) {
         id
@@ -303,6 +305,7 @@ export const GET_SHARED_COOKBOOKS = gql`
       }
       upvotes
       downvotes
+      languages
     }
     sharedCookbooksCount(name: $name, groupId: $groupId)
   }
