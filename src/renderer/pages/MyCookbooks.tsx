@@ -20,6 +20,9 @@ export default function MyCookbooks() {
       ...GET_USER_COOKBOOKS_VARIABLES,
       name: filters.searchTerm,
     },
+    context: {
+      debounceKey: 'my-cookbooks',
+    },
   });
 
   const userCookbooks = data?.user?.cookbooks || [];

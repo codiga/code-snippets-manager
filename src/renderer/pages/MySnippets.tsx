@@ -24,6 +24,9 @@ export default function MySnippets() {
         filters.language !== Language.ALL_LANGUAGES ? filters.language : null,
       tag: filters.tags,
     },
+    context: {
+      debounceKey: 'my-snippets',
+    },
   });
 
   const userRecipes = data?.user?.recipes || [];

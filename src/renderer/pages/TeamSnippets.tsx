@@ -24,6 +24,9 @@ export default function TeamSnippets() {
         filters.language !== Language.ALL_LANGUAGES ? [filters.language] : null,
       tag: filters.tags,
     },
+    context: {
+      debounceKey: 'team-snippets',
+    },
   });
 
   const teamRecipes = data?.recipes || [];

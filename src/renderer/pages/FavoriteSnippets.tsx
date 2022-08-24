@@ -20,6 +20,9 @@ export default function MySnippets() {
       ...GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
       name: filters.searchTerm,
     },
+    context: {
+      debounceKey: 'favorite-snippets',
+    },
   });
 
   const userFavoriteRecipes = data?.user?.recipes || [];

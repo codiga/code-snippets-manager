@@ -20,6 +20,9 @@ export default function TeamCookbooks() {
       ...GET_SHARED_COOKBOOKS_VARIABLES,
       name: filters.searchTerm,
     },
+    context: {
+      debounceKey: 'team-cookbooks',
+    },
   });
 
   const userCookbooks = data?.cookbooks || [];

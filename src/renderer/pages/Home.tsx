@@ -30,6 +30,9 @@ export default function Home() {
       onlyPublic: filters.privacy === 'public' ? true : null,
       onlySubscribed: filters.isSubscribed || null,
     },
+    context: {
+      debounceKey: 'search',
+    },
   });
 
   const results = data?.searchResults || [];
