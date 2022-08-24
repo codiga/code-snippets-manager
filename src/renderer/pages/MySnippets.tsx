@@ -9,6 +9,7 @@ import SnippetTable from 'renderer/components/SnippetTable/SnippetTable';
 import { useFilters } from 'renderer/components/FiltersContext';
 import filterBy from 'renderer/components/Filters/filterBy';
 import SnippetTableEmptyFiltered from 'renderer/components/SnippetTable/SnippetTableEmptyFiltered';
+import { Language } from 'renderer/lib/constants';
 
 export default function MySnippets() {
   const filters = useFilters();
@@ -19,7 +20,8 @@ export default function MySnippets() {
     variables: {
       ...GET_USER_RECIPES_VARIABLES,
       name: filters.searchTerm,
-      language: filters.language,
+      language:
+        filters.language !== Language.ALL_LANGUAGES ? filters.language : null,
       tag: filters.tags,
     },
   });
