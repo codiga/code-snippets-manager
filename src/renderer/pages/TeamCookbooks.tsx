@@ -16,7 +16,10 @@ export default function TeamCookbooks() {
   const { data, loading, error } = useQuery<{
     cookbooks: AssistantCookbook[];
   }>(GET_SHARED_COOKBOOKS, {
-    variables: GET_SHARED_COOKBOOKS_VARIABLES,
+    variables: {
+      ...GET_SHARED_COOKBOOKS_VARIABLES,
+      name: filters.searchTerm,
+    },
   });
 
   const userCookbooks = data?.cookbooks || [];
@@ -24,7 +27,6 @@ export default function TeamCookbooks() {
   // check the recipe against the search filters
   const filteredCookbooks = userCookbooks.filter((cookbook) => {
     if (!filterBy.name(filters, cookbook.name)) return false;
-    // if (!filterBy.language(filters, cookbook.language)) return false;
     if (!filterBy.privacy(filters, cookbook.isPublic)) return false;
     if (!filterBy.isSubscribed(filters, cookbook.isSubscribed)) return false;
     return true;

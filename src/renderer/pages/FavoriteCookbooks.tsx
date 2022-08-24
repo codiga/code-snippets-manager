@@ -16,7 +16,10 @@ export default function FavoriteCookbooks() {
   const { data, loading, error } = useQuery<{
     user: { cookbooks: AssistantCookbook[] };
   }>(GET_USER_SUBSCRIBED_COOKBOOKS, {
-    variables: GET_USER_SUBSCRIBED_COOKBOOKS_VARIABLES,
+    variables: {
+      ...GET_USER_SUBSCRIBED_COOKBOOKS_VARIABLES,
+      name: filters.searchTerm,
+    },
   });
 
   const userCookbooks = data?.user?.cookbooks || [];

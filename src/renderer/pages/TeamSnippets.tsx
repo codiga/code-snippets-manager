@@ -9,6 +9,7 @@ import SnippetTableEmptyFiltereed from 'renderer/components/SnippetTable/Snippet
 import SnippetTable from 'renderer/components/SnippetTable/SnippetTable';
 import filterBy from 'renderer/components/Filters/filterBy';
 import { useFilters } from 'renderer/components/FiltersContext';
+import { Language } from 'renderer/lib/constants';
 
 export default function TeamSnippets() {
   const filters = useFilters();
@@ -16,7 +17,13 @@ export default function TeamSnippets() {
   const { data, loading, error } = useQuery<{
     recipes: AssistantRecipeWithStats[];
   }>(GET_SHARED_RECIPES, {
-    variables: GET_SHARED_RECIPES_VARIABLES,
+    variables: {
+      ...GET_SHARED_RECIPES_VARIABLES,
+      name: filters.searchTerm,
+      languages:
+        filters.language !== Language.ALL_LANGUAGES ? [filters.language] : null,
+      tag: filters.tags,
+    },
   });
 
   const teamRecipes = data?.recipes || [];

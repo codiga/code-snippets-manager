@@ -16,7 +16,10 @@ export default function MySnippets() {
   const { data, loading, error } = useQuery<{
     user: { recipes: AssistantRecipeWithStats[] };
   }>(GET_USER_SUBSCRIBED_RECIPES, {
-    variables: GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
+    variables: {
+      ...GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
+      name: filters.searchTerm,
+    },
   });
 
   const userFavoriteRecipes = data?.user?.recipes || [];
