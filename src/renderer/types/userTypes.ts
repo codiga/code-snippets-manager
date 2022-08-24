@@ -1,11 +1,9 @@
-import { BadgesType } from 'renderer/lib/badgeConstants';
 import { AccountTypeEnum, UserPreferenceKey } from 'renderer/lib/constants';
 import {
   AssistantCookbook,
   AssistantRecipesCountPerLanguage,
   AssistantRecipeWithStats,
 } from './assistantTypes';
-import { AssistantUserBadges } from './gamificationTypes';
 import { Project } from './projectTypes';
 
 export type UserLevel =
@@ -119,7 +117,6 @@ export interface User {
   numberOfAuthoredRecipes?: number;
   info?: UserInfo;
   statistics?: AssistantUserStatistics;
-  badges?: AssistantUserBadges & BadgesType;
   hasSubscription?: boolean;
   allowedNumberOfProjects?: number;
   remainingAnalysisQuota?: number;
@@ -159,7 +156,6 @@ export interface PublicUser {
   city?: string;
   country?: string;
   statistics?: AssistantUserStatistics;
-  badges?: AssistantUserBadges & BadgesType;
   hasSubscription?: boolean;
   allowedNumberOfProjects?: number;
   remainingAnalysisQuota?: number;

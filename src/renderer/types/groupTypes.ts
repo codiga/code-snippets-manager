@@ -1,16 +1,16 @@
-import { Project } from "./projectTypes";
+import { Project } from './projectTypes';
 import {
   AccountType,
   BitbucketInstallation,
   User,
   UserLevel,
-} from "./userTypes";
+} from './userTypes';
 
-export type GroupType = "Bitbucket" | "Gitlab" | "Github" | "Regular";
+export type GroupType = 'Bitbucket' | 'Gitlab' | 'Github' | 'Regular';
 
-export type GroupState = "Deleting" | "Active" | "Disabled" | "Created";
+export type GroupState = 'Deleting' | 'Active' | 'Disabled' | 'Created';
 
-export type GroupMembershipLevel = "Admin" | "Read";
+export type GroupMembershipLevel = 'Admin' | 'Read';
 
 export type StripeSubscriptionType = {
   purchasedSeats?: number;
@@ -35,7 +35,7 @@ export interface GroupInvitation {
   expired?: boolean;
 }
 
-export type GroupPreferenceKey = "SyncUsers";
+export type GroupPreferenceKey = 'SyncUsers';
 
 export interface GroupPreference {
   key?: GroupPreferenceKey;
