@@ -10,6 +10,7 @@ module.exports = {
     'import/no-cycle': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     'react/require-default-props': [2, { functions: 'defaultArguments' }],
+    'import/prefer-default-export': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

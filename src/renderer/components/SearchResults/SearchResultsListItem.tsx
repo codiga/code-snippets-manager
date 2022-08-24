@@ -1,17 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react';
-import {
-  ChartBarsIcon,
-  DotIcon,
-  DownVoteIcon,
-  Logo,
-  Tags,
-  UpVoteIcon,
-} from '@codiga/codiga-components';
+import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/codiga-components';
 import {
   AssistantRecipeWithStats,
   RecipeSummary,
 } from 'renderer/types/assistantTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
+import Votes from './Votes';
 
 type SearchResultsListItemProps = {
   recipe: AssistantRecipeWithStats;
@@ -60,9 +54,12 @@ export default function SearchResultsListItem({
 
       <Flex alignItems="center" gridGap="space_8">
         <Text d="flex" alignItems="center" gridGap="space_4" size="xs">
-          <UpVoteIcon />
-          {(recipe?.upvotes || 0) - (recipe?.downvotes || 0)}
-          <DownVoteIcon />
+          <Votes
+            upvotes={recipe.upvotes || 0}
+            downvotes={recipe.downvotes || 0}
+            entityType="Recipe"
+            entityId={recipe.id}
+          />
         </Text>
         <DotIcon h="2px" w="2px" />
         <Text d="flex" alignItems="center" gridGap="space_4" size="xs">

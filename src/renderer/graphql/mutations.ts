@@ -77,3 +77,32 @@ export const UNSUBSCRIBE_TO_RECIPE = gql`
     unsubscribeFromRecipe(id: $id)
   }
 `;
+
+type VotingMutationType = {
+  entityId: number;
+  entityType: 'Recipe';
+  isUpvote: boolean;
+};
+
+export type AddVoteMutationVariables = VotingMutationType;
+
+export type DeleteVoteMutationVariables = Pick<
+  VotingMutationType,
+  'entityId' | 'entityType'
+>;
+
+export const ADD_VOTE = gql`
+  mutation addVote(
+    $entityId: Long!
+    $entityType: VoteEntity!
+    $isUpvote: Boolean!
+  ) {
+    addVote(entityId: $entityId, entityType: $entityType, isUpvote: $isUpvote)
+  }
+`;
+
+export const DELETE_VOTE = gql`
+  mutation deleteVote($entityId: Long!, $entityType: VoteEntity!) {
+    deleteVote(entityId: $entityId, entityType: $entityType)
+  }
+`;

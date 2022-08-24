@@ -387,3 +387,15 @@ export const GET_RECIPES_SEMANTICALLY = gql`
     }
   }
 `;
+
+export const GET_RECIPE_VOTES_QUERY = gql`
+  query getRecipeVotes($recipeId: Long!) {
+    votesData: assistantRecipe(id: $recipeId) {
+      id
+      isUpVoted
+      isDownVoted
+      upvotes
+      downvotes
+    }
+  }
+`;
