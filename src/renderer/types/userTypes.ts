@@ -1,4 +1,4 @@
-import { AccountTypeEnum, UserPreferenceKey } from 'renderer/lib/constants';
+import { AccountTypeEnum, UserPreferenceKey } from '../lib/constants';
 import {
   AssistantCookbook,
   AssistantRecipesCountPerLanguage,
@@ -118,7 +118,7 @@ export interface User {
   numberOfAuthoredRecipes?: number;
   info?: UserInfo;
   statistics?: AssistantUserStatistics;
-  badges?: AssistantUserBadges & BadgesType;
+  badges?: AssistantUserBadges;
   hasSubscription?: boolean;
   allowedNumberOfProjects?: number;
   remainingAnalysisQuota?: number;
@@ -158,7 +158,7 @@ export interface PublicUser {
   city?: string;
   country?: string;
   statistics?: AssistantUserStatistics;
-  badges?: AssistantUserBadges & BadgesType;
+  badges?: AssistantUserBadges;
   hasSubscription?: boolean;
   allowedNumberOfProjects?: number;
   remainingAnalysisQuota?: number;
