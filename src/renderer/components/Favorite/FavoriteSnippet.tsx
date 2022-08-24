@@ -3,18 +3,18 @@ import { useToast } from '@codiga/codiga-components';
 import {
   SUBSCRIBE_TO_RECIPE,
   UNSUBSCRIBE_TO_RECIPE,
-} from '../../../renderer/graphql/mutations';
+} from '../../graphql/mutations';
 import {
   GET_RECIPES_SEMANTICALLY,
   GET_SHARED_RECIPES,
   GET_USER_RECIPES,
   GET_USER_SUBSCRIBED_RECIPES,
-} from '../../../renderer/graphql/queries';
+} from '../../graphql/queries';
 import {
   GET_SHARED_RECIPES_VARIABLES,
   GET_USER_RECIPES_VARIABLES,
   GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
-} from '../../../renderer/graphql/variables';
+} from '../../graphql/variables';
 import Favorite, { FavoriteProps } from './Favorite';
 
 type FavoriteRecipeProps = Pick<FavoriteProps, 'isSubscribed'> & {

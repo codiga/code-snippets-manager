@@ -3,7 +3,7 @@ import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/codiga-components';
 import {
   AssistantRecipeWithStats,
   RecipeSummary,
-} from 'renderer/types/assistantTypes';
+} from '../../types/assistantTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
 import Votes from './Votes';
 

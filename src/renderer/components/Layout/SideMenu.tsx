@@ -11,9 +11,9 @@ import {
 } from '@codiga/codiga-components';
 import { useNavigate } from 'react-router-dom';
 
-import { TOKEN } from '../../../renderer/lib/config';
-import { useUser } from '../../../renderer/components/UserContext';
-import { useTheme } from '../../../renderer/components/ThemeContext';
+import { TOKEN } from '../../lib/config';
+import { useUser } from '../../components/UserContext';
+import { useTheme } from '../../components/ThemeContext';
 
 import SideMenuHeader from './SideMenuHeader';
 import { SideMenuItemButton, SideMenuItemLink } from './SideMenuItems';

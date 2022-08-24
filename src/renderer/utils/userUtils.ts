@@ -1,6 +1,6 @@
-import { API_ROOT_URL } from '../../renderer/lib/config';
-import { PublicUser, User } from '../../renderer/types/userTypes';
-import { UserPreferenceKey } from '../../renderer/lib/constants';
+import { API_ROOT_URL } from '../lib/config';
+import { PublicUser, User } from '../types/userTypes';
+import { UserPreferenceKey } from '../lib/constants';
 
 export const isGravatarEnabledForUser = (user: User) => {
   return (

@@ -15,9 +15,9 @@ import { TextField, useToast } from '@codiga/codiga-components';
 import { useLazyQuery } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 
-import { APP_URL, TOKEN } from '../../../renderer/lib/config';
-import { CHECK_USER } from '../../../renderer/graphql/queries';
-import { useUser } from '../../../renderer/components/UserContext';
+import { APP_URL, TOKEN } from '../../lib/config';
+import { CHECK_USER } from '../../graphql/queries';
+import { useUser } from '../../components/UserContext';
 
 type LoginProps = {
   isOpen: boolean;

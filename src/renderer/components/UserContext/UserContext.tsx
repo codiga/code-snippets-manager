@@ -1,8 +1,8 @@
 import { useContext, createContext, ReactNode, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { CHECK_USER } from '../../../renderer/graphql/queries';
-import { User } from '../../../renderer/types/userTypes';
-import { POLL_USER_FOR_LOGOUT_MSEC } from '../../../renderer/lib/constants';
+import { CHECK_USER } from '../../graphql/queries';
+import { User } from '../../types/userTypes';
+import { POLL_USER_FOR_LOGOUT_MSEC } from '../../lib/constants';
 
 type UserContextType = {
   setUser: React.Dispatch<React.SetStateAction<User>>;
