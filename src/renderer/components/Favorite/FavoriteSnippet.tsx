@@ -5,6 +5,7 @@ import {
   UNSUBSCRIBE_TO_RECIPE,
 } from 'renderer/graphql/mutations';
 import {
+  GET_RECIPES_SEMANTICALLY,
   GET_SHARED_RECIPES,
   GET_USER_RECIPES,
   GET_USER_SUBSCRIBED_RECIPES,
@@ -33,6 +34,7 @@ const recipeRefetches = [
     query: GET_SHARED_RECIPES,
     variables: GET_SHARED_RECIPES_VARIABLES,
   },
+  GET_RECIPES_SEMANTICALLY,
 ];
 
 export default function FavoriteSnippet({

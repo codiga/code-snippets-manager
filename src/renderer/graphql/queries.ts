@@ -1,4 +1,9 @@
 import { gql } from '@apollo/client';
+import {
+  AssistantRecipeWithStats,
+  LanguageEnumeration,
+  LibraryWithAllEnumeration,
+} from 'renderer/types/assistantTypes';
 
 export const CHECK_USER = gql`
   query checkUser {
@@ -308,5 +313,77 @@ export const GET_SHARED_COOKBOOKS = gql`
       languages
     }
     sharedCookbooksCount(name: $name, groupId: $groupId)
+  }
+`;
+
+export type GetRecipesSemanticallyData = {
+  searchResults: AssistantRecipeWithStats[];
+};
+
+export type GetRecipesSemanticallyVariables = {
+  howmany: number;
+  skip: number;
+  languages: LanguageEnumeration[] | null;
+  dependencies: LibraryWithAllEnumeration[] | null;
+  term: string | null;
+  tags: string[] | null;
+  onlyPrivate: boolean | null;
+  onlyPublic: boolean | null;
+  onlySubscribed: boolean | null;
+};
+
+export const GET_RECIPES_SEMANTICALLY = gql`
+  query getRecipesSemantically(
+    $howmany: Long!
+    $skip: Long!
+    $dependencies: [String!]
+    $languages: [LanguageEnumeration!]
+    $tags: [String!]
+    $term: String
+    $onlyPrivate: Boolean
+    $onlyPublic: Boolean
+    $onlySubscribed: Boolean
+  ) {
+    searchResults: assistantRecipesSemanticSearch(
+      howmany: $howmany
+      skip: $skip
+      dependencies: $dependencies
+      languages: $languages
+      term: $term
+      tags: $tags
+      onlyPrivate: $onlyPrivate
+      onlyPublic: $onlyPublic
+      onlySubscribed: $onlySubscribed
+    ) {
+      id
+      code
+      name
+      tags
+      uses
+      imports
+      upvotes
+      language
+      keywords
+      downvotes
+      isUpVoted
+      isDownVoted
+      description
+      isSubscribed
+      commentsCount
+      averageRating
+      presentableFormat
+      owner {
+        id
+        slug
+        displayName
+      }
+      cookbook {
+        id
+        name
+      }
+      dependencyConstraints {
+        name
+      }
+    }
   }
 `;

@@ -3,13 +3,13 @@ import { HeartFilledIcon, HeartIcon } from '@codiga/codiga-components';
 import { useUser } from 'renderer/components/UserContext';
 
 export type FavoriteProps = {
-  isSubscribed: boolean;
+  isSubscribed?: boolean;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
 };
 
 export default function Favorite({
-  isSubscribed,
+  isSubscribed = false,
   onSubscribe,
   onUnsubscribe,
 }: FavoriteProps) {

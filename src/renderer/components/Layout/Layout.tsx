@@ -53,7 +53,7 @@ export default function Layout({ children }: LayoutProps) {
       {!isOnline ? (
         <NoInternetConnection />
       ) : (
-        <Flex flex={1}>
+        <Flex flex={1} overflow="hidden">
           <Box
             w="214px"
             minW="214px"
@@ -69,11 +69,11 @@ export default function Layout({ children }: LayoutProps) {
             flex={1}
             justifyContent="center"
             alignItems="flex-start"
-            overflow="auto"
+            overflow="hidden"
             bg="neutral.0"
             _dark={{ bg: 'neutral.100' }}
           >
-            <Box w="full">
+            <Box w="full" height="calc(100% - 74px)">
               {/* IF THE USER'S LOGGED IN, SHOW CONTENT, OTHERWISE SHOW AN LOGIN NOTICE */}
               {id || pathname === '/' ? (
                 children
