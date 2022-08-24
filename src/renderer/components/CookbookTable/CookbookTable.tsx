@@ -24,6 +24,7 @@ import { AssistantCookbook } from 'renderer/types/assistantTypes';
 import { PageTypes } from 'renderer/types/pageTypes';
 import FavoriteCookbook from 'renderer/components/Favorite/FavoriteCookbook';
 import UserLink from 'renderer/components/UserLink';
+import VotesCurrent from '../VotesCurrent';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd
@@ -120,10 +121,20 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                   </Td>
                   <Td>
                     <Flex alignItems="center" gap="space_8">
-                      <LockIcon open={!!cookbook.isPublic} />
-                      <Text size="xs" noOfLines={1}>
+                      <Text
+                        size="xs"
+                        noOfLines={1}
+                        gridGap="space_4"
+                        d="flex"
+                        alignItems="center"
+                      >
+                        <LockIcon open={!!cookbook.isPublic} />
                         {cookbook.isPublic ? 'Public' : 'Private'}
                       </Text>
+                      <VotesCurrent
+                        upvotes={cookbook.upvotes}
+                        downvotes={cookbook.downvotes}
+                      />
                     </Flex>
                   </Td>
                   <Td>

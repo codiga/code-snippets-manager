@@ -19,6 +19,7 @@ import { AssistantRecipeWithStats } from 'renderer/types/assistantTypes';
 import { PageTypes } from 'renderer/types/pageTypes';
 import FavoriteSnippet from 'renderer/components/Favorite/FavoriteSnippet';
 import UserLink from 'renderer/components/UserLink';
+import VotesCurrent from '../VotesCurrent';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd {...props} p="space_16" pr="space_64" _last={{ pr: 'space_56' }} />
@@ -121,10 +122,20 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                   </Td>
                   <Td>
                     <Flex alignItems="center" gap="space_8">
-                      <LockIcon open={!!recipe.isPublic} />
-                      <Text size="xs" noOfLines={1}>
+                      <Text
+                        size="xs"
+                        noOfLines={1}
+                        gridGap="space_4"
+                        d="flex"
+                        alignItems="center"
+                      >
+                        <LockIcon open={!!recipe.isPublic} />
                         {recipe.isPublic ? 'Public' : 'Private'}
                       </Text>
+                      <VotesCurrent
+                        upvotes={recipe.upvotes}
+                        downvotes={recipe.downvotes}
+                      />
                     </Flex>
                   </Td>
                   <Td>
