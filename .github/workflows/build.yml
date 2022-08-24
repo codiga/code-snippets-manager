@@ -21,7 +21,7 @@ jobs:
       - name: Install packages
         run: npm install
       - name: Run tests
-        run: npm test
+        run: npm run build:main && npm test
       - name: Build the Electron App
         run: npm run package
       - name: Build/release Electron app
