@@ -1,4 +1,4 @@
-name: Build/release
+name: Build and Release
 
 on: push
 
@@ -21,7 +21,9 @@ jobs:
       - name: Install packages
         run: npm install
       - name: Run tests
-        run: npm test
+        run: npm run build && npm test
+      - name: Build the Electron App
+        run: npm run package
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:

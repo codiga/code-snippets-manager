@@ -1,4 +1,4 @@
-import { AccountTypeEnum, UserPreferenceKey } from 'renderer/lib/constants';
+import { AccountTypeEnum, UserPreferenceKey } from '../lib/constants';
 import {
   AssistantCookbook,
   AssistantRecipesCountPerLanguage,

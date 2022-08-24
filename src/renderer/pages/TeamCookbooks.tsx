@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
-import { GET_SHARED_COOKBOOKS } from 'renderer/graphql/queries';
-import { GET_SHARED_COOKBOOKS_VARIABLES } from 'renderer/graphql/variables';
-import { AssistantCookbook } from 'renderer/types/assistantTypes';
-import CookbookTableLoading from 'renderer/components/CookbookTable/CookbookTableLoading';
-import CookbookTableError from 'renderer/components/CookbookTable/CookbookTableError';
-import CookbookTableEmpty from 'renderer/components/CookbookTable/CookbookTableEmpty';
-import CookbookTableEmptyFiltereed from 'renderer/components/CookbookTable/CookbookTableEmptyFiltered';
-import CookbookTable from 'renderer/components/CookbookTable/CookbookTable';
-import { useFilters } from 'renderer/components/FiltersContext';
-import filterBy from 'renderer/components/Filters/filterBy';
+import { GET_SHARED_COOKBOOKS } from '../graphql/queries';
+import { GET_SHARED_COOKBOOKS_VARIABLES } from '../graphql/variables';
+import { AssistantCookbook } from '../types/assistantTypes';
+import CookbookTableLoading from '../components/CookbookTable/CookbookTableLoading';
+import CookbookTableError from '../components/CookbookTable/CookbookTableError';
+import CookbookTableEmpty from '../components/CookbookTable/CookbookTableEmpty';
+import CookbookTableEmptyFiltereed from '../components/CookbookTable/CookbookTableEmptyFiltered';
+import CookbookTable from '../components/CookbookTable/CookbookTable';
+import { useFilters } from '../components/FiltersContext';
+import filterBy from '../components/Filters/filterBy';
 
 export default function TeamCookbooks() {
   const filters = useFilters();

@@ -27,8 +27,8 @@ export type ViolationCategory =
   | 'Security'
   | 'Design'
   | 'Deployment'
+  | 'Documentation'
   | 'Performance';
-// ('Documentation');
 
 export interface DuplicateOccurrence {
   filename?: string;
