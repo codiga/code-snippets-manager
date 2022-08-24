@@ -1,6 +1,6 @@
 import { Link } from '@chakra-ui/react';
 import { EmptyState } from '@codiga/codiga-components';
-import { APP_URL } from 'renderer/lib/config';
+import { APP_URL } from '../../lib/config';
 
 export default function CookbookTableError() {
   return (

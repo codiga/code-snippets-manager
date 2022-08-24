@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { Language } from 'renderer/lib/constants';
+import { Language } from '../../lib/constants';
 import {
   LanguageEnumeration,
   LibraryEnumeration,
-} from 'renderer/types/assistantTypes';
+} from '../../types/assistantTypes';
 
 export type SearchTermType = string;
 export type LanguageType = LanguageEnumeration;

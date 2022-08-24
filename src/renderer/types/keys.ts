@@ -1,3 +1,3 @@
 export enum KeysEnum {
-  Enter = "Enter",
+  Enter = 'Enter',
 }

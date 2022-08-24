@@ -17,10 +17,10 @@ import {
   useToast,
 } from '@codiga/codiga-components';
 import { useEffect } from 'react';
-import useCodeView, { CodeViewsType } from 'renderer/hooks/useCodeView';
-import { APP_URL } from 'renderer/lib/config';
-import { AssistantRecipeWithStats } from 'renderer/types/assistantTypes';
-import { decodeIndent } from 'renderer/utils/codeUtils';
+import useCodeView, { CodeViewsType } from '../../hooks/useCodeView';
+import { APP_URL } from '../../lib/config';
+import { AssistantRecipeWithStats } from '../../types/assistantTypes';
+import { decodeIndent } from '../../utils/codeUtils';
 import CodeViewToggler from './CodeViewToggler';
 
 type SearchResultsCodeProps = {

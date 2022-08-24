@@ -17,12 +17,12 @@ import {
   LanguageSelector,
   LibrarySelector,
 } from '@codiga/codiga-components';
-import { useFilters } from 'renderer/components/FiltersContext';
-import { ALL_LANGUAGES } from 'renderer/lib/constants';
+import { useFilters } from '../FiltersContext';
+import { ALL_LANGUAGES } from '../../lib/constants';
 import {
   LanguageEnumeration,
   LibraryEnumeration,
-} from 'renderer/types/assistantTypes';
+} from '../../types/assistantTypes';
 
 export default function Filters() {
   const { isOpen, onToggle } = useDisclosure();

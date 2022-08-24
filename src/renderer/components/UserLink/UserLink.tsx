@@ -1,7 +1,7 @@
 import { Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@codiga/codiga-components';
-import { PublicUser } from 'renderer/types/userTypes';
-import { getUserUrl } from 'renderer/utils/urlUtils';
+import { PublicUser } from '../../types/userTypes';
+import { getUserUrl } from '../../utils/urlUtils';
 
 type UserLinkProps = {
   owner?: PublicUser;
