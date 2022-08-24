@@ -1,8 +1,9 @@
 import { useContext, createContext, ReactNode, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useColorMode } from '@chakra-ui/react';
+import { useToast } from '@codiga/codiga-components';
 
-import { useUser } from '../../components/UserContext';
+import { useUser } from '../UserContext';
 import { User } from '../../types/userTypes';
 import { GET_USER_PREFERENCES } from '../../graphql/queries';
 import {
@@ -16,7 +17,6 @@ import {
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { CODIGA_THEME } from '../../lib/config';
 import { UserPreferenceKey } from '../../lib/constants';
-import { useToast } from '@codiga/codiga-components';
 
 enum Theme {
   THEME_DARK = 'theme-dark',

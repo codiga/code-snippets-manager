@@ -17,8 +17,8 @@ import { getAvatarUrl } from '../../utils/userUtils';
 import { getGroupUrl, getSnippetUrl } from '../../utils/urlUtils';
 import { AssistantRecipeWithStats } from '../../types/assistantTypes';
 import { PageTypes } from '../../types/pageTypes';
-import FavoriteSnippet from '../../components/Favorite/FavoriteSnippet';
-import UserLink from '../../components/UserLink';
+import FavoriteSnippet from '../Favorite/FavoriteSnippet';
+import UserLink from '../UserLink';
 import VotesCurrent from '../VotesCurrent';
 
 const Td = (props: TableCellProps) => (

@@ -17,7 +17,7 @@ import { useForm } from 'react-hook-form';
 
 import { APP_URL, TOKEN } from '../../lib/config';
 import { CHECK_USER } from '../../graphql/queries';
-import { useUser } from '../../components/UserContext';
+import { useUser } from '../UserContext';
 
 type LoginProps = {
   isOpen: boolean;

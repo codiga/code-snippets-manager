@@ -17,7 +17,7 @@ import {
   LanguageSelector,
   LibrarySelector,
 } from '@codiga/codiga-components';
-import { useFilters } from '../../components/FiltersContext';
+import { useFilters } from '../FiltersContext';
 import { ALL_LANGUAGES } from '../../lib/constants';
 import {
   LanguageEnumeration,

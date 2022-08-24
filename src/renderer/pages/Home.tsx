@@ -1,15 +1,15 @@
 import { useQuery } from '@apollo/client';
-import { useFilters } from '../../renderer/components/FiltersContext';
-import SearchResults from '../../renderer/components/SearchResults';
-import SearchResultsEmpty from '../../renderer/components/SearchResults/SearchResultsEmpty';
-import SearchResultsError from '../../renderer/components/SearchResults/SearchResultsError';
-import SearchResultsLoading from '../../renderer/components/SearchResults/SearchResultsLoading';
+import { useFilters } from '../components/FiltersContext';
+import SearchResults from '../components/SearchResults';
+import SearchResultsEmpty from '../components/SearchResults/SearchResultsEmpty';
+import SearchResultsError from '../components/SearchResults/SearchResultsError';
+import SearchResultsLoading from '../components/SearchResults/SearchResultsLoading';
 import {
   GetRecipesSemanticallyData,
   GetRecipesSemanticallyVariables,
   GET_RECIPES_SEMANTICALLY,
-} from '../../renderer/graphql/queries';
-import { Language } from '../../renderer/lib/constants';
+} from '../graphql/queries';
+import { Language } from '../lib/constants';
 
 export default function Home() {
   const filters = useFilters();

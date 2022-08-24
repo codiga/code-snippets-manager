@@ -3,17 +3,17 @@ import { useToast } from '@codiga/codiga-components';
 import {
   SUBSCRIBE_TO_COOKBOOK,
   UNSUBSCRIBE_TO_COOKBOOK,
-} from '../../../renderer/graphql/mutations';
+} from '../../graphql/mutations';
 import {
   GET_SHARED_COOKBOOKS,
   GET_USER_COOKBOOKS,
   GET_USER_SUBSCRIBED_COOKBOOKS,
-} from '../../../renderer/graphql/queries';
+} from '../../graphql/queries';
 import {
   GET_SHARED_COOKBOOKS_VARIABLES,
   GET_USER_COOKBOOKS_VARIABLES,
   GET_USER_SUBSCRIBED_COOKBOOKS_VARIABLES,
-} from '../../../renderer/graphql/variables';
+} from '../../graphql/variables';
 import Favorite, { FavoriteProps } from './Favorite';
 
 type FavoriteCookbookProps = Pick<FavoriteProps, 'isSubscribed'> & {

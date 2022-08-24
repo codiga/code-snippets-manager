@@ -2,8 +2,8 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Box, Flex, useDisclosure, useColorMode } from '@chakra-ui/react';
 
-import Login from '../../components/Login';
-import { useUser } from '../../components/UserContext';
+import Login from '../Login';
+import { useUser } from '../UserContext';
 import SideMenu from './SideMenu';
 import Titlebar from './Titlebar';
 import NotAuthenticated from './NotAuthenticated';

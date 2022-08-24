@@ -5,12 +5,11 @@ import {
   Language,
   Library,
   RecipeSortingFields,
-} from '../../renderer/lib/constants';
+} from '../lib/constants';
 import { Group } from './groupTypes';
 import { PublicUser } from './userTypes';
 
 export type AssistantRecipeQueryOrderBy =
-  | RecipeSortingFields.Language
   | RecipeSortingFields.Name
   | RecipeSortingFields.Timestamp
   | RecipeSortingFields.Visibility

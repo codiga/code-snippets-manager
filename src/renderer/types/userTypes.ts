@@ -1,4 +1,3 @@
-import { BadgesType } from 'renderer/lib/badgeConstants';
 import { AccountTypeEnum, UserPreferenceKey } from 'renderer/lib/constants';
 import {
   AssistantCookbook,

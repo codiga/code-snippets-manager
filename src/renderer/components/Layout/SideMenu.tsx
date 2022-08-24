@@ -12,8 +12,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import { TOKEN } from '../../lib/config';
-import { useUser } from '../../components/UserContext';
-import { useTheme } from '../../components/ThemeContext';
+import { useUser } from '../UserContext';
+import { useTheme } from '../ThemeContext';
 
 import SideMenuHeader from './SideMenuHeader';
 import { SideMenuItemButton, SideMenuItemLink } from './SideMenuItems';

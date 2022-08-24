@@ -22,8 +22,8 @@ import { getCookbookUrl, getGroupUrl } from '../../utils/urlUtils';
 import { getAvatarUrl } from '../../utils/userUtils';
 import { AssistantCookbook } from '../../types/assistantTypes';
 import { PageTypes } from '../../types/pageTypes';
-import FavoriteCookbook from '../../components/Favorite/FavoriteCookbook';
-import UserLink from '../../components/UserLink';
+import FavoriteCookbook from '../Favorite/FavoriteCookbook';
+import UserLink from '../UserLink';
 import VotesCurrent from '../VotesCurrent';
 
 const Td = (props: TableCellProps) => (

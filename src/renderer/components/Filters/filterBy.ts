@@ -1,4 +1,4 @@
-import { FilterTypes } from '../../components/FiltersContext';
+import { FilterTypes } from '../FiltersContext';
 import { Language } from '../../lib/constants';
 import { AssistantRecipeDependencyConstraint } from '../../types/assistantTypes';
 

@@ -1,16 +1,16 @@
 // Badge type
 export enum BadgeType {
-  Gold = "Gold",
-  Silver = "Silver",
-  Bronze = "Bronze",
-  None = "None",
+  Gold = 'Gold',
+  Silver = 'Silver',
+  Bronze = 'Bronze',
+  None = 'None',
 }
 
 // Badge category
 export enum BadgeCategory {
-  Recipes = "Recipes",
-  Comments = "Comments",
-  Usage = "Usage",
+  Recipes = 'Recipes',
+  Comments = 'Comments',
+  Usage = 'Usage',
 }
 
 export type BadgeEnumeration =

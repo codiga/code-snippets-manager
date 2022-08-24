@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { Flex, Link, Image } from '@chakra-ui/react';
 import { Avatar } from '@codiga/codiga-components';
-import { useUser } from '../../components/UserContext';
+import { useUser } from '../UserContext';
 import { APP_URL } from '../../lib/config';
 import { getAvatarUrl } from '../../utils/userUtils';
 import CodigaLogo from './CodigaIcon.png';

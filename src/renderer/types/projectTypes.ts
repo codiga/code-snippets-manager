@@ -1,34 +1,34 @@
-import { LanguageEnumeration } from "./assistantTypes";
-import { Group } from "./groupTypes";
-import { User, UserLevel } from "./userTypes";
+import { LanguageEnumeration } from './assistantTypes';
+import { Group } from './groupTypes';
+import { User, UserLevel } from './userTypes';
 
 export type ProjectState =
-  | "Active"
-  | "Deleting_In_Progress"
-  | "Deleting"
-  | "Disabled";
+  | 'Active'
+  | 'Deleting_In_Progress'
+  | 'Deleting'
+  | 'Disabled';
 
 export type AnalysisResultStatus =
-  | "Unknown"
-  | "Done"
-  | "Error"
-  | "Same_Revision"
-  | "Ignore"
-  | "InProgress"
-  | "Scheduled"
-  | "Started";
+  | 'Unknown'
+  | 'Done'
+  | 'Error'
+  | 'Same_Revision'
+  | 'Ignore'
+  | 'InProgress'
+  | 'Scheduled'
+  | 'Started';
 
 export type ViolationCategory =
-  | "Unknown"
-  | "Error_Prone"
-  | "Code_Style"
-  | "Best_Practice"
-  | "Safety"
-  | "Security"
-  | "Design"
-  | "Deployment"
-  | "Performance";
-("Documentation");
+  | 'Unknown'
+  | 'Error_Prone'
+  | 'Code_Style'
+  | 'Best_Practice'
+  | 'Safety'
+  | 'Security'
+  | 'Design'
+  | 'Deployment'
+  | 'Documentation'
+  | 'Performance';
 
 export interface DuplicateOccurrence {
   filename?: string;
@@ -69,21 +69,21 @@ export interface Violation {
 }
 
 export type VersionConstraintEnumeration =
-  | "Unknown"
-  | "LessOrEqual"
-  | "LessThan"
-  | "GreaterOrEqual"
-  | "GreaterThan"
-  | "Equal";
+  | 'Unknown'
+  | 'LessOrEqual'
+  | 'LessThan'
+  | 'GreaterOrEqual'
+  | 'GreaterThan'
+  | 'Equal';
 
 export type ProjectStatus =
-  | "Unavailable"
-  | "Unknown"
-  | "Critical"
-  | "Warning"
-  | "Neutral"
-  | "Good"
-  | "Excellent";
+  | 'Unavailable'
+  | 'Unknown'
+  | 'Critical'
+  | 'Warning'
+  | 'Neutral'
+  | 'Good'
+  | 'Excellent';
 
 export interface Dependency {
   name?: string;
@@ -171,23 +171,23 @@ export interface AnalysisResultSummary {
 }
 
 export type AnalysisErrorType =
-  | "Unknown"
-  | "TooManyLines"
-  | "ShellError"
-  | "ScalaError"
-  | "SecurityError"
-  | "PythonError"
-  | "PhpError"
-  | "LizardError"
-  | "JavascriptError"
-  | "JavaError"
-  | "GoError"
-  | "DependsError"
-  | "DuplicationFindError"
-  | "CloneError"
-  | "CppError"
-  | "BanditError"
-  | "AuthenticationError";
+  | 'Unknown'
+  | 'TooManyLines'
+  | 'ShellError'
+  | 'ScalaError'
+  | 'SecurityError'
+  | 'PythonError'
+  | 'PhpError'
+  | 'LizardError'
+  | 'JavascriptError'
+  | 'JavaError'
+  | 'GoError'
+  | 'DependsError'
+  | 'DuplicationFindError'
+  | 'CloneError'
+  | 'CppError'
+  | 'BanditError'
+  | 'AuthenticationError';
 
 export interface AnalysisResultStatType {
   language?: string;
@@ -240,13 +240,13 @@ export interface Analysis {
   fileContent?: string[];
 }
 
-export type ScmKind = "Subversion" | "Gitlab" | "Github" | "Git" | "Bitbucket";
+export type ScmKind = 'Subversion' | 'Gitlab' | 'Github' | 'Git' | 'Bitbucket';
 
 export type CodeReviewAnnotationKind =
-  | "LongFunction"
-  | "ComplexFunction"
-  | "Duplicate"
-  | "Violation";
+  | 'LongFunction'
+  | 'ComplexFunction'
+  | 'Duplicate'
+  | 'Violation';
 
 export interface CodeReviewAnnotation {
   codeReviewIdentifier?: number;
@@ -384,7 +384,7 @@ export interface BitbucketPullRequest {
   diff?: string;
 }
 
-export type AnalysisTrend = "Unknown" | "Worst" | "Same" | "Better";
+export type AnalysisTrend = 'Unknown' | 'Worst' | 'Same' | 'Better';
 
 export interface ProjectTrend {
   period?: number;
@@ -419,9 +419,9 @@ export interface ViolationIgnore {
   tool?: string;
 }
 
-export type ProjectNotificationEventType = "AnalysisCompleted";
-export type ProjectNotificationType = "Email";
-export type ProjectNotificationStatus = "Confirmed" | "Pending";
+export type ProjectNotificationEventType = 'AnalysisCompleted';
+export type ProjectNotificationType = 'Email';
+export type ProjectNotificationStatus = 'Confirmed' | 'Pending';
 
 export interface ProjectNotification {
   eventType?: ProjectNotificationEventType;

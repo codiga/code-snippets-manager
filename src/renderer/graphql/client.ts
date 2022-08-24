@@ -7,7 +7,7 @@ import {
 import fetch from 'cross-fetch';
 import { setContext } from '@apollo/client/link/context';
 import DebounceLink from 'apollo-link-debounce';
-import { API_URL, TOKEN } from '../../renderer/lib/config';
+import { API_URL, TOKEN } from '../lib/config';
 
 const DEFAULT_DEBOUNCE_TIMEOUT = 500;
 
