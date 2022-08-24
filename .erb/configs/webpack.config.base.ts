@@ -44,6 +44,7 @@ const configuration: webpack.Configuration = {
     fallback: {
       url: require.resolve('url/'),
       path: require.resolve('path-browserify'),
+      buffer: require.resolve('buffer/'),
     },
   },
 
