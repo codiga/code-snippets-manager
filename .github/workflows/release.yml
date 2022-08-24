@@ -1,16 +1,12 @@
-name: Publish
+name: Release
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - created
 
 jobs:
   publish:
-    # To enable auto publishing to github, update your electron publisher
-    # config in package.json > "build" and remove the conditional below
-    if: ${{ github.repository_owner == 'electron-react-boilerplate' }}
-
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -24,8 +20,7 @@ jobs:
       - name: Install Node and NPM
         uses: actions/setup-node@v1
         with:
-          node-version: 16
-          cache: npm
+          node-version: 14
 
       - name: Install and build
         run: |
