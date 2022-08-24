@@ -73,12 +73,15 @@ const createWindow = async () => {
     show: false,
     autoHideMenuBar: true,
     frame: false,
-    titleBarStyle: 'hidden',
     width: 1024,
     height: 728,
+    minWidth: 600,
+    minHeight: 300,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       sandbox: false,
+      nodeIntegration: true,
+      contextIsolation: true,
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
@@ -132,6 +135,17 @@ app
   .whenReady()
   .then(() => {
     createWindow();
+
+    ipcMain.on('minimizeApp', () => {
+      mainWindow?.minimize();
+    });
+    ipcMain.on('maximizeApp', () => {
+      mainWindow?.maximize();
+    });
+    ipcMain.on('closeApp', () => {
+      mainWindow?.close();
+    });
+
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.

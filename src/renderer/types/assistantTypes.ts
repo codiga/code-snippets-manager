@@ -53,6 +53,8 @@ export interface AssistantCookbook {
   recipesCount: number;
   groups?: Group[];
   languages?: LanguageEnumeration[];
+  upvotes?: number;
+  downvotes?: number;
 }
 
 export interface AssistantCookbookWithRecipeSummary {
@@ -95,6 +97,7 @@ export interface AssistantRecipeWithStats {
   cookbook?: AssistantCookbook;
   upvotes?: number;
   downvotes?: number;
+  groups?: { id: number; name: string }[];
 }
 
 export interface AssistantRecipesCountPerLanguage {

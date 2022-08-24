@@ -279,7 +279,6 @@ Forms
 label {
   /* Allow labels to use `margin` for spacing. */
   display: inline-block;
-  margin-bottom: 0.5rem;
 }
 /*
 Remove the default `border-radius` that macOS Chrome adds.

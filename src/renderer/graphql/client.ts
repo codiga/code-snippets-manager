@@ -1,10 +1,21 @@
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  ApolloLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import DebounceLink from 'apollo-link-debounce';
 import { API_URL, TOKEN } from 'renderer/lib/config';
 
-const httpLink = new HttpLink({
-  uri: API_URL,
-});
+const DEFAULT_DEBOUNCE_TIMEOUT = 500;
+
+const Link = ApolloLink.from([
+  new DebounceLink(DEFAULT_DEBOUNCE_TIMEOUT),
+  new HttpLink({
+    uri: API_URL,
+  }),
+]);
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -19,7 +30,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(Link),
   cache: new InMemoryCache(),
 });
 
