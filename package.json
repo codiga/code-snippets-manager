@@ -195,7 +195,7 @@
   },
   "build": {
     "productName": "Codiga",
-    "appId": "org.erb.ElectronReact",
+    "appId": "io.codiga.assistant",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
