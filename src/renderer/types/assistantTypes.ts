@@ -5,7 +5,7 @@ import {
   Language,
   Library,
   RecipeSortingFields,
-} from 'renderer/lib/constants';
+} from '../../renderer/lib/constants';
 import { Group } from './groupTypes';
 import { PublicUser } from './userTypes';
 

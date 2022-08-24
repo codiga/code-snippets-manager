@@ -13,12 +13,12 @@ import {
 } from '@chakra-ui/react';
 import { LockIcon, Logo, Avatar, UsersIcon } from '@codiga/codiga-components';
 
-import { getAvatarUrl } from 'renderer/utils/userUtils';
-import { getGroupUrl, getSnippetUrl } from 'renderer/utils/urlUtils';
-import { AssistantRecipeWithStats } from 'renderer/types/assistantTypes';
-import { PageTypes } from 'renderer/types/pageTypes';
-import FavoriteSnippet from 'renderer/components/Favorite/FavoriteSnippet';
-import UserLink from 'renderer/components/UserLink';
+import { getAvatarUrl } from '../../../renderer/utils/userUtils';
+import { getGroupUrl, getSnippetUrl } from '../../../renderer/utils/urlUtils';
+import { AssistantRecipeWithStats } from '../../../renderer/types/assistantTypes';
+import { PageTypes } from '../../../renderer/types/pageTypes';
+import FavoriteSnippet from '../../../renderer/components/Favorite/FavoriteSnippet';
+import UserLink from '../../../renderer/components/UserLink';
 import VotesCurrent from '../VotesCurrent';
 
 const Td = (props: TableCellProps) => (

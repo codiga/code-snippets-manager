@@ -18,12 +18,12 @@ import {
   Logos,
 } from '@codiga/codiga-components';
 
-import { getCookbookUrl, getGroupUrl } from 'renderer/utils/urlUtils';
-import { getAvatarUrl } from 'renderer/utils/userUtils';
-import { AssistantCookbook } from 'renderer/types/assistantTypes';
-import { PageTypes } from 'renderer/types/pageTypes';
-import FavoriteCookbook from 'renderer/components/Favorite/FavoriteCookbook';
-import UserLink from 'renderer/components/UserLink';
+import { getCookbookUrl, getGroupUrl } from '../../../renderer/utils/urlUtils';
+import { getAvatarUrl } from '../../../renderer/utils/userUtils';
+import { AssistantCookbook } from '../../../renderer/types/assistantTypes';
+import { PageTypes } from '../../../renderer/types/pageTypes';
+import FavoriteCookbook from '../../../renderer/components/Favorite/FavoriteCookbook';
+import UserLink from '../../../renderer/components/UserLink';
 import VotesCurrent from '../VotesCurrent';
 
 const Td = (props: TableCellProps) => (

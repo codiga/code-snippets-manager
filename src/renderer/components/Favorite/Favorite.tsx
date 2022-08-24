@@ -1,6 +1,6 @@
 import { Button, Tooltip } from '@chakra-ui/react';
 import { HeartFilledIcon, HeartIcon } from '@codiga/codiga-components';
-import { useUser } from 'renderer/components/UserContext';
+import { useUser } from '../../../renderer/components/UserContext';
 
 export type FavoriteProps = {
   isSubscribed?: boolean;

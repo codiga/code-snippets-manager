@@ -1,4 +1,4 @@
-import { AccountType } from 'renderer/types/userTypes';
+import { AccountType } from '../../renderer/types/userTypes';
 
 const GithubAvatar = `/topbar/ico-github.png`;
 const GitlabAvatar = `/topbar/ico-gitlab.png`;

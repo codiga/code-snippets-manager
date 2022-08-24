@@ -2,9 +2,9 @@ import { useContext, createContext, ReactNode, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useColorMode } from '@chakra-ui/react';
 
-import { useUser } from 'renderer/components/UserContext';
-import { User } from 'renderer/types/userTypes';
-import { GET_USER_PREFERENCES } from 'renderer/graphql/queries';
+import { useUser } from '../../../renderer/components/UserContext';
+import { User } from '../../../renderer/types/userTypes';
+import { GET_USER_PREFERENCES } from '../../../renderer/graphql/queries';
 import {
   RemoveUserPreferenceData,
   RemoveUserPreferenceVariables,
@@ -12,10 +12,10 @@ import {
   UpdateUserPreferenceData,
   UpdateUserPreferenceVariables,
   UPDATE_USER_PREFERENCE,
-} from 'renderer/graphql/mutations';
-import useLocalStorage from 'renderer/hooks/useLocalStorage';
-import { CODIGA_THEME } from 'renderer/lib/config';
-import { UserPreferenceKey } from 'renderer/lib/constants';
+} from '../../../renderer/graphql/mutations';
+import useLocalStorage from '../../../renderer/hooks/useLocalStorage';
+import { CODIGA_THEME } from '../../../renderer/lib/config';
+import { UserPreferenceKey } from '../../../renderer/lib/constants';
 import { useToast } from '@codiga/codiga-components';
 
 enum Theme {
@@ -42,6 +42,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // CHAKRA'S THEME
   const { setColorMode } = useColorMode();
   // USER'S LOCAL THEME PREFERENCE
+  // @ts-ignore
   const [cacheTheme, cacheStorageTheme, hydrateValue] = useLocalStorage(
     CODIGA_THEME,
     Theme.THEME_LIGHT

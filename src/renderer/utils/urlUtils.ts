@@ -1,5 +1,5 @@
-import { APP_URL } from 'renderer/lib/config';
-import { PageTypes } from 'renderer/types/pageTypes';
+import { APP_URL } from '../../renderer/lib/config';
+import { PageTypes } from '../../renderer/types/pageTypes';
 
 export const getCookbookUrl = (
   page: PageTypes,

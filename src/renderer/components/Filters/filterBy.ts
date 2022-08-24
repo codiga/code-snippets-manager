@@ -1,6 +1,6 @@
-import { FilterTypes } from 'renderer/components/FiltersContext';
-import { Language } from 'renderer/lib/constants';
-import { AssistantRecipeDependencyConstraint } from 'renderer/types/assistantTypes';
+import { FilterTypes } from '../../../renderer/components/FiltersContext';
+import { Language } from '../../../renderer/lib/constants';
+import { AssistantRecipeDependencyConstraint } from '../../../renderer/types/assistantTypes';
 
 const filterByName = (
   filters: FilterTypes,

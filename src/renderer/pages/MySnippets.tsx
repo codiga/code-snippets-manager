@@ -1,15 +1,15 @@
 import { useQuery } from '@apollo/client';
-import { GET_USER_RECIPES } from 'renderer/graphql/queries';
-import { GET_USER_RECIPES_VARIABLES } from 'renderer/graphql/variables';
-import { AssistantRecipeWithStats } from 'renderer/types/assistantTypes';
-import SnippetTableLoading from 'renderer/components/SnippetTable/SnippetTableLoading';
-import SnippetTableError from 'renderer/components/SnippetTable/SnippetTableError';
-import SnippetTableEmpty from 'renderer/components/SnippetTable/SnippetTableEmpty';
-import SnippetTable from 'renderer/components/SnippetTable/SnippetTable';
-import { useFilters } from 'renderer/components/FiltersContext';
-import filterBy from 'renderer/components/Filters/filterBy';
-import SnippetTableEmptyFiltered from 'renderer/components/SnippetTable/SnippetTableEmptyFiltered';
-import { Language } from 'renderer/lib/constants';
+import { GET_USER_RECIPES } from '../../renderer/graphql/queries';
+import { GET_USER_RECIPES_VARIABLES } from '../../renderer/graphql/variables';
+import { AssistantRecipeWithStats } from '../../renderer/types/assistantTypes';
+import SnippetTableLoading from '../../renderer/components/SnippetTable/SnippetTableLoading';
+import SnippetTableError from '../../renderer/components/SnippetTable/SnippetTableError';
+import SnippetTableEmpty from '../../renderer/components/SnippetTable/SnippetTableEmpty';
+import SnippetTable from '../../renderer/components/SnippetTable/SnippetTable';
+import { useFilters } from '../../renderer/components/FiltersContext';
+import filterBy from '../../renderer/components/Filters/filterBy';
+import SnippetTableEmptyFiltered from '../../renderer/components/SnippetTable/SnippetTableEmptyFiltered';
+import { Language } from '../../renderer/lib/constants';
 
 export default function MySnippets() {
   const filters = useFilters();

@@ -2,7 +2,7 @@ import {
   Analysis,
   AnalysisResultSummary,
   Project,
-} from 'renderer/types/projectTypes';
+} from '../../renderer/types/projectTypes';
 
 export function getPublicUserProjectsWithScore(ownedProjects?: Project[]) {
   if (!ownedProjects) return [];

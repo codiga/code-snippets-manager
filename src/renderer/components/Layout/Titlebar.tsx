@@ -2,9 +2,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { Flex, Link, Image } from '@chakra-ui/react';
 import { Avatar } from '@codiga/codiga-components';
-import { useUser } from 'renderer/components/UserContext';
-import { APP_URL } from 'renderer/lib/config';
-import { getAvatarUrl } from 'renderer/utils/userUtils';
+import { useUser } from '../../../renderer/components/UserContext';
+import { APP_URL } from '../../../renderer/lib/config';
+import { getAvatarUrl } from '../../../renderer/utils/userUtils';
 import CodigaLogo from './CodigaIcon.png';
 import TitlebarButton from './TitlebarButton';
 
