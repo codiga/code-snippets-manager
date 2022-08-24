@@ -22,7 +22,9 @@ export default function Home() {
       howmany: 100,
       skip: 0,
       languages:
-        filters.language !== Language.ALL_LANGUAGES ? [filters.language] : null,
+        filters.language && filters.language !== Language.ALL_LANGUAGES
+          ? [filters.language]
+          : null,
       dependencies: filters.library ? [filters.library] : null,
       term: filters.searchTerm || null,
       tags: filters.tags ? [filters.tags] : null,

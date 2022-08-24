@@ -21,7 +21,9 @@ export default function MySnippets() {
       ...GET_USER_RECIPES_VARIABLES,
       name: filters.searchTerm,
       language:
-        filters.language !== Language.ALL_LANGUAGES ? filters.language : null,
+        filters.language && filters.language !== Language.ALL_LANGUAGES
+          ? filters.language
+          : null,
       tag: filters.tags,
     },
     context: {

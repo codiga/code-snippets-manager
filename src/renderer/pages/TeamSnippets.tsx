@@ -21,7 +21,9 @@ export default function TeamSnippets() {
       ...GET_SHARED_RECIPES_VARIABLES,
       name: filters.searchTerm,
       languages:
-        filters.language !== Language.ALL_LANGUAGES ? [filters.language] : null,
+        filters.language && filters.language !== Language.ALL_LANGUAGES
+          ? [filters.language]
+          : null,
       tag: filters.tags,
     },
     context: {
