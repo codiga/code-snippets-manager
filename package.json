@@ -6,7 +6,7 @@
     "coding-assistant",
     "codiga"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://www.codiga.io/",
   "bugs": {
     "url": "https://github.com/codiga/electron-app/issues"
