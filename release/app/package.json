@@ -1,7 +1,7 @@
 {
-  "name": "codiga-electron-app",
-  "version": "0.0.1",
-  "description": "Codiga Electron App",
+  "name": "codiga",
+  "version": "0.0.2",
+  "description": "Codiga Code Snippets Manager",
   "license": "MIT",
   "author": {
     "name": "Codiga",

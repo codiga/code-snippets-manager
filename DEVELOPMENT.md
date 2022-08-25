@@ -2,6 +2,8 @@
 
 ## Draft a release with binaries
 
+First, make sure you edit the version in `package.json` and `release/app/package.json`.
+
 - `git tag vX.Y.Z`
 - `git push && git push --tags`
 
