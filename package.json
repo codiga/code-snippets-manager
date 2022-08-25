@@ -194,7 +194,7 @@
   },
   "build": {
     "productName": "Codiga",
-    "appId": "io.codiga.assistant.Codiga",
+    "appId": "io.codiga.app",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
