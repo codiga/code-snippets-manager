@@ -238,7 +238,8 @@
     },
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "Snap"
       ],
       "category": "Development"
     },
