@@ -29,8 +29,10 @@ jobs:
           npm run build
           npm run test
       - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
+        uses: samuelmeuli/action-electron-builder@v1.6.0
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
+          release: true
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
