@@ -61,5 +61,3 @@ jobs:
           APPLE_ID_PASSWORD: ${{ secrets.apple_id_password }}
           APPLEID: ${{ secrets.apple_id }}
           APPLEIDPASS: ${{ secrets.apple_id_password }}
-          CSC_LINK: 'file://applecert.p12'
-          CSC_KEY_PASSWORD: ${{ secrets.mac_certs_password }}
