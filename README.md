@@ -1,5 +1,8 @@
 # Codiga - Electron App
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/codiga)
+
+
 This is the Codiga Electron App. Search, manage, view your code snippets within this app.
 
 ## Installation
