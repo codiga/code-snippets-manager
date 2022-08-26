@@ -4,7 +4,8 @@
 
 First, make sure you edit the version in `package.json` and `release/app/package.json`.
 
-- `git tag vX.Y.Z`
+- Run `npm i` at the project root
+- `git tag vX.Y.Z` (with `vX.Y.Z` matching the version in `package.json`)
 - `git push && git push --tags`
 
 The github action will then release a draft release with the binaries.
