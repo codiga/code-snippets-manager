@@ -238,7 +238,9 @@
       ],
       "publisherName": "Xcoding Labs Inc.",
       "signAndEditExecutable": true,
-      "verifyUpdateCodeSignature": true
+      "verifyUpdateCodeSignature": true,
+      "certificateSubjectName": "Xcoding Labs Inc.",
+      "signingHashAlgorithms": ["sha256"]
     },
     "linux": {
       "target": [
