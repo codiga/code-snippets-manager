@@ -235,7 +235,10 @@
     "win": {
       "target": [
         "nsis"
-      ]
+      ],
+      "publisherName": "Xcoding Labs Inc.",
+      "signAndEditExecutable": true,
+      "verifyUpdateCodeSignature": true
     },
     "linux": {
       "target": [
