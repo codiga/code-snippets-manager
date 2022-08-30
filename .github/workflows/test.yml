@@ -25,6 +25,7 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Package
+        if: ${{ startsWith(github.ref, 'refs/tags/v') != true }}
         run: npm run package
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
