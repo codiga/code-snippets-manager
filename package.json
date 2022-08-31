@@ -241,7 +241,7 @@
       "verifyUpdateCodeSignature": true,
       "signingHashAlgorithms": [
         "sha256"
-      ],
+      ]
     },
     "linux": {
       "target": [
