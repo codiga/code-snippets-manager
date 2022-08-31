@@ -140,7 +140,11 @@ app
       mainWindow?.minimize();
     });
     ipcMain.on('maximizeApp', () => {
-      mainWindow?.maximize();
+      if (mainWindow?.isMaximized()) {
+        mainWindow?.unmaximize();
+      } else {
+        mainWindow?.maximize();
+      }
     });
     ipcMain.on('closeApp', () => {
       mainWindow?.close();
