@@ -9,11 +9,11 @@
   "version": "0.0.3",
   "homepage": "https://www.codiga.io/",
   "bugs": {
-    "url": "https://github.com/codiga/electron-app/issues"
+    "url": "https://github.com/codiga/code-snippets-manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:codiga/electron-app.git"
+    "url": "https://github.com/codiga/code-snippets-manager.git"
   },
   "license": "MIT",
   "author": {
@@ -261,7 +261,7 @@
     "publish": {
       "provider": "github",
       "owner": "codiga",
-      "repo": "electron-app"
+      "repo": "code-snippets-manager"
     }
   },
   "devEngines": {
