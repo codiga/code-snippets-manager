@@ -1,5 +1,5 @@
 import { Link } from '@chakra-ui/react';
-import { EmptyState } from '@codiga/codiga-components';
+import { EmptyState } from '@codiga/components';
 import { APP_URL } from '../../lib/config';
 
 export default function SnippetTableError() {

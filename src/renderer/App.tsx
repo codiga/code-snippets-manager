@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import { theme } from '@codiga/codiga-components';
+import { theme } from '@codiga/components';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 // PAGES

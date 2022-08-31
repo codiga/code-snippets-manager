@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { Flex, FlexProps, IconButton, Text, Tooltip } from '@chakra-ui/react';
-import { DownVoteIcon, UpVoteIcon, useToast } from '@codiga/codiga-components';
+import { DownVoteIcon, UpVoteIcon, useToast } from '@codiga/components';
 import { useUser } from '../UserContext';
 import {
   AddVoteMutationVariables,

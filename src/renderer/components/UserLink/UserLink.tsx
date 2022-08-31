@@ -1,5 +1,5 @@
 import { Link } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@codiga/codiga-components';
+import { ExternalLinkIcon } from '@codiga/components';
 import { PublicUser } from '../../types/userTypes';
 import { getUserUrl } from '../../utils/urlUtils';
 

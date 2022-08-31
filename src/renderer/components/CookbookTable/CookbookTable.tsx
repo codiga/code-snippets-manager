@@ -16,7 +16,7 @@ import {
   UsersIcon,
   CodeIcon,
   Logos,
-} from '@codiga/codiga-components';
+} from '@codiga/components';
 
 import { getCookbookUrl, getGroupUrl } from '../../utils/urlUtils';
 import { getAvatarUrl } from '../../utils/userUtils';

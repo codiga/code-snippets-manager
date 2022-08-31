@@ -8,7 +8,7 @@ import {
   PowerIcon,
   MoonIcon,
   SunIcon,
-} from '@codiga/codiga-components';
+} from '@codiga/components';
 import { useNavigate } from 'react-router-dom';
 
 import { TOKEN } from '../../lib/config';

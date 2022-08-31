@@ -1,5 +1,5 @@
 import { Button, Tooltip } from '@chakra-ui/react';
-import { HeartFilledIcon, HeartIcon } from '@codiga/codiga-components';
+import { HeartFilledIcon, HeartIcon } from '@codiga/components';
 import { useUser } from '../UserContext';
 
 export type FavoriteProps = {

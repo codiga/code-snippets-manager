@@ -11,7 +11,7 @@ import {
   Text,
   Link,
 } from '@chakra-ui/react';
-import { TextField, useToast } from '@codiga/codiga-components';
+import { TextField, useToast } from '@codiga/components';
 import { useLazyQuery } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 

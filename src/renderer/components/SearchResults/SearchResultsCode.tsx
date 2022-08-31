@@ -15,7 +15,7 @@ import {
   CodeContent,
   CopyIcon,
   useToast,
-} from '@codiga/codiga-components';
+} from '@codiga/components';
 import { useEffect } from 'react';
 import useCodeView, { CodeViewsType } from '../../hooks/useCodeView';
 import { APP_URL } from '../../lib/config';

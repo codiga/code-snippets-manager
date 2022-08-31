@@ -1,7 +1,7 @@
 import { useContext, createContext, ReactNode, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useColorMode } from '@chakra-ui/react';
-import { useToast } from '@codiga/codiga-components';
+import { useToast } from '@codiga/components';
 
 import { useUser } from '../UserContext';
 import { User } from '../../types/userTypes';

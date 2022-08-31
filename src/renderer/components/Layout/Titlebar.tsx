@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { Flex, Link, Image } from '@chakra-ui/react';
-import { Avatar } from '@codiga/codiga-components';
+import { Avatar } from '@codiga/components';
 import { useUser } from '../UserContext';
 import { APP_URL } from '../../lib/config';
 import { getAvatarUrl } from '../../utils/userUtils';

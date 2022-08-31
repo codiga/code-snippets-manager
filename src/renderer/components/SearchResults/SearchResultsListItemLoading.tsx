@@ -1,5 +1,5 @@
 import { Flex, Skeleton, SkeletonCircle } from '@chakra-ui/react';
-import { DotIcon } from '@codiga/codiga-components';
+import { DotIcon } from '@codiga/components';
 
 export default function SearchResultsListItemLoading() {
   return (

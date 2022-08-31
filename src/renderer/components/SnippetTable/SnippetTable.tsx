@@ -11,7 +11,7 @@ import {
   TableCellProps,
   Link,
 } from '@chakra-ui/react';
-import { LockIcon, Logo, Avatar, UsersIcon } from '@codiga/codiga-components';
+import { LockIcon, Logo, Avatar, UsersIcon } from '@codiga/components';
 
 import { getAvatarUrl } from '../../utils/userUtils';
 import { getGroupUrl, getSnippetUrl } from '../../utils/urlUtils';

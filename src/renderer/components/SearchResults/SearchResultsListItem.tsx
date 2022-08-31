@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/codiga-components';
+import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/components';
 import {
   AssistantRecipeWithStats,
   RecipeSummary,

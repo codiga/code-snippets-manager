@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { useToast } from '@codiga/codiga-components';
+import { useToast } from '@codiga/components';
 import {
   SUBSCRIBE_TO_RECIPE,
   UNSUBSCRIBE_TO_RECIPE,

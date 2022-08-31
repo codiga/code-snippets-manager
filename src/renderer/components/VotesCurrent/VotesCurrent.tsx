@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import { DownVoteIcon, UpVoteIcon } from '@codiga/codiga-components';
+import { DownVoteIcon, UpVoteIcon } from '@codiga/components';
 
 type VotesCurrentProps = {
   upvotes?: number;
