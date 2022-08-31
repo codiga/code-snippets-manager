@@ -12,15 +12,11 @@ export default function TitlebarButton({
   return (
     <Button
       variant="unstyled"
-      minW="32px"
-      maxW="32px"
-      h="32px"
-      m="2px"
+      minW="0px"
+      minH="0px"
       display="flex"
-      alignItems="center"
       justifyContent="center"
-      fill="neutral.100"
-      _dark={{ fill: 'neutral.0' }}
+      alignItems="center"
       onClick={() => {
         window.electron.ipcRenderer.sendMessage(message, [message]);
       }}
