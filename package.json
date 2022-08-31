@@ -242,7 +242,6 @@
       "signingHashAlgorithms": [
         "sha256"
       ],
-      "certificateSha1": "1C43B0BE14DFEF3FC3495AAB40515D3120CFF0E1"
     },
     "linux": {
       "target": [
