@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { useToast } from '@codiga/components';
+import useQueryVariables from '../../hooks/useQueryVariables';
 import {
   SUBSCRIBE_TO_RECIPE,
   UNSUBSCRIBE_TO_RECIPE,
@@ -10,32 +11,11 @@ import {
   GET_USER_RECIPES,
   GET_USER_SUBSCRIBED_RECIPES,
 } from '../../graphql/queries';
-import {
-  GET_SHARED_RECIPES_VARIABLES,
-  GET_USER_RECIPES_VARIABLES,
-  GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
-} from '../../graphql/variables';
 import Favorite, { FavoriteProps } from './Favorite';
 
 type FavoriteRecipeProps = Pick<FavoriteProps, 'isSubscribed'> & {
   recipeId: number;
 };
-
-const recipeRefetches = [
-  {
-    query: GET_USER_RECIPES,
-    variables: GET_USER_RECIPES_VARIABLES,
-  },
-  {
-    query: GET_USER_SUBSCRIBED_RECIPES,
-    variables: GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
-  },
-  {
-    query: GET_SHARED_RECIPES,
-    variables: GET_SHARED_RECIPES_VARIABLES,
-  },
-  GET_RECIPES_SEMANTICALLY,
-];
 
 export default function FavoriteSnippet({
   isSubscribed,
@@ -46,14 +26,41 @@ export default function FavoriteSnippet({
   const [favoriteRecipe] = useMutation(SUBSCRIBE_TO_RECIPE);
   const [unfavoriteRecipe] = useMutation(UNSUBSCRIBE_TO_RECIPE);
 
+  const myVariables = useQueryVariables('my-snippets');
+  const favoriteVariables = useQueryVariables('favorite-snippets');
+  const teamVariables = useQueryVariables('team-snippets');
+  const searchVariables = useQueryVariables('home');
+
+  const refetchQueries = [
+    {
+      query: GET_USER_SUBSCRIBED_RECIPES,
+      variables: favoriteVariables,
+      context: { debounceKey: 'favorite-snippets' },
+    },
+    {
+      query: GET_USER_RECIPES,
+      variables: myVariables,
+      context: { debounceKey: 'my-snippets' },
+    },
+    {
+      query: GET_SHARED_RECIPES,
+      variables: teamVariables,
+      context: { debounceKey: 'team-snippets' },
+    },
+    {
+      query: GET_RECIPES_SEMANTICALLY,
+      variables: searchVariables,
+      context: { debounceKey: 'search' },
+    },
+  ];
+
   const onFavoriteRecipe = async () => {
     try {
       await favoriteRecipe({
         variables: {
           id: recipeId,
         },
-        awaitRefetchQueries: true,
-        refetchQueries: recipeRefetches,
+        refetchQueries,
       });
     } catch (err) {
       toast({
@@ -69,8 +76,7 @@ export default function FavoriteSnippet({
         variables: {
           id: recipeId,
         },
-        awaitRefetchQueries: true,
-        refetchQueries: recipeRefetches,
+        refetchQueries,
       });
     } catch (err) {
       toast({

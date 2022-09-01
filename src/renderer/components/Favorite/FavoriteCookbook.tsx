@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { useToast } from '@codiga/components';
+import useQueryVariables from '../../hooks/useQueryVariables';
 import {
   SUBSCRIBE_TO_COOKBOOK,
   UNSUBSCRIBE_TO_COOKBOOK,
@@ -9,31 +10,11 @@ import {
   GET_USER_COOKBOOKS,
   GET_USER_SUBSCRIBED_COOKBOOKS,
 } from '../../graphql/queries';
-import {
-  GET_SHARED_COOKBOOKS_VARIABLES,
-  GET_USER_COOKBOOKS_VARIABLES,
-  GET_USER_SUBSCRIBED_COOKBOOKS_VARIABLES,
-} from '../../graphql/variables';
 import Favorite, { FavoriteProps } from './Favorite';
 
 type FavoriteCookbookProps = Pick<FavoriteProps, 'isSubscribed'> & {
   cookbookId: number;
 };
-
-const cookbookRefetches = [
-  {
-    query: GET_USER_COOKBOOKS,
-    variables: GET_USER_COOKBOOKS_VARIABLES,
-  },
-  {
-    query: GET_USER_SUBSCRIBED_COOKBOOKS,
-    variables: GET_USER_SUBSCRIBED_COOKBOOKS_VARIABLES,
-  },
-  {
-    query: GET_SHARED_COOKBOOKS,
-    variables: GET_SHARED_COOKBOOKS_VARIABLES,
-  },
-];
 
 export default function FavoriteCookbook({
   isSubscribed,
@@ -44,14 +25,35 @@ export default function FavoriteCookbook({
   const [favoriteCookbook] = useMutation(SUBSCRIBE_TO_COOKBOOK);
   const [unfavoriteCookbook] = useMutation(UNSUBSCRIBE_TO_COOKBOOK);
 
+  const myVariables = useQueryVariables('my-cookbooks');
+  const favoriteVariables = useQueryVariables('favorite-cookbooks');
+  const teamVariables = useQueryVariables('team-cookbooks');
+
+  const refetchQueries = [
+    {
+      query: GET_USER_SUBSCRIBED_COOKBOOKS,
+      variables: favoriteVariables,
+      context: { debounceKey: 'favorite-cookbooks' },
+    },
+    {
+      query: GET_USER_COOKBOOKS,
+      variables: myVariables,
+      context: { debounceKey: 'my-cookbooks' },
+    },
+    {
+      query: GET_SHARED_COOKBOOKS,
+      variables: teamVariables,
+      context: { debounceKey: 'team-cookbooks' },
+    },
+  ];
+
   const onFavoriteCookbook = async () => {
     try {
       await favoriteCookbook({
         variables: {
           id: cookbookId,
         },
-        awaitRefetchQueries: true,
-        refetchQueries: cookbookRefetches,
+        refetchQueries,
       });
     } catch (err) {
       toast({
@@ -67,8 +69,7 @@ export default function FavoriteCookbook({
         variables: {
           id: cookbookId,
         },
-        awaitRefetchQueries: true,
-        refetchQueries: cookbookRefetches,
+        refetchQueries,
       });
     } catch (err) {
       toast({
