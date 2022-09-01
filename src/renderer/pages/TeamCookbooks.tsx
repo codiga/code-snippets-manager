@@ -7,7 +7,6 @@ import CookbookTableEmpty from '../components/CookbookTable/CookbookTableEmpty';
 import CookbookTableEmptyFiltered from '../components/CookbookTable/CookbookTableEmptyFiltered';
 import CookbookTable from '../components/CookbookTable/CookbookTable';
 import { useFilters } from '../components/FiltersContext';
-import filterBy from '../components/Filters/filterBy';
 import useQueryVariables from '../hooks/useQueryVariables';
 
 export default function TeamCookbooks() {
@@ -25,14 +24,6 @@ export default function TeamCookbooks() {
 
   const userCookbooks = data?.cookbooks || [];
 
-  // check the recipe against the search filters
-  const filteredCookbooks = userCookbooks.filter((cookbook) => {
-    if (!filterBy.name(filters, cookbook.name)) return false;
-    if (!filterBy.privacy(filters, cookbook.isPublic)) return false;
-    if (!filterBy.isSubscribed(filters, cookbook.isSubscribed)) return false;
-    return true;
-  });
-
   if (error) {
     return <CookbookTableError />;
   }
@@ -41,13 +32,13 @@ export default function TeamCookbooks() {
     return <CookbookTableLoading />;
   }
 
-  if (filteredCookbooks.length === 0 && !filters.isEmpty) {
+  if (userCookbooks.length === 0 && !filters.isEmpty) {
     return <CookbookTableEmptyFiltered />;
   }
 
-  if (filteredCookbooks.length === 0) {
+  if (userCookbooks.length === 0) {
     return <CookbookTableEmpty />;
   }
 
-  return <CookbookTable page="team" cookbooks={filteredCookbooks} />;
+  return <CookbookTable page="team" cookbooks={userCookbooks} />;
 }
