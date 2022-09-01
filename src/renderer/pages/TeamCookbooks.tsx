@@ -4,7 +4,7 @@ import { AssistantCookbook } from '../types/assistantTypes';
 import CookbookTableLoading from '../components/CookbookTable/CookbookTableLoading';
 import CookbookTableError from '../components/CookbookTable/CookbookTableError';
 import CookbookTableEmpty from '../components/CookbookTable/CookbookTableEmpty';
-import CookbookTableEmptyFiltereed from '../components/CookbookTable/CookbookTableEmptyFiltered';
+import CookbookTableEmptyFiltered from '../components/CookbookTable/CookbookTableEmptyFiltered';
 import CookbookTable from '../components/CookbookTable/CookbookTable';
 import { useFilters } from '../components/FiltersContext';
 import filterBy from '../components/Filters/filterBy';
@@ -46,7 +46,7 @@ export default function TeamCookbooks() {
   }
 
   if (filteredCookbooks.length === 0) {
-    return <CookbookTableEmptyFiltereed />;
+    return <CookbookTableEmptyFiltered />;
   }
 
   return <CookbookTable page="team" cookbooks={filteredCookbooks} />;

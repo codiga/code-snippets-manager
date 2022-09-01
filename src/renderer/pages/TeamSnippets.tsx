@@ -4,7 +4,7 @@ import { AssistantRecipeWithStats } from '../types/assistantTypes';
 import SnippetTableLoading from '../components/SnippetTable/SnippetTableLoading';
 import SnippetTableError from '../components/SnippetTable/SnippetTableError';
 import SnippetTableEmpty from '../components/SnippetTable/SnippetTableEmpty';
-import SnippetTableEmptyFiltereed from '../components/SnippetTable/SnippetTableEmptyFiltered';
+import SnippetTableEmptyFiltered from '../components/SnippetTable/SnippetTableEmptyFiltered';
 import SnippetTable from '../components/SnippetTable/SnippetTable';
 import filterBy from '../components/Filters/filterBy';
 import { useFilters } from '../components/FiltersContext';
@@ -49,7 +49,7 @@ export default function TeamSnippets() {
   }
 
   if (filteredRecipes.length === 0) {
-    return <SnippetTableEmptyFiltereed />;
+    return <SnippetTableEmptyFiltered />;
   }
 
   return <SnippetTable page="team" recipes={filteredRecipes} />;
