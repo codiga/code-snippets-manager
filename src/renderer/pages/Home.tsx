@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import useQueryVariables from '../hooks/useQueryVariables';
-import { useFilters } from '../components/FiltersContext';
 import SearchResults from '../components/SearchResults';
 import SearchResultsEmpty from '../components/SearchResults/SearchResultsEmpty';
 import SearchResultsError from '../components/SearchResults/SearchResultsError';
@@ -12,7 +11,6 @@ import {
 } from '../graphql/queries';
 
 export default function Home() {
-  const filters = useFilters();
   const variables = useQueryVariables('home');
 
   const { data, loading, error } = useQuery<
