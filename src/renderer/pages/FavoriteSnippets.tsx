@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import { GET_USER_SUBSCRIBED_RECIPES } from '../graphql/queries';
-import { GET_USER_SUBSCRIBED_RECIPES_VARIABLES } from '../graphql/variables';
 import { AssistantRecipeWithStats } from '../types/assistantTypes';
 import SnippetTableLoading from '../components/SnippetTable/SnippetTableLoading';
 import SnippetTableError from '../components/SnippetTable/SnippetTableError';
@@ -9,17 +8,16 @@ import SnippetTableEmptyFiltered from '../components/SnippetTable/SnippetTableEm
 import SnippetTable from '../components/SnippetTable/SnippetTable';
 import filterBy from '../components/Filters/filterBy';
 import { useFilters } from '../components/FiltersContext';
+import useQueryVariables from '../hooks/useQueryVariables';
 
 export default function MySnippets() {
   const filters = useFilters();
+  const variables = useQueryVariables('favorite-snippets');
 
   const { data, loading, error } = useQuery<{
     user: { recipes: AssistantRecipeWithStats[] };
   }>(GET_USER_SUBSCRIBED_RECIPES, {
-    variables: {
-      ...GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
-      name: filters.searchTerm,
-    },
+    variables,
     context: {
       debounceKey: 'favorite-snippets',
     },

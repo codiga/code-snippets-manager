@@ -1,31 +1,23 @@
 import { useQuery } from '@apollo/client';
 import { GET_USER_RECIPES } from '../graphql/queries';
-import { GET_USER_RECIPES_VARIABLES } from '../graphql/variables';
 import { AssistantRecipeWithStats } from '../types/assistantTypes';
 import SnippetTableLoading from '../components/SnippetTable/SnippetTableLoading';
 import SnippetTableError from '../components/SnippetTable/SnippetTableError';
 import SnippetTableEmpty from '../components/SnippetTable/SnippetTableEmpty';
+import SnippetTableEmptyFiltered from '../components/SnippetTable/SnippetTableEmptyFiltered';
 import SnippetTable from '../components/SnippetTable/SnippetTable';
 import { useFilters } from '../components/FiltersContext';
 import filterBy from '../components/Filters/filterBy';
-import SnippetTableEmptyFiltered from '../components/SnippetTable/SnippetTableEmptyFiltered';
-import { Language } from '../lib/constants';
+import useQueryVariables from '../hooks/useQueryVariables';
 
 export default function MySnippets() {
   const filters = useFilters();
+  const variables = useQueryVariables('my-snippets');
 
   const { data, loading, error } = useQuery<{
     user: { recipes: AssistantRecipeWithStats[] };
   }>(GET_USER_RECIPES, {
-    variables: {
-      ...GET_USER_RECIPES_VARIABLES,
-      name: filters.searchTerm,
-      language:
-        filters.language && filters.language !== Language.ALL_LANGUAGES
-          ? filters.language
-          : null,
-      tag: filters.tags || null,
-    },
+    variables,
     context: {
       debounceKey: 'my-snippets',
     },

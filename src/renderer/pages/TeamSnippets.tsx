@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import { GET_SHARED_RECIPES } from '../graphql/queries';
-import { GET_SHARED_RECIPES_VARIABLES } from '../graphql/variables';
 import { AssistantRecipeWithStats } from '../types/assistantTypes';
 import SnippetTableLoading from '../components/SnippetTable/SnippetTableLoading';
 import SnippetTableError from '../components/SnippetTable/SnippetTableError';
@@ -9,23 +8,16 @@ import SnippetTableEmptyFiltereed from '../components/SnippetTable/SnippetTableE
 import SnippetTable from '../components/SnippetTable/SnippetTable';
 import filterBy from '../components/Filters/filterBy';
 import { useFilters } from '../components/FiltersContext';
-import { Language } from '../lib/constants';
+import useQueryVariables from '../hooks/useQueryVariables';
 
 export default function TeamSnippets() {
   const filters = useFilters();
+  const variables = useQueryVariables('team-snippets');
 
   const { data, loading, error } = useQuery<{
     recipes: AssistantRecipeWithStats[];
   }>(GET_SHARED_RECIPES, {
-    variables: {
-      ...GET_SHARED_RECIPES_VARIABLES,
-      name: filters.searchTerm,
-      languages:
-        filters.language && filters.language !== Language.ALL_LANGUAGES
-          ? [filters.language]
-          : null,
-      tag: filters.tags || null,
-    },
+    variables,
     context: {
       debounceKey: 'team-snippets',
     },

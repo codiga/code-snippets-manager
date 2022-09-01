@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client';
+import useQueryVariables from '../hooks/useQueryVariables';
 import { useFilters } from '../components/FiltersContext';
 import SearchResults from '../components/SearchResults';
 import SearchResultsEmpty from '../components/SearchResults/SearchResultsEmpty';
@@ -9,29 +10,16 @@ import {
   GetRecipesSemanticallyVariables,
   GET_RECIPES_SEMANTICALLY,
 } from '../graphql/queries';
-import { Language } from '../lib/constants';
 
 export default function Home() {
   const filters = useFilters();
+  const variables = useQueryVariables('home');
 
   const { data, loading, error } = useQuery<
     GetRecipesSemanticallyData,
     GetRecipesSemanticallyVariables
   >(GET_RECIPES_SEMANTICALLY, {
-    variables: {
-      howmany: 100,
-      skip: 0,
-      languages:
-        filters.language && filters.language !== Language.ALL_LANGUAGES
-          ? [filters.language]
-          : null,
-      dependencies: filters.library ? [filters.library] : null,
-      term: filters.searchTerm || null,
-      tags: filters.tags ? [filters.tags] : null,
-      onlyPrivate: filters.privacy === 'private' ? true : null,
-      onlyPublic: filters.privacy === 'public' ? true : null,
-      onlySubscribed: filters.isSubscribed || null,
-    },
+    variables: variables as GetRecipesSemanticallyVariables,
     context: {
       debounceKey: 'search',
     },

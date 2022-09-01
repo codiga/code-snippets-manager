@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import { GET_SHARED_COOKBOOKS } from '../graphql/queries';
-import { GET_SHARED_COOKBOOKS_VARIABLES } from '../graphql/variables';
 import { AssistantCookbook } from '../types/assistantTypes';
 import CookbookTableLoading from '../components/CookbookTable/CookbookTableLoading';
 import CookbookTableError from '../components/CookbookTable/CookbookTableError';
@@ -9,17 +8,16 @@ import CookbookTableEmptyFiltereed from '../components/CookbookTable/CookbookTab
 import CookbookTable from '../components/CookbookTable/CookbookTable';
 import { useFilters } from '../components/FiltersContext';
 import filterBy from '../components/Filters/filterBy';
+import useQueryVariables from '../hooks/useQueryVariables';
 
 export default function TeamCookbooks() {
   const filters = useFilters();
+  const variables = useQueryVariables('team-cookbooks');
 
   const { data, loading, error } = useQuery<{
     cookbooks: AssistantCookbook[];
   }>(GET_SHARED_COOKBOOKS, {
-    variables: {
-      ...GET_SHARED_COOKBOOKS_VARIABLES,
-      name: filters.searchTerm,
-    },
+    variables,
     context: {
       debounceKey: 'team-cookbooks',
     },
