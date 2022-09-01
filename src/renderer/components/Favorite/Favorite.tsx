@@ -23,7 +23,7 @@ export default function Favorite({
     >
       <Button
         variant="unstyled"
-        minW="12px"
+        minW="26px"
         h="26px"
         d="flex"
         justifyContent="center"
@@ -31,6 +31,13 @@ export default function Favorite({
         onClick={isSubscribed ? onUnsubscribe : onSubscribe}
         boxShadow="none !important"
         isDisabled={!userId} // if NOT logged in, disable the button
+        ml="-space_4"
+        _hover={{
+          bg: 'neutral.50',
+          _dark: {
+            bg: 'base.dark',
+          },
+        }}
       >
         {isSubscribed ? (
           <HeartFilledIcon h="10px" w="10px" color="base.rose" />
