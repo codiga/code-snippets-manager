@@ -35,10 +35,10 @@ const Votes = ({
     },
   });
 
-  const isUpVoted = Boolean(data?.votesData.isUpVoted);
-  const isDownVoted = Boolean(data?.votesData.isDownVoted);
-  const upVoteCount = Number(data?.votesData.upvotes);
-  const downVoteCount = Number(data?.votesData.downvotes);
+  const isUpVoted = Boolean(data?.votesData?.isUpVoted);
+  const isDownVoted = Boolean(data?.votesData?.isDownVoted);
+  const upVoteCount = Number(data?.votesData?.upvotes || upvotes);
+  const downVoteCount = Number(data?.votesData?.downvotes || downvotes);
   const voteText = data ? upVoteCount - downVoteCount : upvotes - downvotes;
 
   const [addVote] = useMutation<void, AddVoteMutationVariables>(ADD_VOTE);
