@@ -23,8 +23,12 @@ import {
   LanguageEnumeration,
   LibraryEnumeration,
 } from '../../types/assistantTypes';
+import { useUser } from '../UserContext';
 
 export default function Filters() {
+  const { id: userId } = useUser();
+  const isAuthenticated = !!userId;
+
   const { isOpen, onToggle } = useDisclosure();
   const {
     searchTerm,
@@ -104,6 +108,7 @@ export default function Filters() {
           />
           <Flex flexWrap="nowrap" gridRowGap="0" gridColumnGap="space_16">
             <Radio
+              isDisabled={!isAuthenticated}
               isChecked={privacy === 'all'}
               onChange={() => setPrivacy('all')}
               mb={0}
@@ -113,6 +118,7 @@ export default function Filters() {
               </Text>
             </Radio>
             <Radio
+              isDisabled={!isAuthenticated}
               isChecked={privacy === 'public'}
               onChange={() => setPrivacy('public')}
               mb={0}
@@ -122,6 +128,7 @@ export default function Filters() {
               </Text>
             </Radio>
             <Radio
+              isDisabled={!isAuthenticated}
               isChecked={privacy === 'private'}
               onChange={() => setPrivacy('private')}
               mb={0}
@@ -131,6 +138,7 @@ export default function Filters() {
               </Text>
             </Radio>
             <Checkbox
+              isDisabled={!isAuthenticated}
               checked={isSubscribed}
               onChange={(e) => setIsSubscribed(e.target.checked)}
               mb={0}

@@ -1,3 +1,4 @@
+import { useUser } from '../components/UserContext';
 import {
   GET_USER_RECIPES_VARIABLES,
   GET_USER_SUBSCRIBED_RECIPES_VARIABLES,
@@ -5,9 +6,9 @@ import {
   GET_USER_COOKBOOKS_VARIABLES,
   GET_USER_SUBSCRIBED_COOKBOOKS_VARIABLES,
   GET_SHARED_COOKBOOKS_VARIABLES,
-} from 'renderer/graphql/variables';
-import { Language } from 'renderer/lib/constants';
-import { LanguageEnumeration } from 'renderer/types/assistantTypes';
+} from '../graphql/variables';
+import { Language } from '../lib/constants';
+import { LanguageEnumeration } from '../types/assistantTypes';
 import { useFilters } from '../components/FiltersContext';
 
 type QueryTypes =
@@ -21,6 +22,7 @@ type QueryTypes =
 
 export default function useQueryVariables(query: QueryTypes) {
   const filters = useFilters();
+  const { id: userId } = useUser();
 
   switch (query) {
     case 'home':
@@ -34,9 +36,9 @@ export default function useQueryVariables(query: QueryTypes) {
         dependencies: filters.library ? [filters.library] : null,
         term: filters.searchTerm || null,
         tags: filters.tags ? [filters.tags] : null,
-        onlyPrivate: filters.privacy === 'private' ? true : null,
-        onlyPublic: filters.privacy === 'public' ? true : null,
-        onlySubscribed: filters.isSubscribed || null,
+        onlyPrivate: filters.privacy === 'private' && !!userId ? true : null,
+        onlyPublic: filters.privacy === 'public' && !!userId ? true : null,
+        onlySubscribed: userId ? filters.isSubscribed || null : null,
       };
 
     case 'my-snippets':
