@@ -11,7 +11,7 @@ const buttonStyles = {
 };
 
 export default function TitlebarActionsWin() {
-  if (window.electron.isMac) return null;
+  if (window.electron?.isMac) return null;
 
   return (
     <Flex>

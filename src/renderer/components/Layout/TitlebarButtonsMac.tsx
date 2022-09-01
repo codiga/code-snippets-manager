@@ -4,7 +4,7 @@ import TitlebarButton from './TitlebarButton';
 import CodigaLogo from './CodigaIcon.png';
 
 export default function TitlebarActionsMac() {
-  if (!window.electron.isMac) {
+  if (!window.electron?.isMac) {
     return <Image src={CodigaLogo} h="24px" ml="space_16" />;
   }
 
