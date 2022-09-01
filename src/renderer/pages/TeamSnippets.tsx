@@ -44,12 +44,12 @@ export default function TeamSnippets() {
     return <SnippetTableLoading />;
   }
 
-  if (teamRecipes.length === 0) {
-    return <SnippetTableEmpty />;
+  if (filteredRecipes.length === 0 && !filters.isEmpty) {
+    return <SnippetTableEmptyFiltered />;
   }
 
   if (filteredRecipes.length === 0) {
-    return <SnippetTableEmptyFiltered />;
+    return <SnippetTableEmpty />;
   }
 
   return <SnippetTable page="team" recipes={filteredRecipes} />;

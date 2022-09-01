@@ -44,12 +44,12 @@ export default function MySnippets() {
     return <SnippetTableLoading />;
   }
 
-  if (userFavoriteRecipes.length === 0) {
-    return <SnippetTableEmpty />;
+  if (filteredRecipes.length === 0 && !filters.isEmpty) {
+    return <SnippetTableEmptyFiltered />;
   }
 
   if (filteredRecipes.length === 0) {
-    return <SnippetTableEmptyFiltered />;
+    return <SnippetTableEmpty />;
   }
 
   return <SnippetTable page="favorite" recipes={filteredRecipes} />;

@@ -42,12 +42,12 @@ export default function MyCookbooks() {
     return <CookbookTableLoading />;
   }
 
-  if (userCookbooks.length === 0) {
-    return <CookbookTableEmpty />;
+  if (filteredCookbooks.length === 0 && !filters.isEmpty) {
+    return <CookbookTableEmptyFiltered />;
   }
 
   if (filteredCookbooks.length === 0) {
-    return <CookbookTableEmptyFiltered />;
+    return <CookbookTableEmpty />;
   }
 
   return <CookbookTable page="my" cookbooks={filteredCookbooks} />;
