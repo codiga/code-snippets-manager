@@ -1,4 +1,5 @@
 import { Flex } from '@chakra-ui/react';
+import SearchResultsCodeActionsLoading from './SearchResultsCodeActionsLoading';
 import SearchResultsCodeLoading from './SearchResultsCodeLoading';
 import SearchResultsList from './SearchResultsList';
 import SearchResultsListItemLoading from './SearchResultsListItemLoading';
@@ -11,7 +12,8 @@ export default function SearchResultsLoading() {
           <SearchResultsListItemLoading key={num} />
         ))}
       </SearchResultsList>
-      <Flex flex={1}>
+      <Flex flex={1} pos="relative">
+        <SearchResultsCodeActionsLoading />
         <SearchResultsCodeLoading />
       </Flex>
     </Flex>

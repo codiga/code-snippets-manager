@@ -70,6 +70,7 @@ export default function SearchResultsCode({ recipe }: SearchResultsCodeProps) {
       <Code
         border={0}
         borderRadius={0}
+        pt="space_48"
         pos="relative"
         sx={{
           'code[class*="language-"] > span:first-child > .linenumber:first-child':
@@ -135,7 +136,7 @@ export default function SearchResultsCode({ recipe }: SearchResultsCodeProps) {
         <CodeContent
           customStyle={{
             background: bg,
-            overflow: 'hidden',
+            overflowX: 'auto',
           }}
           codeTagProps={{
             style: {

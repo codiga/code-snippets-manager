@@ -30,7 +30,14 @@ export default function SearchResults({ results }: SearchResultsProps) {
           />
         ))}
       </SearchResultsList>
-      <Flex position="relative" flex={1} h="full" w="full" overflowX="scroll">
+      <Flex
+        position="relative"
+        flex={1}
+        h="full"
+        w="full"
+        overflowX="auto"
+        overflowY="scroll"
+      >
         <Box
           position="absolute"
           top="0"
@@ -38,6 +45,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
           minHeight="full"
           minWidth="full"
           h="full"
+          w="full"
         >
           {results[0] ? <SearchResultsCode recipe={snippetInFocus} /> : null}
         </Box>

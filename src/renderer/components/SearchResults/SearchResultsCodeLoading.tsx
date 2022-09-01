@@ -4,7 +4,7 @@ export default function SearchResultsCodeLoading() {
   return (
     <VStack
       p="space_16"
-      pt="7px"
+      pt="space_56"
       w="full"
       spacing="space_8"
       alignItems="flex-start"
