@@ -24,7 +24,7 @@ export default function MySnippets() {
         filters.language && filters.language !== Language.ALL_LANGUAGES
           ? filters.language
           : null,
-      tag: filters.tags,
+      tag: filters.tags || null,
     },
     context: {
       debounceKey: 'my-snippets',

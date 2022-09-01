@@ -24,7 +24,7 @@ export default function TeamSnippets() {
         filters.language && filters.language !== Language.ALL_LANGUAGES
           ? [filters.language]
           : null,
-      tag: filters.tags,
+      tag: filters.tags || null,
     },
     context: {
       debounceKey: 'team-snippets',
