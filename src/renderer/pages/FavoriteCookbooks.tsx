@@ -8,6 +8,7 @@ import CookbookTableEmptyFiltered from '../components/CookbookTable/CookbookTabl
 import CookbookTable from '../components/CookbookTable/CookbookTable';
 import { useFilters } from '../components/FiltersContext';
 import useQueryVariables from '../hooks/useQueryVariables';
+import { PAGE_QUERY_POLL_INTERVAL_IN_MS } from '../lib/constants';
 
 export default function FavoriteCookbooks() {
   const filters = useFilters();
@@ -17,6 +18,7 @@ export default function FavoriteCookbooks() {
     user: { cookbooks: AssistantCookbook[] };
   }>(GET_USER_SUBSCRIBED_COOKBOOKS, {
     variables,
+    pollInterval: PAGE_QUERY_POLL_INTERVAL_IN_MS,
     context: {
       debounceKey: 'favorite-cookbooks',
     },

@@ -8,6 +8,7 @@ import SnippetTableEmptyFiltered from '../components/SnippetTable/SnippetTableEm
 import SnippetTable from '../components/SnippetTable/SnippetTable';
 import { useFilters } from '../components/FiltersContext';
 import useQueryVariables from '../hooks/useQueryVariables';
+import { PAGE_QUERY_POLL_INTERVAL_IN_MS } from '../lib/constants';
 
 export default function MySnippets() {
   const filters = useFilters();
@@ -17,6 +18,7 @@ export default function MySnippets() {
     user: { recipes: AssistantRecipeWithStats[] };
   }>(GET_USER_RECIPES, {
     variables,
+    pollInterval: PAGE_QUERY_POLL_INTERVAL_IN_MS,
     context: {
       debounceKey: 'my-snippets',
     },

@@ -9,6 +9,7 @@ import {
   GetRecipesSemanticallyVariables,
   GET_RECIPES_SEMANTICALLY,
 } from '../graphql/queries';
+import { PAGE_QUERY_POLL_INTERVAL_IN_MS } from '../lib/constants';
 
 export default function Home() {
   const variables = useQueryVariables('home');
@@ -18,6 +19,7 @@ export default function Home() {
     GetRecipesSemanticallyVariables
   >(GET_RECIPES_SEMANTICALLY, {
     variables: variables as GetRecipesSemanticallyVariables,
+    pollInterval: PAGE_QUERY_POLL_INTERVAL_IN_MS,
     context: {
       debounceKey: 'search',
     },

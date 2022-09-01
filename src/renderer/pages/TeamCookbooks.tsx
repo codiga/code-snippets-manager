@@ -8,6 +8,7 @@ import CookbookTableEmptyFiltered from '../components/CookbookTable/CookbookTabl
 import CookbookTable from '../components/CookbookTable/CookbookTable';
 import { useFilters } from '../components/FiltersContext';
 import useQueryVariables from '../hooks/useQueryVariables';
+import { PAGE_QUERY_POLL_INTERVAL_IN_MS } from '../lib/constants';
 
 export default function TeamCookbooks() {
   const filters = useFilters();
@@ -17,6 +18,7 @@ export default function TeamCookbooks() {
     cookbooks: AssistantCookbook[];
   }>(GET_SHARED_COOKBOOKS, {
     variables,
+    pollInterval: PAGE_QUERY_POLL_INTERVAL_IN_MS,
     context: {
       debounceKey: 'team-cookbooks',
     },
