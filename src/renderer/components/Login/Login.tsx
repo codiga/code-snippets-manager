@@ -78,7 +78,7 @@ export default function Login({ isOpen, closeModal }: LoginProps) {
         opacity="0.8 !important"
       />
 
-      <ModalContent>
+      <ModalContent as="form" onSubmit={handleSubmit(onLogin)}>
         <ModalHeader>
           <Heading as="h5" size="h5">
             Add Codiga API Token
@@ -112,11 +112,7 @@ export default function Login({ isOpen, closeModal }: LoginProps) {
           <Button variant="secondary" onClick={closeAndReset}>
             Cancel
           </Button>
-          <Button
-            variant="primary"
-            isLoading={isSubmitting}
-            onClick={handleSubmit(onLogin)}
-          >
+          <Button type="submit" variant="primary" isLoading={isSubmitting}>
             <span>Login</span>
           </Button>
         </ModalFooter>
