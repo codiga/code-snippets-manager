@@ -456,3 +456,4 @@ export const SSO_PROVIDERS_LOWER = SSO_PROVIDERS.map((val) =>
 ) as Lowercase<SSOProviderKey>[];
 
 export const REVALIDATE_USER_PAGE_IN_SECONDS = 60;
+export const PAGE_QUERY_POLL_INTERVAL_IN_MS = 10000;
