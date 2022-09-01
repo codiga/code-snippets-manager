@@ -1,6 +1,9 @@
+import { useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { useMutation, useQuery } from '@apollo/client';
 import { Flex, FlexProps, IconButton, Text, Tooltip } from '@chakra-ui/react';
 import { DownVoteIcon, UpVoteIcon, useToast } from '@codiga/components';
+
 import { useUser } from '../UserContext';
 import {
   AddVoteMutationVariables,
@@ -28,8 +31,11 @@ const Votes = ({
   const toast = useToast();
   const { id: userId } = useUser();
 
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   const { data, refetch } = useQuery(GET_RECIPE_VOTES_QUERY, {
-    skip: !userId,
+    skip: !userId || !isInView,
     variables: {
       recipeId: entityId,
     },
@@ -89,7 +95,7 @@ const Votes = ({
   const countColor = isUpVoted || isDownVoted ? 'rose.50' : undefined;
 
   return (
-    <Flex gridGap="space_4" alignItems="center" {...props}>
+    <Flex ref={ref} gridGap="space_4" alignItems="center" {...props}>
       <Tooltip
         label="Please log in to upvote"
         shouldWrapChildren
