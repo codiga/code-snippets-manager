@@ -19,7 +19,7 @@ export default function Favorite({
     <Tooltip
       shouldWrapChildren
       label="Log in to favorite"
-      isDisabled={!!userId}
+      isDisabled={!!userId} // if logged in, disable the tooltip
     >
       <Button
         variant="unstyled"
@@ -30,6 +30,7 @@ export default function Favorite({
         alignItems="center"
         onClick={isSubscribed ? onUnsubscribe : onSubscribe}
         boxShadow="none !important"
+        isDisabled={!userId} // if NOT logged in, disable the button
       >
         {isSubscribed ? (
           <HeartFilledIcon h="10px" w="10px" color="base.rose" />
