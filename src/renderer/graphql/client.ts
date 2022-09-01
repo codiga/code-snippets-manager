@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import DebounceLink from 'apollo-link-debounce';
 import { API_URL, TOKEN } from '../lib/config';
 
-const DEFAULT_DEBOUNCE_TIMEOUT = 200;
+const DEFAULT_DEBOUNCE_TIMEOUT = 300;
 
 const Link = ApolloLink.from([
   new DebounceLink(DEFAULT_DEBOUNCE_TIMEOUT),
