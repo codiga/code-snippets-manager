@@ -29,6 +29,7 @@ type FiltersContextType = FilterTypes & {
   setPrivacy: React.Dispatch<React.SetStateAction<PrivacyType>>;
   setIsSubscribed: React.Dispatch<React.SetStateAction<IsSubscribedType>>;
   resetAllFilters: () => void;
+  isEmpty: boolean;
 };
 
 const FiltersContext = createContext({} as FiltersContextType);
@@ -42,6 +43,15 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
   const [tags, setTags] = useState('');
   const [privacy, setPrivacy] = useState<PrivacyType>('all');
   const [isSubscribed, setIsSubscribed] = useState(false);
+
+  // check if all the filters are empty
+  const isEmpty =
+    !searchTerm &&
+    language === Language.ALL_LANGUAGES &&
+    !library &&
+    !tags &&
+    privacy === 'all' &&
+    isSubscribed === false;
 
   const resetAllFilters = () => {
     setSearchTerm('');
@@ -66,6 +76,7 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     isSubscribed,
     setIsSubscribed,
     resetAllFilters,
+    isEmpty,
   };
 
   return (
