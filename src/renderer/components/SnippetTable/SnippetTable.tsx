@@ -32,8 +32,8 @@ type SnippetTableProps = {
 
 export default function SnippetTable({ page, recipes }: SnippetTableProps) {
   return (
-    <Box w="full" overflow="auto">
-      <TableContainer>
+    <Box w="full" h="full" overflow="hidden">
+      <TableContainer h="full" overflowY="scroll" overflowX="scroll">
         <Table variant="simple">
           <Tbody>
             {recipes.map((recipe) => {

@@ -15,8 +15,8 @@ const Td = (props: TableCellProps) => (
 
 export default function SnippetTableLoading() {
   return (
-    <Box w="full" overflow="auto">
-      <TableContainer>
+    <Box w="full" h="full" overflow="hidden">
+      <TableContainer h="full" overflowY="scroll" overflowX="scroll">
         <Table variant="simple">
           <Tbody>
             {[1, 2, 3, 4, 5, 6, 7].map((num, i) => (
