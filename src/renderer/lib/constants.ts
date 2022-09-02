@@ -1,4 +1,4 @@
-import { RecipeVariableType } from 'renderer/types/assistantTypes';
+import { RecipeVariableType } from '../types/assistantTypes';
 
 export enum Language {
   LANGUAGE_UNKNOWN = 'Unknown',

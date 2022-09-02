@@ -3,7 +3,7 @@ import {
   AssistantRecipeWithStats,
   LanguageEnumeration,
   LibraryWithAllEnumeration,
-} from 'renderer/types/assistantTypes';
+} from '../types/assistantTypes';
 
 export const CHECK_USER = gql`
   query checkUser {

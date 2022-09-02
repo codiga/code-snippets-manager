@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { UserPreferenceKeyType } from 'renderer/types/userTypes';
+import { UserPreferenceKeyType } from '../types/userTypes';
 
 export type RemoveUserPreferenceVariables = {
   key: UserPreferenceKeyType;

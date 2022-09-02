@@ -1,7 +1,7 @@
 import { Flex, Link } from '@chakra-ui/react';
 import { EmptyState } from '@codiga/components';
 import { useParams } from 'react-router-dom';
-import { APP_URL } from 'renderer/lib/config';
+import { APP_URL } from '../../lib/config';
 
 export default function ViewCookbookSnippetsEmpty() {
   const params = useParams();

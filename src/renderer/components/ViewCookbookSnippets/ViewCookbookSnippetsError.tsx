@@ -1,7 +1,7 @@
 import { Flex, Link } from '@chakra-ui/react';
 import { EmptyState } from '@codiga/components';
 import { Link as RouterLink } from 'react-router-dom';
-import { APP_URL } from 'renderer/lib/config';
+import { APP_URL } from '../../lib/config';
 
 export default function ViewCookbookSnippetsError() {
   return (
