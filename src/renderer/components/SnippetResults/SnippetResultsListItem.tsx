@@ -5,26 +5,31 @@ import {
   RecipeSummary,
 } from '../../types/assistantTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
-import Votes from './Votes';
+import Votes from '../Votes';
 
-type SearchResultsListItemProps = {
+type SnippetResultsListItemProps = {
   recipe: AssistantRecipeWithStats;
   changeSnippetInFocus: (recipe: RecipeSummary) => void;
+  currentSnippet: boolean;
 };
 
-export default function SearchResultsListItem({
+export default function SnippetResultsListItem({
   recipe,
   changeSnippetInFocus,
-}: SearchResultsListItemProps) {
+  currentSnippet,
+}: SnippetResultsListItemProps) {
   return (
     <Flex
       flexDirection="column"
       p="space_16"
       gridGap="space_8"
-      border="1px"
+      borderBottom="1px"
       borderColor="neutral.50"
-      bg="neutral.0"
-      _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
+      bg={currentSnippet ? 'neutral.25' : 'neutral.0'}
+      _dark={{
+        bg: currentSnippet ? 'base.onyx' : 'neutral.100',
+        borderColor: 'base.onyx',
+      }}
       _focus={{
         bg: 'neutral.25',
         _dark: { bg: 'base.onyx' },
