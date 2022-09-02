@@ -100,6 +100,7 @@ export default function SnippetTable({ recipes }: SnippetTableProps) {
                             href={`${getGroupUrl(
                               recipe.groups[0].id!
                             )}/snippets`}
+                            _focus={{ boxShadow: 'none' }}
                           >
                             {recipe.groups[0].name}
                           </Link>

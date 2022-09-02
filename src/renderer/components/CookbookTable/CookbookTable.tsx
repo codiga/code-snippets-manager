@@ -99,6 +99,7 @@ export default function CookbookTable({ cookbooks }: CookbookTableProps) {
                             href={`${getGroupUrl(
                               cookbook.groups[0].id!
                             )}/cookbooks`}
+                            _focus={{ boxShadow: 'none' }}
                           >
                             {cookbook.groups[0].name}
                           </Link>

@@ -49,7 +49,12 @@ export default function ViewSnippet() {
         <Flex alignItems="center" gridGap="space_8">
           <Logo value={recipe.language} fullSize={false} logoSize={24} />
           <Text size="sm" fontWeight="bold" noOfLines={1}>
-            <Link isExternal variant="subtle" href={getSnippetUrl(recipe.id)}>
+            <Link
+              isExternal
+              variant="subtle"
+              href={getSnippetUrl(recipe.id)}
+              _focus={{ boxShadow: 'none' }}
+            >
               {recipe.name}
             </Link>
           </Text>

@@ -53,6 +53,7 @@ export default function ViewCookbookSnippets() {
             <Link
               isExternal
               variant="subtle"
+                _focus={{ boxShadow: 'none' }}
               href={getCookbookUrl(cookbook.id)}
             >
               {cookbook.name}
