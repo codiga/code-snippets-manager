@@ -9,13 +9,14 @@ import {
   Td as ChakraTd,
   TableCellProps,
   Link,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import { UsersIcon, Logos } from '@codiga/components';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { getCookbookUrl, getGroupUrl } from '../../utils/urlUtils';
+import { getGroupUrl } from '../../utils/urlUtils';
 import { AssistantCookbook } from '../../types/assistantTypes';
-import { PageTypes } from '../../types/pageTypes';
 import FavoriteCookbook from '../Favorite/FavoriteCookbook';
 import PrivacyAndVotes from '../PrivacyAndVotes';
 import FormattedDate from '../FormattedDate';
@@ -34,12 +35,9 @@ const Td = (props: TableCellProps) => (
 
 type CookbookTableProps = {
   cookbooks: AssistantCookbook[];
-  page: PageTypes;
 };
 
-export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
-  const navigate = useNavigate();
-
+export default function CookbookTable({ cookbooks }: CookbookTableProps) {
   return (
     <Box
       w="full"
@@ -54,7 +52,9 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
           <Tbody>
             {cookbooks.map((cookbook) => {
               return (
-                <Tr
+                <LinkBox
+                  as={Tr}
+                  cursor="pointer"
                   key={cookbook.id}
                   p="space_16"
                   borderBottom="1px"
@@ -65,7 +65,6 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                     bg: 'neutral.25',
                     _dark: { bg: 'base.onyx' },
                   }}
-                  onClick={() => navigate(`/view-cookbook/${cookbook.id}`)}
                 >
                   <Td>
                     <Flex alignItems="center" gap="space_8">
@@ -75,19 +74,12 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                         maxWidth="300px"
                         display="inline-block"
                       >
-                        <Link
-                          isExternal
-                          variant="subtle"
-                          href={getCookbookUrl(
-                            page,
-                            cookbook.id,
-                            cookbook.groups?.length
-                              ? cookbook.groups[0].id
-                              : undefined
-                          )}
+                        <LinkOverlay
+                          as={RouterLink}
+                          to={`/view-cookbook/${cookbook.id}`}
                         >
                           {cookbook.name}
-                        </Link>
+                        </LinkOverlay>
                       </Text>
                       <FavoriteCookbook
                         isSubscribed={!!cookbook.isSubscribed}
@@ -138,7 +130,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                   <Td>
                     <Logos values={cookbook?.languages || []} max={2} />
                   </Td>
-                </Tr>
+                </LinkBox>
               );
             })}
           </Tbody>

@@ -9,13 +9,14 @@ import {
   Td as ChakraTd,
   TableCellProps,
   Link,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import { Logo, UsersIcon, Tags } from '@codiga/components';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { getGroupUrl, getSnippetUrl } from '../../utils/urlUtils';
+import { getGroupUrl } from '../../utils/urlUtils';
 import { AssistantRecipeWithStats } from '../../types/assistantTypes';
-import { PageTypes } from '../../types/pageTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
 import PrivacyAndVotes from '../PrivacyAndVotes';
 import FormattedDate from '../FormattedDate/FormattedDate';
@@ -26,13 +27,10 @@ const Td = (props: TableCellProps) => (
 );
 
 type SnippetTableProps = {
-  page: PageTypes;
   recipes: AssistantRecipeWithStats[];
 };
 
-export default function SnippetTable({ page, recipes }: SnippetTableProps) {
-  const navigate = useNavigate();
-
+export default function SnippetTable({ recipes }: SnippetTableProps) {
   return (
     <Box
       w="full"
@@ -47,8 +45,9 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
           <Tbody>
             {recipes.map((recipe) => {
               return (
-                <Tr
-                  onClick={() => navigate(`/view-snippet/${recipe.id}`)}
+                <LinkBox
+                  as={Tr}
+                  cursor="pointer"
                   key={recipe.id}
                   p="space_16"
                   borderBottom="1px"
@@ -66,6 +65,28 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       fullSize={false}
                       logoSize={24}
                     />
+                  </Td>
+
+                  <Td>
+                    <Flex alignItems="center" gap="space_8">
+                      <Text
+                        size="sm"
+                        noOfLines={1}
+                        maxWidth="300px"
+                        display="inline-block"
+                      >
+                        <LinkOverlay
+                          as={RouterLink}
+                          to={`/view-snippet/${recipe.id}`}
+                        >
+                          {recipe.name}
+                        </LinkOverlay>
+                      </Text>
+                      <FavoriteSnippet
+                        isSubscribed={!!recipe.isSubscribed}
+                        recipeId={recipe.id}
+                      />
+                    </Flex>
                   </Td>
 
                   {recipe.groups && recipe.groups.length > 0 && (
@@ -86,35 +107,6 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       </Flex>
                     </Td>
                   )}
-
-                  <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text
-                        size="sm"
-                        noOfLines={1}
-                        maxWidth="300px"
-                        display="inline-block"
-                      >
-                        <Link
-                          isExternal
-                          variant="subtle"
-                          href={getSnippetUrl(
-                            page,
-                            recipe.id,
-                            recipe.groups?.length
-                              ? recipe.groups[0].id
-                              : undefined
-                          )}
-                        >
-                          {recipe.name}
-                        </Link>
-                      </Text>
-                      <FavoriteSnippet
-                        isSubscribed={!!recipe.isSubscribed}
-                        recipeId={recipe.id}
-                      />
-                    </Flex>
-                  </Td>
 
                   <Td>
                     <AvatarAndName owner={recipe.owner} />
@@ -141,7 +133,7 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       />
                     )}
                   </Td>
-                </Tr>
+                </LinkBox>
               );
             })}
           </Tbody>

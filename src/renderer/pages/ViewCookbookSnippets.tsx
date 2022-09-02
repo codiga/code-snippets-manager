@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { Box, Flex, HStack, Text } from '@chakra-ui/react';
+import { Box, Flex, HStack, Link, Text } from '@chakra-ui/react';
 
+import { getCookbookUrl } from '../utils/urlUtils';
 import { GET_COOKBOOK_RECIPES } from '../graphql/queries';
 import { GET_USER_RECIPES_VARIABLES } from '../graphql/variables';
 import ViewCookbookSnippetsError from '../components/ViewCookbookSnippets/ViewCookbookSnippetsError';
@@ -49,7 +50,13 @@ export default function ViewCookbookSnippets() {
 
         <Flex alignItems="center" gridGap="space_8">
           <Text size="sm" fontWeight="bold" noOfLines={1}>
-            {cookbook.name}
+            <Link
+              isExternal
+              variant="subtle"
+              href={getCookbookUrl(cookbook.id)}
+            >
+              {cookbook.name}
+            </Link>
           </Text>
           <FavoriteCookbook
             isSubscribed={cookbook.isSubscribed}

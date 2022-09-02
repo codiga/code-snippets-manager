@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { Box, Flex, HStack, Text } from '@chakra-ui/react';
+import { Box, Flex, HStack, Link, Text } from '@chakra-ui/react';
 import { Logo, Tags } from '@codiga/components';
 import { useQuery } from '@apollo/client';
 
+import { getSnippetUrl } from '../utils/urlUtils';
 import { GET_RECIPE } from '../graphql/queries';
 import FavoriteSnippet from '../components/Favorite/FavoriteSnippet';
 import ViewSnippetError from '../components/ViewSnippet/ViewSnippetError';
@@ -48,7 +49,9 @@ export default function ViewSnippet() {
         <Flex alignItems="center" gridGap="space_8">
           <Logo value={recipe.language} fullSize={false} logoSize={24} />
           <Text size="sm" fontWeight="bold" noOfLines={1}>
-            {recipe.name}
+            <Link isExternal variant="subtle" href={getSnippetUrl(recipe.id)}>
+              {recipe.name}
+            </Link>
           </Text>
           <FavoriteSnippet
             isSubscribed={recipe.isSubscribed}
