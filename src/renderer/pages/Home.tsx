@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client';
 import useQueryVariables from '../hooks/useQueryVariables';
-import SearchResults from '../components/SearchResults';
 import SearchResultsEmpty from '../components/SearchResults/SearchResultsEmpty';
 import SearchResultsError from '../components/SearchResults/SearchResultsError';
-import SearchResultsLoading from '../components/SearchResults/SearchResultsLoading';
+import SnippetResults from '../components/SnippetResults/SnippetResults';
+import SnippetResultsLoading from '../components/SnippetResults/SnippetResultsLoading';
 import {
   GetRecipesSemanticallyData,
   GetRecipesSemanticallyVariables,
@@ -32,12 +32,12 @@ export default function Home() {
   }
 
   if (loading) {
-    return <SearchResultsLoading />;
+    return <SnippetResultsLoading />;
   }
 
   if (results.length === 0) {
     return <SearchResultsEmpty />;
   }
 
-  return <SearchResults results={results} />;
+  return <SnippetResults results={results} />;
 }
