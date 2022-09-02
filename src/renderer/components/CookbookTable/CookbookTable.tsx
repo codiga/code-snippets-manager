@@ -11,6 +11,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { UsersIcon, Logos } from '@codiga/components';
+import { useNavigate } from 'react-router-dom';
 
 import { getCookbookUrl, getGroupUrl } from '../../utils/urlUtils';
 import { AssistantCookbook } from '../../types/assistantTypes';
@@ -37,8 +38,17 @@ type CookbookTableProps = {
 };
 
 export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
+  const navigate = useNavigate();
+
   return (
-    <Box w="full" h="full" overflow="hidden">
+    <Box
+      w="full"
+      h="full"
+      overflow="hidden"
+      border="1px"
+      borderColor="neutral.50"
+      _dark={{ borderColor: 'base.onyx' }}
+    >
       <TableContainer h="full" overflowY="scroll" overflowX="scroll">
         <Table variant="simple">
           <Tbody>
@@ -47,7 +57,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                 <Tr
                   key={cookbook.id}
                   p="space_16"
-                  border="1px"
+                  borderBottom="1px"
                   borderColor="neutral.50"
                   bg="neutral.0"
                   _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
@@ -55,6 +65,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                     bg: 'neutral.25',
                     _dark: { bg: 'base.onyx' },
                   }}
+                  onClick={() => navigate(`/view-cookbook/${cookbook.id}`)}
                 >
                   <Td>
                     <Flex alignItems="center" gap="space_8">

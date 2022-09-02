@@ -16,14 +16,21 @@ const Td = (props: TableCellProps) => (
 export default function CookbookTableLoading() {
   return (
     <Box w="full" h="full" overflow="hidden">
-      <TableContainer h="full" overflowY="scroll" overflowX="scroll">
+      <TableContainer
+        h="full"
+        overflowY="scroll"
+        overflowX="scroll"
+        border="1px"
+        borderColor="neutral.50"
+        _dark={{ borderColor: 'base.onyx' }}
+      >
         <Table variant="simple">
           <Tbody>
             {[1, 2, 3, 4, 5, 6, 7].map((num, i) => (
               <Tr
                 key={`loading-${num + i}`}
                 p="space_16"
-                border="1px"
+                borderBottom="1px"
                 borderColor="neutral.50"
                 bg="neutral.0"
                 _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}

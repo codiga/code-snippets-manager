@@ -11,6 +11,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { Logo, UsersIcon, Tags } from '@codiga/components';
+import { useNavigate } from 'react-router-dom';
 
 import { getGroupUrl, getSnippetUrl } from '../../utils/urlUtils';
 import { AssistantRecipeWithStats } from '../../types/assistantTypes';
@@ -30,17 +31,27 @@ type SnippetTableProps = {
 };
 
 export default function SnippetTable({ page, recipes }: SnippetTableProps) {
+  const navigate = useNavigate();
+
   return (
-    <Box w="full" h="full" overflow="hidden">
+    <Box
+      w="full"
+      h="full"
+      overflow="hidden"
+      border="1px"
+      borderColor="neutral.50"
+      _dark={{ borderColor: 'base.onyx' }}
+    >
       <TableContainer h="full" overflowY="scroll" overflowX="scroll">
         <Table variant="simple">
           <Tbody>
             {recipes.map((recipe) => {
               return (
                 <Tr
+                  onClick={() => navigate(`/view-snippet/${recipe.id}`)}
                   key={recipe.id}
                   p="space_16"
-                  border="1px"
+                  borderBottom="1px"
                   borderColor="neutral.50"
                   bg="neutral.0"
                   _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
