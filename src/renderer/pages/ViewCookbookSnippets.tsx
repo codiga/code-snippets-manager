@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -10,6 +11,7 @@ import { PAGE_QUERY_POLL_INTERVAL_IN_MS } from '../lib/constants';
 import ViewCookbookSnippetsError from '../components/ViewCookbookSnippets/ViewCookbookSnippetsError';
 import ViewCookbookSnippetsLoading from '../components/ViewCookbookSnippets/ViewCookbookSnippetsLoading';
 import ViewCookbookSnippetsEmpty from '../components/ViewCookbookSnippets/ViewCookbookSnippetsEmpty';
+import ViewCookbookSnippetsEmptyFiltered from '../components/ViewCookbookSnippets/ViewCookbookSnippetsEmptyFiltered';
 import BackButton from '../components/BackButton';
 import FavoriteCookbook from '../components/Favorite/FavoriteCookbook';
 import AvatarAndName from '../components/AvatarAndName';
@@ -101,11 +103,11 @@ export default function ViewCookbookSnippets() {
 
           <Flex w="full" flex={1} justifyContent="flex-end">
             <Input
-              minWidth="200px"
+              minWidth="100px"
               maxWidth="500px"
               justifySelf="flex-end"
               mr="space_16"
-              placeholder="Search on this cookbook"
+              placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -113,13 +115,16 @@ export default function ViewCookbookSnippets() {
         </HStack>
       )}
 
-      {/* eslint-disable-next-line no-nested-ternary */}
       {cookbookSnippetLoading ? (
         <SnippetResultsLoading />
-      ) : snippets.length === 0 ? (
-        <ViewCookbookSnippetsEmpty />
-      ) : (
+      ) : snippets.length > 0 ? (
         <SnippetResults results={snippets} />
+      ) : searchTerm ? (
+        <ViewCookbookSnippetsEmptyFiltered
+          clearSearch={() => setSearchTerm('')}
+        />
+      ) : (
+        <ViewCookbookSnippetsEmpty />
       )}
     </Box>
   );
