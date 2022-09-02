@@ -7,7 +7,7 @@ export default function SnippetResultsListItemLoading() {
       flexDirection="column"
       p="space_16"
       gridGap="space_8"
-      border="1px"
+      borderBottom="1px"
       borderColor="neutral.50"
       bg="neutral.0"
       _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
