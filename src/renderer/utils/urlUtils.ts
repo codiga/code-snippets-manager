@@ -1,28 +1,11 @@
 import { APP_URL } from '../lib/config';
-import { PageTypes } from '../types/pageTypes';
 
-export const getCookbookUrl = (
-  page: PageTypes,
-  id: number,
-  groupId?: number
-) => {
-  return `${APP_URL}${
-    page === 'team'
-      ? `/assistant/group-sharing/${groupId}/cookbook/${id}/view`
-      : `/assistant/cookbook/${id}/view`
-  }`;
+export const getCookbookUrl = (id: number) => {
+  return `${APP_URL}/assistant/cookbook/${id}/view`;
 };
 
-export const getSnippetUrl = (
-  page: PageTypes,
-  id: number,
-  groupId?: number
-) => {
-  return `${APP_URL}${
-    page === 'team'
-      ? `/assistant/group-sharing/${groupId}/snippet/${id}/view`
-      : `/assistant/snippet/${id}/view`
-  }`;
+export const getSnippetUrl = (id: number) => {
+  return `${APP_URL}/assistant/snippet/${id}/view`;
 };
 
 export const getUserUrl = (slug: string) => {
