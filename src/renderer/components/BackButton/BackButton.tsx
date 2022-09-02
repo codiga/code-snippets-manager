@@ -14,6 +14,9 @@ export default function BackButton() {
       fontSize="12px"
       icon={<ChevronLeftIcon />}
       aria-label="go back"
+      _focus={{
+        boxShadow: 'none',
+      }}
     />
   );
 }
