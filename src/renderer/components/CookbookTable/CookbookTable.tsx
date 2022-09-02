@@ -10,21 +10,16 @@ import {
   TableCellProps,
   Link,
 } from '@chakra-ui/react';
-import {
-  LockIcon,
-  Avatar,
-  UsersIcon,
-  CodeIcon,
-  Logos,
-} from '@codiga/components';
+import { UsersIcon, Logos } from '@codiga/components';
 
 import { getCookbookUrl, getGroupUrl } from '../../utils/urlUtils';
-import { getAvatarUrl } from '../../utils/userUtils';
 import { AssistantCookbook } from '../../types/assistantTypes';
 import { PageTypes } from '../../types/pageTypes';
 import FavoriteCookbook from '../Favorite/FavoriteCookbook';
-import UserLink from '../UserLink';
-import VotesCurrent from '../VotesCurrent';
+import PrivacyAndVotes from '../PrivacyAndVotes';
+import FormattedDate from '../FormattedDate';
+import AvatarAndName from '../AvatarAndName';
+import Uses from '../Uses';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd
@@ -89,6 +84,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                       />
                     </Flex>
                   </Td>
+
                   {cookbook.groups && cookbook.groups.length > 0 && (
                     <Td>
                       <Flex alignItems="center" gap="space_8">
@@ -107,50 +103,25 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                       </Flex>
                     </Td>
                   )}
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Avatar
-                        size="xs"
-                        name={cookbook.owner?.displayName || 'Anonymous'}
-                        src={getAvatarUrl({ id: cookbook.owner?.id })}
-                      />
-                      <Text size="xs" noOfLines={1}>
-                        <UserLink owner={cookbook.owner} />
-                      </Text>
-                    </Flex>
+                    <AvatarAndName owner={cookbook.owner} />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text
-                        size="xs"
-                        noOfLines={1}
-                        gridGap="space_4"
-                        d="flex"
-                        alignItems="center"
-                      >
-                        <LockIcon open={!!cookbook.isPublic} />
-                        {cookbook.isPublic ? 'Public' : 'Private'}
-                      </Text>
-                      <VotesCurrent
-                        upvotes={cookbook.upvotes}
-                        downvotes={cookbook.downvotes}
-                      />
-                    </Flex>
+                    <PrivacyAndVotes
+                      isPublic={cookbook.isPublic}
+                      upvotes={cookbook.upvotes}
+                      downvotes={cookbook.downvotes}
+                    />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text size="xs" noOfLines={1}>
-                        {new Date(cookbook.creationTimestampMs!).toDateString()}
-                      </Text>
-                    </Flex>
+                    <FormattedDate timestamp={cookbook.creationTimestampMs!} />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <CodeIcon />
-                      <Text size="xs" noOfLines={1}>
-                        {cookbook?.recipesCount}
-                      </Text>
-                    </Flex>
+                    <Uses count={cookbook?.recipesCount} />
                   </Td>
 
                   <Td>

@@ -7,19 +7,18 @@ import {
   Tr,
   Tbody,
   Td as ChakraTd,
-  Tag,
   TableCellProps,
   Link,
 } from '@chakra-ui/react';
-import { LockIcon, Logo, Avatar, UsersIcon } from '@codiga/components';
+import { Logo, UsersIcon, Tags } from '@codiga/components';
 
-import { getAvatarUrl } from '../../utils/userUtils';
 import { getGroupUrl, getSnippetUrl } from '../../utils/urlUtils';
 import { AssistantRecipeWithStats } from '../../types/assistantTypes';
 import { PageTypes } from '../../types/pageTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
-import UserLink from '../UserLink';
-import VotesCurrent from '../VotesCurrent';
+import PrivacyAndVotes from '../PrivacyAndVotes';
+import FormattedDate from '../FormattedDate/FormattedDate';
+import AvatarAndName from '../AvatarAndName/AvatarAndName';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd {...props} p="space_16" pr="space_64" _last={{ pr: 'space_56' }} />
@@ -57,6 +56,7 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       logoSize={24}
                     />
                   </Td>
+
                   {recipe.groups && recipe.groups.length > 0 && (
                     <Td>
                       <Flex alignItems="center" gap="space_8">
@@ -75,6 +75,7 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       </Flex>
                     </Td>
                   )}
+
                   <Td>
                     <Flex alignItems="center" gap="space_8">
                       <Text
@@ -103,59 +104,31 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       />
                     </Flex>
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Avatar
-                        size="xs"
-                        name={recipe.owner?.displayName || 'Anonymous'}
-                        src={getAvatarUrl({ id: recipe.owner?.id })}
-                      />
-                      <Text
-                        size="xs"
-                        noOfLines={1}
-                        maxW="300px"
-                        display="inline-block"
-                      >
-                        <UserLink owner={recipe.owner} />
-                      </Text>
-                    </Flex>
+                    <AvatarAndName owner={recipe.owner} />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text
-                        size="xs"
-                        noOfLines={1}
-                        gridGap="space_4"
-                        d="flex"
-                        alignItems="center"
-                      >
-                        <LockIcon open={!!recipe.isPublic} />
-                        {recipe.isPublic ? 'Public' : 'Private'}
-                      </Text>
-                      <VotesCurrent
-                        upvotes={recipe.upvotes}
-                        downvotes={recipe.downvotes}
-                      />
-                    </Flex>
+                    <PrivacyAndVotes
+                      isPublic={recipe.isPublic}
+                      upvotes={recipe.upvotes}
+                      downvotes={recipe.downvotes}
+                    />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text size="xs" noOfLines={1}>
-                        {new Date(recipe.creationTimestampMs!).toDateString()}
-                      </Text>
-                    </Flex>
+                    <FormattedDate timestamp={recipe.creationTimestampMs!} />
                   </Td>
+
                   <Td isNumeric>
-                    <Flex gridGap="space_8">
-                      {recipe.tags?.slice(0, 1).map((tag) => (
-                        <Tag size="sm" key={`${tag}-${recipe.id}`}>
-                          {tag}
-                        </Tag>
-                      ))}
-                      {(recipe.tags || []).length - 1 > 0 ? (
-                        <Tag size="sm">+{(recipe.tags || []).length - 1}</Tag>
-                      ) : null}
-                    </Flex>
+                    {recipe?.tags && recipe?.tags.length > 0 && (
+                      <Tags
+                        values={recipe?.tags || []}
+                        max={1}
+                        tagProps={{ size: 'sm' }}
+                      />
+                    )}
                   </Td>
                 </Tr>
               );
