@@ -42,8 +42,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // CHAKRA'S THEME
   const { setColorMode } = useColorMode();
   // USER'S LOCAL THEME PREFERENCE
-  // @ts-ignore
-  const [cacheTheme, cacheStorageTheme, hydrateValue] = useLocalStorage(
+  const [_, cacheStorageTheme, hydrateValue] = useLocalStorage(
     CODIGA_THEME,
     Theme.THEME_LIGHT
   ) as [ThemeType, CacheStorageThemeType, () => string];

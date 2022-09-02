@@ -4,14 +4,26 @@ module.exports = {
     // A temporary hack related to IDE not resolving correct package.json
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'error',
+    'import/no-cycle': 'off',
+    'import/prefer-default-export': 'off',
     // Since React 17 and typescript 4.1 you can safely disable the rule
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'import/no-cycle': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
     'react/require-default-props': [2, { functions: 'defaultArguments' }],
-    'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      { leadingUnderscore: 'allow' },
+    ],
   },
   parserOptions: {
     ecmaVersion: 2020,
