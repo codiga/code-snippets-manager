@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react';
-import { EmptyState } from '@codiga/codiga-components';
+import { EmptyState } from '@codiga/components';
 
 type NotAuthenticatedProps = {
   handleAction: () => void;

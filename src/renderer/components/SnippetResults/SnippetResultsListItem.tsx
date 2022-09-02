@@ -1,30 +1,34 @@
-import { Flex, Text } from '@chakra-ui/react';
-import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/codiga-components';
-import {
-  AssistantRecipeWithStats,
-  RecipeSummary,
-} from '../../types/assistantTypes';
-import FavoriteSnippet from '../Favorite/FavoriteSnippet';
-import Votes from './Votes';
+import { Flex, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
+import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/components';
+import { Link as RouterLink } from 'react-router-dom';
 
-type SearchResultsListItemProps = {
+import { AssistantRecipeWithStats } from '../../types/assistantTypes';
+import FavoriteSnippet from '../Favorite/FavoriteSnippet';
+import Votes from '../Votes';
+
+type SnippetResultsListItemProps = {
   recipe: AssistantRecipeWithStats;
-  changeSnippetInFocus: (recipe: RecipeSummary) => void;
+  isCurrentSnippet: boolean;
 };
 
-export default function SearchResultsListItem({
+export default function SnippetResultsListItem({
   recipe,
-  changeSnippetInFocus,
-}: SearchResultsListItemProps) {
+  isCurrentSnippet,
+}: SnippetResultsListItemProps) {
   return (
-    <Flex
+    <LinkBox
+      cursor="pointer"
+      as={Flex}
       flexDirection="column"
       p="space_16"
       gridGap="space_8"
-      border="1px"
+      borderBottom="1px"
       borderColor="neutral.50"
-      bg="neutral.0"
-      _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
+      bg={isCurrentSnippet ? 'neutral.25' : 'neutral.0'}
+      _dark={{
+        bg: isCurrentSnippet ? 'base.onyx' : 'neutral.100',
+        borderColor: 'base.onyx',
+      }}
       _focus={{
         bg: 'neutral.25',
         _dark: { bg: 'base.onyx' },
@@ -37,14 +41,13 @@ export default function SearchResultsListItem({
         bg: 'neutral.25',
         _dark: { bg: 'base.onyx' },
       }}
-      onClick={() => changeSnippetInFocus(recipe)}
-      cursor="pointer"
-      tabIndex={0}
     >
       <Flex alignItems="center" gridGap="space_8">
         <Logo value={recipe.language} fullSize={false} logoSize={18} />
         <Text size="sm" fontWeight="bold" noOfLines={1}>
-          {recipe.name}
+          <LinkOverlay as={RouterLink} to={`?currentSnippetId=${recipe.id}`}>
+            {recipe.name}
+          </LinkOverlay>
         </Text>
         <FavoriteSnippet
           isSubscribed={recipe.isSubscribed}
@@ -70,6 +73,6 @@ export default function SearchResultsListItem({
       {recipe?.tags && recipe?.tags.length > 0 && (
         <Tags values={recipe?.tags || []} max={1} tagProps={{ size: 'sm' }} />
       )}
-    </Flex>
+    </LinkBox>
   );
 }

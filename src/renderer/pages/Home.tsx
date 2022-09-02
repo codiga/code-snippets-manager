@@ -1,37 +1,25 @@
 import { useQuery } from '@apollo/client';
-import { useFilters } from '../components/FiltersContext';
-import SearchResults from '../components/SearchResults';
+import useQueryVariables from '../hooks/useQueryVariables';
 import SearchResultsEmpty from '../components/SearchResults/SearchResultsEmpty';
 import SearchResultsError from '../components/SearchResults/SearchResultsError';
-import SearchResultsLoading from '../components/SearchResults/SearchResultsLoading';
+import SnippetResults from '../components/SnippetResults/SnippetResults';
+import SnippetResultsLoading from '../components/SnippetResults/SnippetResultsLoading';
 import {
   GetRecipesSemanticallyData,
   GetRecipesSemanticallyVariables,
   GET_RECIPES_SEMANTICALLY,
 } from '../graphql/queries';
-import { Language } from '../lib/constants';
+import { PAGE_QUERY_POLL_INTERVAL_IN_MS } from '../lib/constants';
 
 export default function Home() {
-  const filters = useFilters();
+  const variables = useQueryVariables('home');
 
   const { data, loading, error } = useQuery<
     GetRecipesSemanticallyData,
     GetRecipesSemanticallyVariables
   >(GET_RECIPES_SEMANTICALLY, {
-    variables: {
-      howmany: 100,
-      skip: 0,
-      languages:
-        filters.language && filters.language !== Language.ALL_LANGUAGES
-          ? [filters.language]
-          : null,
-      dependencies: filters.library ? [filters.library] : null,
-      term: filters.searchTerm || null,
-      tags: filters.tags ? [filters.tags] : null,
-      onlyPrivate: filters.privacy === 'private' ? true : null,
-      onlyPublic: filters.privacy === 'public' ? true : null,
-      onlySubscribed: filters.isSubscribed || null,
-    },
+    variables: variables as GetRecipesSemanticallyVariables,
+    pollInterval: PAGE_QUERY_POLL_INTERVAL_IN_MS,
     context: {
       debounceKey: 'search',
     },
@@ -44,12 +32,12 @@ export default function Home() {
   }
 
   if (loading) {
-    return <SearchResultsLoading />;
+    return <SnippetResultsLoading />;
   }
 
   if (results.length === 0) {
     return <SearchResultsEmpty />;
   }
 
-  return <SearchResults results={results} />;
+  return <SnippetResults results={results} />;
 }

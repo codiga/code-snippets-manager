@@ -1,5 +1,5 @@
 import { Link } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@codiga/codiga-components';
+import { ExternalLinkIcon } from '@codiga/components';
 import { PublicUser } from '../../types/userTypes';
 import { getUserUrl } from '../../utils/urlUtils';
 
@@ -12,7 +12,12 @@ export default function UserLink({ owner = {} }: UserLinkProps) {
 
   if (hasSlug && slug) {
     return (
-      <Link isExternal variant="subtle" href={getUserUrl(slug)}>
+      <Link
+        isExternal
+        variant="subtle"
+        href={getUserUrl(slug)}
+        _focus={{ boxShadow: 'none' }}
+      >
         {displayName || 'Anonymous'}
         <ExternalLinkIcon ml="space_4" color="neutral.75" />
       </Link>

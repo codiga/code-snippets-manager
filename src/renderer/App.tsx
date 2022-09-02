@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import { theme } from '@codiga/codiga-components';
+import { theme } from '@codiga/components';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 // PAGES
@@ -24,6 +24,8 @@ import Filters from './components/Filters/Filters';
 import { UserProvider } from './components/UserContext';
 import { ThemeProvider } from './components/ThemeContext';
 import { FiltersProvider } from './components/FiltersContext';
+import ViewSnippet from './pages/ViewSnippet';
+import ViewCookbookSnippets from './pages/ViewCookbookSnippets';
 
 export default function App() {
   return (
@@ -31,30 +33,41 @@ export default function App() {
       <ChakraProvider theme={theme}>
         <UserProvider>
           <ThemeProvider>
-            <Router>
-              <Layout>
-                <FiltersProvider>
-                  <Filters />
-
+            <FiltersProvider>
+              <Router>
+                <Layout>
                   <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route element={<Filters />}>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/my-snippets" element={<MySnippets />} />
+                      <Route
+                        path="/favorite-snippets"
+                        element={<FavoriteSnippets />}
+                      />
+                      <Route path="/my-cookbooks" element={<MyCookbooks />} />
+                      <Route
+                        path="/favorite-cookbooks"
+                        element={<FavoriteCookbooks />}
+                      />
+                      <Route path="/team-snippets" element={<TeamSnippets />} />
+                      <Route
+                        path="/team-cookbooks"
+                        element={<TeamCookbooks />}
+                      />
+                    </Route>
 
-                    <Route path="/my-snippets" element={<MySnippets />} />
                     <Route
-                      path="/favorite-snippets"
-                      element={<FavoriteSnippets />}
+                      path="/view-snippet/:snippetId"
+                      element={<ViewSnippet />}
                     />
-                    <Route path="/my-cookbooks" element={<MyCookbooks />} />
                     <Route
-                      path="/favorite-cookbooks"
-                      element={<FavoriteCookbooks />}
+                      path="/view-cookbook/:cookbookId"
+                      element={<ViewCookbookSnippets />}
                     />
-                    <Route path="/team-snippets" element={<TeamSnippets />} />
-                    <Route path="/team-cookbooks" element={<TeamCookbooks />} />
                   </Routes>
-                </FiltersProvider>
-              </Layout>
-            </Router>
+                </Layout>
+              </Router>
+            </FiltersProvider>
           </ThemeProvider>
         </UserProvider>
       </ChakraProvider>

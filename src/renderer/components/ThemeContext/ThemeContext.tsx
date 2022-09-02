@@ -1,7 +1,7 @@
 import { useContext, createContext, ReactNode, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useColorMode } from '@chakra-ui/react';
-import { useToast } from '@codiga/codiga-components';
+import { useToast } from '@codiga/components';
 
 import { useUser } from '../UserContext';
 import { User } from '../../types/userTypes';
@@ -42,8 +42,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // CHAKRA'S THEME
   const { setColorMode } = useColorMode();
   // USER'S LOCAL THEME PREFERENCE
-  // @ts-ignore
-  const [cacheTheme, cacheStorageTheme, hydrateValue] = useLocalStorage(
+  const [_, cacheStorageTheme, hydrateValue] = useLocalStorage(
     CODIGA_THEME,
     Theme.THEME_LIGHT
   ) as [ThemeType, CacheStorageThemeType, () => string];

@@ -9,22 +9,19 @@ import {
   Td as ChakraTd,
   TableCellProps,
   Link,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
-import {
-  LockIcon,
-  Avatar,
-  UsersIcon,
-  CodeIcon,
-  Logos,
-} from '@codiga/codiga-components';
+import { UsersIcon, Logos } from '@codiga/components';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { getCookbookUrl, getGroupUrl } from '../../utils/urlUtils';
-import { getAvatarUrl } from '../../utils/userUtils';
+import { getGroupUrl } from '../../utils/urlUtils';
 import { AssistantCookbook } from '../../types/assistantTypes';
-import { PageTypes } from '../../types/pageTypes';
 import FavoriteCookbook from '../Favorite/FavoriteCookbook';
-import UserLink from '../UserLink';
-import VotesCurrent from '../VotesCurrent';
+import PrivacyAndVotes from '../PrivacyAndVotes';
+import FormattedDate from '../FormattedDate';
+import AvatarAndName from '../AvatarAndName';
+import CodeCount from '../CodeCount';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd
@@ -38,21 +35,29 @@ const Td = (props: TableCellProps) => (
 
 type CookbookTableProps = {
   cookbooks: AssistantCookbook[];
-  page: PageTypes;
 };
 
-export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
+export default function CookbookTable({ cookbooks }: CookbookTableProps) {
   return (
-    <Box w="full" overflow="auto">
-      <TableContainer>
+    <Box
+      w="full"
+      h="full"
+      overflow="hidden"
+      border="1px"
+      borderColor="neutral.50"
+      _dark={{ borderColor: 'base.onyx' }}
+    >
+      <TableContainer h="full" overflowY="scroll" overflowX="scroll">
         <Table variant="simple">
           <Tbody>
             {cookbooks.map((cookbook) => {
               return (
-                <Tr
+                <LinkBox
+                  as={Tr}
+                  cursor="pointer"
                   key={cookbook.id}
                   p="space_16"
-                  border="1px"
+                  borderBottom="1px"
                   borderColor="neutral.50"
                   bg="neutral.0"
                   _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
@@ -69,19 +74,12 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                         maxWidth="300px"
                         display="inline-block"
                       >
-                        <Link
-                          isExternal
-                          variant="subtle"
-                          href={getCookbookUrl(
-                            page,
-                            cookbook.id,
-                            cookbook.groups?.length
-                              ? cookbook.groups[0].id
-                              : undefined
-                          )}
+                        <LinkOverlay
+                          as={RouterLink}
+                          to={`/view-cookbook/${cookbook.id}`}
                         >
                           {cookbook.name}
-                        </Link>
+                        </LinkOverlay>
                       </Text>
                       <FavoriteCookbook
                         isSubscribed={!!cookbook.isSubscribed}
@@ -89,6 +87,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                       />
                     </Flex>
                   </Td>
+
                   {cookbook.groups && cookbook.groups.length > 0 && (
                     <Td>
                       <Flex alignItems="center" gap="space_8">
@@ -100,6 +99,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                             href={`${getGroupUrl(
                               cookbook.groups[0].id!
                             )}/cookbooks`}
+                            _focus={{ boxShadow: 'none' }}
                           >
                             {cookbook.groups[0].name}
                           </Link>
@@ -107,56 +107,31 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                       </Flex>
                     </Td>
                   )}
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Avatar
-                        size="xs"
-                        name={cookbook.owner?.displayName || 'Anonymous'}
-                        src={getAvatarUrl({ id: cookbook.owner?.id })}
-                      />
-                      <Text size="xs" noOfLines={1}>
-                        <UserLink owner={cookbook.owner} />
-                      </Text>
-                    </Flex>
+                    <AvatarAndName owner={cookbook.owner} />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text
-                        size="xs"
-                        noOfLines={1}
-                        gridGap="space_4"
-                        d="flex"
-                        alignItems="center"
-                      >
-                        <LockIcon open={!!cookbook.isPublic} />
-                        {cookbook.isPublic ? 'Public' : 'Private'}
-                      </Text>
-                      <VotesCurrent
-                        upvotes={cookbook.upvotes}
-                        downvotes={cookbook.downvotes}
-                      />
-                    </Flex>
+                    <PrivacyAndVotes
+                      isPublic={cookbook.isPublic}
+                      upvotes={cookbook.upvotes}
+                      downvotes={cookbook.downvotes}
+                    />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text size="xs" noOfLines={1}>
-                        {new Date(cookbook.creationTimestampMs!).toDateString()}
-                      </Text>
-                    </Flex>
+                    <FormattedDate timestamp={cookbook.creationTimestampMs!} />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <CodeIcon />
-                      <Text size="xs" noOfLines={1}>
-                        {cookbook?.recipesCount}
-                      </Text>
-                    </Flex>
+                    <CodeCount count={cookbook?.recipesCount} />
                   </Td>
 
                   <Td>
                     <Logos values={cookbook?.languages || []} max={2} />
                   </Td>
-                </Tr>
+                </LinkBox>
               );
             })}
           </Tbody>

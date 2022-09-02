@@ -1,6 +1,9 @@
+import { useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { useMutation, useQuery } from '@apollo/client';
 import { Flex, FlexProps, IconButton, Text, Tooltip } from '@chakra-ui/react';
-import { DownVoteIcon, UpVoteIcon, useToast } from '@codiga/codiga-components';
+import { DownVoteIcon, UpVoteIcon, useToast } from '@codiga/components';
+
 import { useUser } from '../UserContext';
 import {
   AddVoteMutationVariables,
@@ -18,27 +21,30 @@ type VotesProps = FlexProps & {
   downvotes: number;
 };
 
-const Votes = ({
+export default function Votes({
   upvotes,
   downvotes,
   entityId,
   entityType = 'Recipe',
   ...props
-}: VotesProps) => {
+}: VotesProps) {
   const toast = useToast();
   const { id: userId } = useUser();
 
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   const { data, refetch } = useQuery(GET_RECIPE_VOTES_QUERY, {
-    skip: !userId,
+    skip: !userId || !isInView,
     variables: {
       recipeId: entityId,
     },
   });
 
-  const isUpVoted = Boolean(data?.votesData.isUpVoted);
-  const isDownVoted = Boolean(data?.votesData.isDownVoted);
-  const upVoteCount = Number(data?.votesData.upvotes);
-  const downVoteCount = Number(data?.votesData.downvotes);
+  const isUpVoted = Boolean(data?.votesData?.isUpVoted);
+  const isDownVoted = Boolean(data?.votesData?.isDownVoted);
+  const upVoteCount = Number(data?.votesData?.upvotes || upvotes);
+  const downVoteCount = Number(data?.votesData?.downvotes || downvotes);
   const voteText = data ? upVoteCount - downVoteCount : upvotes - downvotes;
 
   const [addVote] = useMutation<void, AddVoteMutationVariables>(ADD_VOTE);
@@ -89,7 +95,7 @@ const Votes = ({
   const countColor = isUpVoted || isDownVoted ? 'rose.50' : undefined;
 
   return (
-    <Flex gridGap="space_4" alignItems="center" {...props}>
+    <Flex ref={ref} gridGap="space_4" alignItems="center" {...props}>
       <Tooltip
         label="Please log in to upvote"
         shouldWrapChildren
@@ -137,6 +143,4 @@ const Votes = ({
       </Tooltip>
     </Flex>
   );
-};
-
-export default Votes;
+}

@@ -30,6 +30,10 @@ export function SideMenuItemLink({
       borderLeft="4px solid transparent"
       _hover={{
         textDecoration: 'none',
+        bg: 'neutral.50',
+        _dark: {
+          bg: 'base.onyx',
+        },
       }}
       _focus={{
         borderLeftColor: 'base.rose',

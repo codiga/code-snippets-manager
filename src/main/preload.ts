@@ -7,6 +7,7 @@ export type Channels =
   | 'closeApp';
 
 contextBridge.exposeInMainWorld('electron', {
+  isMac: process.platform === 'darwin',
   ipcRenderer: {
     sendMessage(channel: Channels, args: unknown[]) {
       ipcRenderer.send(channel, args);

@@ -1,9 +1,9 @@
 import { Button, Flex, Link } from '@chakra-ui/react';
-import { EmptyState } from '@codiga/codiga-components';
+import { EmptyState } from '@codiga/components';
 import { APP_URL } from '../../lib/config';
 import { useFilters } from '../FiltersContext';
 
-export default function CookbookTableEmptyFiltereed() {
+export default function CookbookTableEmptyFiltered() {
   const { resetAllFilters } = useFilters();
 
   return (

@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 import { Flex } from '@chakra-ui/react';
 
-type SearchResultsListProps = {
+type SnippetResultsListProps = {
   children: ReactNode;
 };
 
-export default function SearchResultsList({
+export default function SnippetResultsList({
   children,
-}: SearchResultsListProps) {
+}: SnippetResultsListProps) {
   return (
     <Flex
       minW="250px"
@@ -15,6 +15,11 @@ export default function SearchResultsList({
       h="full"
       flexDirection="column"
       overflowY="scroll"
+      border="1px"
+      borderColor="neutral.50"
+      _dark={{
+        borderColor: 'base.onyx',
+      }}
     >
       {children}
     </Flex>

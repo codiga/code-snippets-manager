@@ -7,41 +7,50 @@ import {
   Tr,
   Tbody,
   Td as ChakraTd,
-  Tag,
   TableCellProps,
   Link,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
-import { LockIcon, Logo, Avatar, UsersIcon } from '@codiga/codiga-components';
+import { Logo, UsersIcon, Tags } from '@codiga/components';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { getAvatarUrl } from '../../utils/userUtils';
-import { getGroupUrl, getSnippetUrl } from '../../utils/urlUtils';
+import { getGroupUrl } from '../../utils/urlUtils';
 import { AssistantRecipeWithStats } from '../../types/assistantTypes';
-import { PageTypes } from '../../types/pageTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
-import UserLink from '../UserLink';
-import VotesCurrent from '../VotesCurrent';
+import PrivacyAndVotes from '../PrivacyAndVotes';
+import FormattedDate from '../FormattedDate/FormattedDate';
+import AvatarAndName from '../AvatarAndName/AvatarAndName';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd {...props} p="space_16" pr="space_64" _last={{ pr: 'space_56' }} />
 );
 
 type SnippetTableProps = {
-  page: PageTypes;
   recipes: AssistantRecipeWithStats[];
 };
 
-export default function SnippetTable({ page, recipes }: SnippetTableProps) {
+export default function SnippetTable({ recipes }: SnippetTableProps) {
   return (
-    <Box w="full" overflow="auto">
-      <TableContainer>
+    <Box
+      w="full"
+      h="full"
+      overflow="hidden"
+      border="1px"
+      borderColor="neutral.50"
+      _dark={{ borderColor: 'base.onyx' }}
+    >
+      <TableContainer h="full" overflowY="scroll" overflowX="scroll">
         <Table variant="simple">
           <Tbody>
             {recipes.map((recipe) => {
               return (
-                <Tr
+                <LinkBox
+                  as={Tr}
+                  cursor="pointer"
                   key={recipe.id}
                   p="space_16"
-                  border="1px"
+                  borderBottom="1px"
                   borderColor="neutral.50"
                   bg="neutral.0"
                   _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}
@@ -57,6 +66,29 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       logoSize={24}
                     />
                   </Td>
+
+                  <Td>
+                    <Flex alignItems="center" gap="space_8">
+                      <Text
+                        size="sm"
+                        noOfLines={1}
+                        maxWidth="300px"
+                        display="inline-block"
+                      >
+                        <LinkOverlay
+                          as={RouterLink}
+                          to={`/view-snippet/${recipe.id}`}
+                        >
+                          {recipe.name}
+                        </LinkOverlay>
+                      </Text>
+                      <FavoriteSnippet
+                        isSubscribed={!!recipe.isSubscribed}
+                        recipeId={recipe.id}
+                      />
+                    </Flex>
+                  </Td>
+
                   {recipe.groups && recipe.groups.length > 0 && (
                     <Td>
                       <Flex alignItems="center" gap="space_8">
@@ -68,6 +100,7 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                             href={`${getGroupUrl(
                               recipe.groups[0].id!
                             )}/snippets`}
+                            _focus={{ boxShadow: 'none' }}
                           >
                             {recipe.groups[0].name}
                           </Link>
@@ -75,89 +108,33 @@ export default function SnippetTable({ page, recipes }: SnippetTableProps) {
                       </Flex>
                     </Td>
                   )}
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text
-                        size="sm"
-                        noOfLines={1}
-                        maxWidth="300px"
-                        display="inline-block"
-                      >
-                        <Link
-                          isExternal
-                          variant="subtle"
-                          href={getSnippetUrl(
-                            page,
-                            recipe.id,
-                            recipe.groups?.length
-                              ? recipe.groups[0].id
-                              : undefined
-                          )}
-                        >
-                          {recipe.name}
-                        </Link>
-                      </Text>
-                      <FavoriteSnippet
-                        isSubscribed={!!recipe.isSubscribed}
-                        recipeId={recipe.id}
-                      />
-                    </Flex>
+                    <AvatarAndName owner={recipe.owner} />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Avatar
-                        size="xs"
-                        name={recipe.owner?.displayName || 'Anonymous'}
-                        src={getAvatarUrl({ id: recipe.owner?.id })}
-                      />
-                      <Text
-                        size="xs"
-                        noOfLines={1}
-                        maxW="300px"
-                        display="inline-block"
-                      >
-                        <UserLink owner={recipe.owner} />
-                      </Text>
-                    </Flex>
+                    <PrivacyAndVotes
+                      isPublic={recipe.isPublic}
+                      upvotes={recipe.upvotes}
+                      downvotes={recipe.downvotes}
+                    />
                   </Td>
+
                   <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text
-                        size="xs"
-                        noOfLines={1}
-                        gridGap="space_4"
-                        d="flex"
-                        alignItems="center"
-                      >
-                        <LockIcon open={!!recipe.isPublic} />
-                        {recipe.isPublic ? 'Public' : 'Private'}
-                      </Text>
-                      <VotesCurrent
-                        upvotes={recipe.upvotes}
-                        downvotes={recipe.downvotes}
-                      />
-                    </Flex>
+                    <FormattedDate timestamp={recipe.creationTimestampMs!} />
                   </Td>
-                  <Td>
-                    <Flex alignItems="center" gap="space_8">
-                      <Text size="xs" noOfLines={1}>
-                        {new Date(recipe.creationTimestampMs!).toDateString()}
-                      </Text>
-                    </Flex>
-                  </Td>
+
                   <Td isNumeric>
-                    <Flex gridGap="space_8">
-                      {recipe.tags?.slice(0, 1).map((tag) => (
-                        <Tag size="sm" key={`${tag}-${recipe.id}`}>
-                          {tag}
-                        </Tag>
-                      ))}
-                      {(recipe.tags || []).length - 1 > 0 ? (
-                        <Tag size="sm">+{(recipe.tags || []).length - 1}</Tag>
-                      ) : null}
-                    </Flex>
+                    {recipe?.tags && recipe?.tags.length > 0 && (
+                      <Tags
+                        values={recipe?.tags || []}
+                        max={1}
+                        tagProps={{ size: 'sm' }}
+                      />
+                    )}
                   </Td>
-                </Tr>
+                </LinkBox>
               );
             })}
           </Tbody>

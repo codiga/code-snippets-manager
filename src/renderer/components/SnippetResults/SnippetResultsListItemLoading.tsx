@@ -1,13 +1,13 @@
 import { Flex, Skeleton, SkeletonCircle } from '@chakra-ui/react';
-import { DotIcon } from '@codiga/codiga-components';
+import { DotIcon } from '@codiga/components';
 
-export default function SearchResultsListItemLoading() {
+export default function SnippetResultsListItemLoading() {
   return (
     <Flex
       flexDirection="column"
       p="space_16"
       gridGap="space_8"
-      border="1px"
+      borderBottom="1px"
       borderColor="neutral.50"
       bg="neutral.0"
       _dark={{ bg: 'neutral.100', borderColor: 'base.onyx' }}

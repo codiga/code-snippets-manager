@@ -8,7 +8,7 @@ import {
   PowerIcon,
   MoonIcon,
   SunIcon,
-} from '@codiga/codiga-components';
+} from '@codiga/components';
 import { useNavigate } from 'react-router-dom';
 
 import { TOKEN } from '../../lib/config';
@@ -107,6 +107,7 @@ export default function SideMenu({ openLoginModal }: SideMenuProps) {
                 navigate('/');
                 await apolloClient.resetStore();
               } catch (err) {
+                // eslint-disable-next-line no-console
                 console.log('Error while logging out: ', err);
               }
             }}
