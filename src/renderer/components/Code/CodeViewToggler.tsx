@@ -47,8 +47,13 @@ const RadioButton = ({
         color="neutral.100"
         bg="neutral.0"
         tabIndex={0}
+        pos="relative"
+        _active={{
+          zIndex: 2,
+        }}
         _checked={{
           bg: 'neutral.50',
+          zIndex: 1,
         }}
         _focus={{
           boxShadow: 'outline',
