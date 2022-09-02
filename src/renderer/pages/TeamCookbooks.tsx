@@ -42,5 +42,5 @@ export default function TeamCookbooks() {
     return <CookbookTableEmpty />;
   }
 
-  return <CookbookTable page="team" cookbooks={userCookbooks} />;
+  return <CookbookTable cookbooks={userCookbooks} />;
 }

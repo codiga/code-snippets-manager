@@ -42,5 +42,5 @@ export default function TeamSnippets() {
     return <SnippetTableEmpty />;
   }
 
-  return <SnippetTable page="team" recipes={teamRecipes} />;
+  return <SnippetTable recipes={teamRecipes} />;
 }

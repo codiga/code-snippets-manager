@@ -42,5 +42,5 @@ export default function FavoriteCookbooks() {
     return <CookbookTableEmpty />;
   }
 
-  return <CookbookTable page="favorite" cookbooks={userCookbooks} />;
+  return <CookbookTable cookbooks={userCookbooks} />;
 }

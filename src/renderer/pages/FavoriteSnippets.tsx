@@ -42,5 +42,5 @@ export default function MySnippets() {
     return <SnippetTableEmpty />;
   }
 
-  return <SnippetTable page="favorite" recipes={userFavoriteRecipes} />;
+  return <SnippetTable recipes={userFavoriteRecipes} />;
 }

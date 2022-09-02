@@ -42,5 +42,5 @@ export default function MySnippets() {
     return <SnippetTableEmpty />;
   }
 
-  return <SnippetTable page="my" recipes={userRecipes} />;
+  return <SnippetTable recipes={userRecipes} />;
 }
