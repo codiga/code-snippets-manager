@@ -19,7 +19,7 @@ import FavoriteCookbook from '../Favorite/FavoriteCookbook';
 import PrivacyAndVotes from '../PrivacyAndVotes';
 import FormattedDate from '../FormattedDate';
 import AvatarAndName from '../AvatarAndName';
-import Uses from '../Uses';
+import CodeCount from '../CodeCount';
 
 const Td = (props: TableCellProps) => (
   <ChakraTd
@@ -121,7 +121,7 @@ export default function CookbookTable({ cookbooks, page }: CookbookTableProps) {
                   </Td>
 
                   <Td>
-                    <Uses count={cookbook?.recipesCount} />
+                    <CodeCount count={cookbook?.recipesCount} />
                   </Td>
 
                   <Td>

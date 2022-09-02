@@ -1,11 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react';
 import { CodeIcon } from '@codiga/components';
 
-type UsesProps = {
+type CodeCountProps = {
   count?: number;
 };
 
-export default function Uses({ count = 0 }: UsesProps) {
+export default function CodeCount({ count = 0 }: CodeCountProps) {
   return (
     <Flex alignItems="center" gap="space_8">
       <CodeIcon />
