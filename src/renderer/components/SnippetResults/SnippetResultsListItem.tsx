@@ -1,33 +1,32 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import { ChartBarsIcon, DotIcon, Logo, Tags } from '@codiga/components';
-import {
-  AssistantRecipeWithStats,
-  RecipeSummary,
-} from '../../types/assistantTypes';
+import { Link as RouterLink } from 'react-router-dom';
+
+import { AssistantRecipeWithStats } from '../../types/assistantTypes';
 import FavoriteSnippet from '../Favorite/FavoriteSnippet';
 import Votes from '../Votes';
 
 type SnippetResultsListItemProps = {
   recipe: AssistantRecipeWithStats;
-  changeSnippetInFocus: (recipe: RecipeSummary) => void;
-  currentSnippet: boolean;
+  isCurrentSnippet: boolean;
 };
 
 export default function SnippetResultsListItem({
   recipe,
-  changeSnippetInFocus,
-  currentSnippet,
+  isCurrentSnippet,
 }: SnippetResultsListItemProps) {
   return (
-    <Flex
+    <LinkBox
+      cursor="pointer"
+      as={Flex}
       flexDirection="column"
       p="space_16"
       gridGap="space_8"
       borderBottom="1px"
       borderColor="neutral.50"
-      bg={currentSnippet ? 'neutral.25' : 'neutral.0'}
+      bg={isCurrentSnippet ? 'neutral.25' : 'neutral.0'}
       _dark={{
-        bg: currentSnippet ? 'base.onyx' : 'neutral.100',
+        bg: isCurrentSnippet ? 'base.onyx' : 'neutral.100',
         borderColor: 'base.onyx',
       }}
       _focus={{
@@ -42,14 +41,13 @@ export default function SnippetResultsListItem({
         bg: 'neutral.25',
         _dark: { bg: 'base.onyx' },
       }}
-      onClick={() => changeSnippetInFocus(recipe)}
-      cursor="pointer"
-      tabIndex={0}
     >
       <Flex alignItems="center" gridGap="space_8">
         <Logo value={recipe.language} fullSize={false} logoSize={18} />
         <Text size="sm" fontWeight="bold" noOfLines={1}>
-          {recipe.name}
+          <LinkOverlay as={RouterLink} to={`?currentSnippetId=${recipe.id}`}>
+            {recipe.name}
+          </LinkOverlay>
         </Text>
         <FavoriteSnippet
           isSubscribed={recipe.isSubscribed}
@@ -75,6 +73,6 @@ export default function SnippetResultsListItem({
       {recipe?.tags && recipe?.tags.length > 0 && (
         <Tags values={recipe?.tags || []} max={1} tagProps={{ size: 'sm' }} />
       )}
-    </Flex>
+    </LinkBox>
   );
 }

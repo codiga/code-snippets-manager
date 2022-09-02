@@ -1,9 +1,6 @@
 import { Flex } from '@chakra-ui/react';
-import { useState } from 'react';
-import {
-  AssistantRecipeWithStats,
-  RecipeSummary,
-} from '../../types/assistantTypes';
+import useUrlQuery from '../../hooks/useUrlQuery';
+import { AssistantRecipeWithStats } from '../../types/assistantTypes';
 import Code from '../Code/Code';
 import SnippetResultsList from './SnippetResultsList';
 import SnippetResultsListItem from './SnippetResultsListItem';
@@ -13,11 +10,12 @@ type SnippetResultsProps = {
 };
 
 export default function SnippetResults({ results }: SnippetResultsProps) {
-  const [snippetInFocus, setSnippetInFocus] = useState(results[0] || {});
+  const query = useUrlQuery();
+  const currentSnippetId = query.get('currentSnippetId');
 
-  const changeSnippetInFocus = (recipe: RecipeSummary) => {
-    setSnippetInFocus(recipe);
-  };
+  const currentSnippet = currentSnippetId
+    ? results.find((recipe) => String(recipe.id) === currentSnippetId)
+    : results[0] || {};
 
   return (
     <Flex h="full" overflow="hidden">
@@ -26,13 +24,12 @@ export default function SnippetResults({ results }: SnippetResultsProps) {
           <SnippetResultsListItem
             key={result.id}
             recipe={result}
-            changeSnippetInFocus={changeSnippetInFocus}
-            currentSnippet={result.id === snippetInFocus.id}
+            isCurrentSnippet={currentSnippet?.id === result.id}
           />
         ))}
       </SnippetResultsList>
 
-      {results[0] ? <Code recipe={snippetInFocus} /> : null}
+      {currentSnippet?.id ? <Code recipe={currentSnippet} /> : null}
     </Flex>
   );
 }
