@@ -22,7 +22,11 @@ module.exports = {
     ],
     '@typescript-eslint/naming-convention': [
       'error',
-      { leadingUnderscore: 'allow' },
+      {
+        format: null,
+        selector: 'variable',
+        leadingUnderscore: 'allow',
+      },
     ],
   },
   parserOptions: {
