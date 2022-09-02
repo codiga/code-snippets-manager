@@ -399,3 +399,111 @@ export const GET_RECIPE_VOTES_QUERY = gql`
     }
   }
 `;
+
+export const GET_RECIPE = gql`
+  query getRecipe($recipeId: Long!) {
+    recipe: assistantRecipe(id: $recipeId) {
+      id
+      code
+      name
+      tags
+      uses
+      imports
+      upvotes
+      language
+      keywords
+      downvotes
+      isUpVoted
+      isDownVoted
+      description
+      isSubscribed
+      commentsCount
+      averageRating
+      presentableFormat
+      creationTimestampMs
+      owner {
+        id
+        slug
+        displayName
+      }
+      cookbook {
+        id
+        name
+      }
+      dependencyConstraints {
+        name
+      }
+    }
+  }
+`;
+
+export const GET_COOKBOOK_RECIPES = gql`
+  query getCookbookRecipes(
+    $cookbookId: Long!
+    $howmany: Long!
+    $skip: Long!
+    $name: String
+    $orderBy: AssistantRecipeQueryOrderBy
+    $desc: Boolean
+  ) {
+    cookbook: assistantCookbook(id: $cookbookId) {
+      id
+      name
+      isPublic
+      isSubscribed
+      recipesCount
+      creationTimestampMs
+      groups {
+        id
+        name
+      }
+      owner {
+        id
+        hasSlug
+        slug
+        displayName
+      }
+      upvotes
+      downvotes
+      languages
+      recipes(
+        howmany: $howmany
+        skip: $skip
+        name: $name
+        orderBy: $orderBy
+        desc: $desc
+      ) {
+        id
+        name
+        code
+        tags
+        uses
+        imports
+        upvotes
+        language
+        keywords
+        downvotes
+        isUpVoted
+        isDownVoted
+        description
+        isSubscribed
+        commentsCount
+        averageRating
+        presentableFormat
+        creationTimestampMs
+        owner {
+          id
+          slug
+          displayName
+        }
+        cookbook {
+          id
+          name
+        }
+        dependencyConstraints {
+          name
+        }
+      }
+    }
+  }
+`;
