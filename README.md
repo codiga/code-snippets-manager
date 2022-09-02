@@ -16,11 +16,11 @@
 | - Download Code Snippets Manager from GitHub                                            |
 | - Generate an API token                                                                 |
 | - Login the Code Snippets Manager                                                       |
-| ![Windows](img/ico-mac.png) -  [Install Codiga Code Snippets Manager for MacOS](#mac)   |
+| ![Mac](img/ico-mac.png) -  [Install Codiga Code Snippets Manager for MacOS](#mac)   |
 | - Download Code Snippets Manager from GitHub                                            |
 | - Generate an API token                                                                 |
 | - Login the Code Snippets Manager                                                       |
-| ![Windows](img/ico-linux.png) -  [Install Codiga Code Snippets Manager for Linux](#lin) |
+| ![Linux](img/ico-linux.png) -  [Install Codiga Code Snippets Manager for Linux](#lin) |
 | - Download Code Snippets Manager from Snapcraft.io                                      |
 | - Download Code Snippets Manager from GitHub                                            |
 | - Generate an API token                                                                 |
