@@ -437,15 +437,8 @@ export const GET_RECIPE = gql`
   }
 `;
 
-export const GET_COOKBOOK_RECIPES = gql`
-  query getCookbookRecipes(
-    $cookbookId: Long!
-    $howmany: Long!
-    $skip: Long!
-    $name: String
-    $orderBy: AssistantRecipeQueryOrderBy
-    $desc: Boolean
-  ) {
+export const GET_COOKBOOK_INFO = gql`
+  query getCookbookRecipes($cookbookId: Long!) {
     cookbook: assistantCookbook(id: $cookbookId) {
       id
       name
@@ -466,6 +459,20 @@ export const GET_COOKBOOK_RECIPES = gql`
       upvotes
       downvotes
       languages
+    }
+  }
+`;
+
+export const GET_COOKBOOK_RECIPES = gql`
+  query getCookbookRecipes(
+    $cookbookId: Long!
+    $howmany: Long!
+    $skip: Long!
+    $name: String
+    $orderBy: AssistantRecipeQueryOrderBy
+    $desc: Boolean
+  ) {
+    cookbook: assistantCookbook(id: $cookbookId) {
       recipes(
         howmany: $howmany
         skip: $skip
