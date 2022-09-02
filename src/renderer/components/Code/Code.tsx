@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Flex,
   LinkBox,
@@ -9,20 +10,28 @@ import {
   Text,
   Link,
   Box,
+  Menu,
+  MenuButton,
+  Portal,
+  MenuList,
+  MenuItem,
 } from '@chakra-ui/react';
 import {
   BubbleIcon,
   Code as CodigaCode,
   CodeContent,
   CopyIcon,
+  PencilIcon,
   useToast,
 } from '@codiga/components';
-import { useEffect } from 'react';
+
+import { getSnippetUrl } from '../../utils/urlUtils';
 import useCodeView, { CodeViewsType } from '../../hooks/useCodeView';
 import { APP_URL } from '../../lib/config';
 import { AssistantRecipeWithStats } from '../../types/assistantTypes';
 import { decodeIndent } from '../../utils/codeUtils';
 import CodeViewToggler from './CodeViewToggler';
+import { useUser } from '../UserContext';
 
 type CodeProps = {
   recipe: AssistantRecipeWithStats;
@@ -30,6 +39,8 @@ type CodeProps = {
 
 export default function Code({ recipe }: CodeProps) {
   const toast = useToast();
+  const { id: userId } = useUser();
+
   const [codeView, setCodeView] = useCodeView('preview');
 
   const neutral100 = useToken('colors', 'neutral.100');
@@ -138,6 +149,7 @@ export default function Code({ recipe }: CodeProps) {
                   h="32px"
                   minW="32px"
                   p="space_8"
+                  _hover={{ textDecor: 'none' }}
                   icon={
                     <Flex gridGap="space_4" alignItems="center">
                       <BubbleIcon />
@@ -149,6 +161,53 @@ export default function Code({ recipe }: CodeProps) {
                   aria-label="Comment on Snippet"
                 />
               </Tooltip>
+
+              {userId && recipe.owner && userId === recipe.owner.id && (
+                <Menu size="sm">
+                  <MenuButton
+                    as={IconButton}
+                    variant="ghost"
+                    h="32px"
+                    minW="32px"
+                    p="space_8"
+                    fontSize="xx-small"
+                    letterSpacing="2px"
+                  >
+                    •••
+                  </MenuButton>
+                  <Portal>
+                    <MenuList
+                      zIndex="tooltip"
+                      boxShadow="base"
+                      py={0}
+                      overflow="hidden"
+                      minW="175px"
+                    >
+                      <MenuItem
+                        as={Link}
+                        isExternal
+                        href={getSnippetUrl(recipe.id, 'edit')}
+                        _hover={{
+                          textDecor: 'none',
+                          color: '#fff !important',
+                          bg: 'base.rose',
+                        }}
+                        _focus={{ boxShadow: 'none' }}
+                      >
+                        <Text
+                          size="xs"
+                          d="flex"
+                          alignItems="center"
+                          gridGap="space_4"
+                          color="inherit !important"
+                        >
+                          <PencilIcon /> Edit Snippet
+                        </Text>
+                      </MenuItem>
+                    </MenuList>
+                  </Portal>
+                </Menu>
+              )}
             </Flex>
 
             <CodeContent
