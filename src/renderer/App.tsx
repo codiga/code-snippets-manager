@@ -11,6 +11,8 @@ import MyCookbooks from './pages/MyCookbooks';
 import MySnippets from './pages/MySnippets';
 import TeamCookbooks from './pages/TeamCookbooks';
 import TeamSnippets from './pages/TeamSnippets';
+import ViewSnippet from './pages/ViewSnippet';
+import ViewCookbookSnippets from './pages/ViewCookbookSnippets';
 
 // STYLES
 import './styles/reboot.css';
