@@ -10,6 +10,7 @@ import { getAvatarUrl } from '../../utils/userUtils';
 
 import TitlebarButtonsMac from './TitlebarButtonsMac';
 import TitlebarButtonsWin from './TitlebarButtonsWin';
+import AboutApp from '../AboutApp';
 
 type TitlebarProps = {
   openLoginModal: () => void;
@@ -38,6 +39,8 @@ export default function Titlebar({ openLoginModal, isOnline }: TitlebarProps) {
       {/* we show windows buttons, connecting text or CTA/Avatar here */}
       <Flex sx={{ '-webkit-app-region': 'no-drag' }}>
         <Flex alignItems="center" gridGap="space_16" mr="space_16">
+          <AboutApp />
+
           {isOnline ? (
             <>
               <Link
