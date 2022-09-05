@@ -127,6 +127,9 @@ const createWindow = async () => {
  * Add event listeners...
  */
 
+// used for win32 desktop notifications - replaces `electron.app.${APP_NAME}` with Codiga.
+app.setAppUserModelId('Codiga');
+
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
