@@ -20,10 +20,11 @@ export default function AboutApp() {
   const [appVersion, setAppVersion] = useState('0.0.0');
 
   useEffect(() => {
-    window.electron.ipcRenderer.once('app-version', (arg) => {
+    // eslint-disable-next-line no-alert
+    window.electron?.ipcRenderer.once('app-version', (arg) => {
       setAppVersion(arg as string);
     });
-    window.electron.ipcRenderer.sendMessage('app-version', ['']);
+    window.electron?.ipcRenderer.sendMessage('app-version', ['']);
   }, []);
 
   return (
