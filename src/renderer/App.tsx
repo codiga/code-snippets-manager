@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { theme } from '@codiga/components';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -26,12 +26,11 @@ import Filters from './components/Filters/Filters';
 import { UserProvider } from './components/UserContext';
 import { ThemeProvider } from './components/ThemeContext';
 import { FiltersProvider } from './components/FiltersContext';
-import ViewSnippet from './pages/ViewSnippet';
-import ViewCookbookSnippets from './pages/ViewCookbookSnippets';
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
+      <ColorModeScript initialColorMode="system" />
       <ChakraProvider theme={theme}>
         <UserProvider>
           <ThemeProvider>
