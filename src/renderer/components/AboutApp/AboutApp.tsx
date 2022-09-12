@@ -11,9 +11,11 @@ import {
   IconButton,
   useDisclosure,
   Image,
+  Button,
 } from '@chakra-ui/react';
 import { QuestionMarkCircleIcon } from '@codiga/components';
 import CodigaLogo from '../Layout/CodigaIcon.png';
+import rollbarAccessToken from '../../lib/rollbarAccessToken';
 
 export default function AboutApp() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,6 +69,11 @@ export default function AboutApp() {
             >
               <Image src={CodigaLogo} h="48px" mx="auto" />
             </Link>
+
+            {/* eslint-disable-next-line no-alert */}
+            <Button onClick={() => alert(rollbarAccessToken)}>
+              Get Rollbar Token
+            </Button>
 
             <Text size="sm">
               <Link

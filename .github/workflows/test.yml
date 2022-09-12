@@ -22,7 +22,7 @@ jobs:
         run: npm install
       - name: Add Rollbar
         env:
-          ROLLBAR_TOKEN: ${{ secrets.rollbar_token }}
+          ROLLBAR_TOKEN: 'testing-rollbar-token'
         run: echo export default "'$ROLLBAR_TOKEN';" > ./src/renderer/lib/rollbarAccessToken.ts
       - name: Build and Test
         run: npm run build && npm test
