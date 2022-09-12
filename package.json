@@ -237,12 +237,7 @@
     },
     "win": {
       "target": [
-        {
-          "target": "nsis"
-        },
-        {
-          "target": "msi"
-        }
+        "nsis"
       ],
       "publisherName": "Xcoding Labs Inc.",
       "signAndEditExecutable": true,
