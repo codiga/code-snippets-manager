@@ -23,7 +23,7 @@ jobs:
       - name: Add Rollbar
         env:
           ROLLBAR_TOKEN: ${{ secrets.ROLLBAR_TOKEN }}
-        run: echo export default "'$ROLLBAR_TOKEN';" > ./src/renderer/lib/rollbarAccessToken.ts
+        run: echo export default '$ROLLBAR_TOKEN'; > ./src/renderer/lib/rollbarAccessToken.ts
       - name: Build and Test
         run: npm run build && npm test
       - name: Lint
