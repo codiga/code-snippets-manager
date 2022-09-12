@@ -112,7 +112,6 @@
     "electron-log": "^4.4.8",
     "electron-store": "^8.1.0",
     "electron-updater": "^5.2.1",
-    "frameless-titlebar": "^2.1.4",
     "framer-motion": "^6.5.1",
     "graphql": "^16.6.0",
     "path-browserify": "^1.0.1",
