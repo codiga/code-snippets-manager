@@ -31,8 +31,8 @@ export default function Votes({
   ...props
 }: VotesProps) {
   const toast = useToast();
-  const { id: userId } = useUser();
   const rollbar = useRollbar();
+  const { id: userId } = useUser();
 
   const ref = useRef(null);
   const isInView = useInView(ref);
@@ -69,7 +69,9 @@ export default function Votes({
       });
     } catch (err) {
       rollbar.error('Error upvoting', err as LogArgument, {
-        hello: 'world',
+        userId,
+        entityId,
+        entityType,
       });
       toast({
         status: 'error',
@@ -92,7 +94,9 @@ export default function Votes({
       });
     } catch (err) {
       rollbar.error('Error downvoting', err as LogArgument, {
-        hello: 'world',
+        userId,
+        entityId,
+        entityType,
       });
       toast({
         status: 'error',

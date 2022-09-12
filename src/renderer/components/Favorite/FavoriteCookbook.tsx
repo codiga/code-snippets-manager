@@ -1,5 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { useToast } from '@codiga/components';
+import { useRollbar } from '@rollbar/react';
+import { LogArgument } from 'rollbar';
+
 import useQueryVariables from '../../hooks/useQueryVariables';
 import {
   SUBSCRIBE_TO_COOKBOOK,
@@ -11,6 +14,7 @@ import {
   GET_USER_SUBSCRIBED_COOKBOOKS,
 } from '../../graphql/queries';
 import Favorite, { FavoriteProps } from './Favorite';
+import { useUser } from '../UserContext';
 
 type FavoriteCookbookProps = Pick<FavoriteProps, 'isSubscribed'> & {
   cookbookId: number;
@@ -21,6 +25,8 @@ export default function FavoriteCookbook({
   cookbookId,
 }: FavoriteCookbookProps) {
   const toast = useToast();
+  const rollbar = useRollbar();
+  const { id: userId } = useUser();
 
   const [favoriteCookbook] = useMutation(SUBSCRIBE_TO_COOKBOOK);
   const [unfavoriteCookbook] = useMutation(UNSUBSCRIBE_TO_COOKBOOK);
@@ -56,6 +62,11 @@ export default function FavoriteCookbook({
         refetchQueries,
       });
     } catch (err) {
+      rollbar.error('Error favoriting cookbook', err as LogArgument, {
+        cookbookId,
+        isSubscribed,
+        userId,
+      });
       toast({
         status: 'error',
         description: 'An error occurred. Please try again.',
@@ -72,6 +83,11 @@ export default function FavoriteCookbook({
         refetchQueries,
       });
     } catch (err) {
+      rollbar.error('Error unfavoriting cookbook', err as LogArgument, {
+        cookbookId,
+        isSubscribed,
+        userId,
+      });
       toast({
         status: 'error',
         description: 'An error occurred. Please try again.',

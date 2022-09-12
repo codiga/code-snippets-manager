@@ -14,6 +14,8 @@ import {
 import { TextField, useToast } from '@codiga/components';
 import { useLazyQuery } from '@apollo/client';
 import { useForm } from 'react-hook-form';
+import { useRollbar } from '@rollbar/react';
+import { LogArgument } from 'rollbar';
 
 import { APP_URL, TOKEN } from '../../lib/config';
 import { CHECK_USER } from '../../graphql/queries';
@@ -26,6 +28,7 @@ type LoginProps = {
 
 export default function Login({ isOpen, closeModal }: LoginProps) {
   const toast = useToast();
+  const rollbar = useRollbar();
   const { setUser } = useUser();
 
   const {
@@ -62,6 +65,7 @@ export default function Login({ isOpen, closeModal }: LoginProps) {
         });
       }
     } catch (err) {
+      rollbar.error('Error logging in', err as LogArgument);
       // network errors while fetching are placed here
       toast({
         status: 'error',
