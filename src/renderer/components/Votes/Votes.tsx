@@ -3,6 +3,8 @@ import { useInView } from 'framer-motion';
 import { useMutation, useQuery } from '@apollo/client';
 import { Flex, FlexProps, IconButton, Text, Tooltip } from '@chakra-ui/react';
 import { DownVoteIcon, UpVoteIcon, useToast } from '@codiga/components';
+import { LogArgument } from 'rollbar';
+import { useRollbar } from '@rollbar/react';
 
 import { useUser } from '../UserContext';
 import {
@@ -29,6 +31,7 @@ export default function Votes({
   ...props
 }: VotesProps) {
   const toast = useToast();
+  const rollbar = useRollbar();
   const { id: userId } = useUser();
 
   const ref = useRef(null);
@@ -65,6 +68,11 @@ export default function Votes({
         description: 'Snippet upvoted',
       });
     } catch (err) {
+      rollbar.error('Error upvoting', err as LogArgument, {
+        userId,
+        entityId,
+        entityType,
+      });
       toast({
         status: 'error',
         description: 'An error occured while upvoting. Please refresh.',
@@ -85,6 +93,11 @@ export default function Votes({
         description: 'Snippet downvoted.',
       });
     } catch (err) {
+      rollbar.error('Error downvoting', err as LogArgument, {
+        userId,
+        entityId,
+        entityType,
+      });
       toast({
         status: 'error',
         description: 'An error occured while downvoting. Please refresh.',

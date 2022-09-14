@@ -1,5 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { useToast } from '@codiga/components';
+import { useRollbar } from '@rollbar/react';
+import { LogArgument } from 'rollbar';
+
 import useQueryVariables from '../../hooks/useQueryVariables';
 import {
   SUBSCRIBE_TO_RECIPE,
@@ -12,6 +15,7 @@ import {
   GET_USER_SUBSCRIBED_RECIPES,
 } from '../../graphql/queries';
 import Favorite, { FavoriteProps } from './Favorite';
+import { useUser } from '../UserContext';
 
 type FavoriteRecipeProps = Pick<FavoriteProps, 'isSubscribed'> & {
   recipeId: number;
@@ -22,6 +26,8 @@ export default function FavoriteSnippet({
   recipeId,
 }: FavoriteRecipeProps) {
   const toast = useToast();
+  const rollbar = useRollbar();
+  const { id: userId } = useUser();
 
   const [favoriteRecipe] = useMutation(SUBSCRIBE_TO_RECIPE);
   const [unfavoriteRecipe] = useMutation(UNSUBSCRIBE_TO_RECIPE);
@@ -63,6 +69,11 @@ export default function FavoriteSnippet({
         refetchQueries,
       });
     } catch (err) {
+      rollbar.error('Error favoriting snippet', err as LogArgument, {
+        recipeId,
+        isSubscribed,
+        userId,
+      });
       toast({
         status: 'error',
         description: 'An error occurred. Please try again.',
@@ -79,6 +90,11 @@ export default function FavoriteSnippet({
         refetchQueries,
       });
     } catch (err) {
+      rollbar.error('Error unfavoriting snippet', err as LogArgument, {
+        recipeId,
+        isSubscribed,
+        userId,
+      });
       toast({
         status: 'error',
         description: 'An error occurred. Please try again.',

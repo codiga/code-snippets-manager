@@ -6,7 +6,7 @@
     "coding-assistant",
     "codiga"
   ],
-  "version": "0.0.5",
+  "version": "0.0.12",
   "homepage": "https://www.codiga.io/",
   "bugs": {
     "url": "https://github.com/codiga/code-snippets-manager/issues"
@@ -100,19 +100,18 @@
     "@apollo/client": "^3.6.9",
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.8",
-    "@codiga/components": "^1.1.0",
+    "@codiga/components": "^1.3.0",
     "@electron/remote": "^2.0.8",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@rollbar/react": "^0.11.1",
     "apollo-link-debounce": "^3.0.0",
-    "bootstrap": "^5.1.3",
     "buffer": "^6.0.3",
     "cross-fetch": "^3.1.5",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-store": "^8.1.0",
     "electron-updater": "^5.2.1",
-    "frameless-titlebar": "^2.1.4",
     "framer-motion": "^6.5.1",
     "graphql": "^16.6.0",
     "path-browserify": "^1.0.1",
@@ -121,7 +120,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",
     "react-router-dom": "^6.3.0",
-    "reactstrap": "^9.1.3",
+    "rollbar": "^2.25.1",
     "url": "^0.11.0"
   },
   "devDependencies": {
@@ -234,12 +233,7 @@
     },
     "win": {
       "target": [
-        {
-          "target": "nsis"
-        },
-        {
-          "target": "msi"
-        }
+        "nsis"
       ],
       "publisherName": "Xcoding Labs Inc.",
       "signAndEditExecutable": true,

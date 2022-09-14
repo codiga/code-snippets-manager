@@ -28,6 +28,7 @@ module.exports = {
         leadingUnderscore: 'allow',
       },
     ],
+    'prettier/prettier': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

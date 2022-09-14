@@ -13,9 +13,15 @@ export default function SnippetResults({ results }: SnippetResultsProps) {
   const query = useUrlQuery();
   const currentSnippetId = query.get('currentSnippetId');
 
-  const currentSnippet = currentSnippetId
+  // if we have a snippet id in the url, search for that first
+  let currentSnippet = currentSnippetId
     ? results.find((recipe) => String(recipe.id) === currentSnippetId)
-    : results[0] || {};
+    : undefined;
+
+  // if we can't find the snippet from the url or it wasn't given, use the first result
+  if (!currentSnippet) {
+    currentSnippet = results[0] || {};
+  }
 
   return (
     <Flex h="full" overflow="hidden">

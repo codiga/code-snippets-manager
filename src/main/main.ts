@@ -31,6 +31,10 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
+ipcMain.on('app-version', async (event) => {
+  event.reply('app-version', app.getVersion());
+});
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -75,8 +79,8 @@ const createWindow = async () => {
     frame: false,
     width: 1024,
     height: 728,
-    minWidth: 600,
-    minHeight: 300,
+    minWidth: 900,
+    minHeight: 600,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       sandbox: false,
@@ -122,6 +126,9 @@ const createWindow = async () => {
 /**
  * Add event listeners...
  */
+
+// used for win32 desktop notifications - replaces `electron.app.${APP_NAME}` with Codiga.
+app.setAppUserModelId('Codiga');
 
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even

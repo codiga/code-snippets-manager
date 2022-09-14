@@ -20,6 +20,8 @@ jobs:
           node-version: 14
       - name: Install Packages
         run: npm install
+      - name: Add Rollbar
+        run: echo export default "'${{ secrets.rollbar_token }}'" > ./src/renderer/lib/rollbarAccessToken.ts
       - name: Build and Test
         run: npm run build && npm test
       - name: Lint
