@@ -24,7 +24,14 @@ we are using to export the certificates.
 To set up the `APPLE_ID` and `APPLE_ID_PASS` variables:
 
 - `APPLE_ID` is your Apple account
-- `APPLE_ID_PASS` is a password generated on the [Apple ID page](https://appleid.apple.com/account/manage) in App-Specific Passwords
+- `APPLE_ID_PASSWORD` is a password generated on the [Apple ID page](https://appleid.apple.com/account/manage) in App-Specific Passwords
+
+## Publishing on the App Store
+
+**IMPORTANT**: make sure you have Xcode installed with `altool`.
+
+- Set `APPLE_ID` and `APPLE_ID_PASSWORD` to the values you need. (use the app-specific password, not your Apple Store password)
+- run `npm run package-mac-appstore`
 
 ## Contact
 
