@@ -233,6 +233,7 @@
     },
     "win": {
       "target": [
+        "nsis",
         "appx"
       ],
       "publisherName": "Xcoding Labs Inc.",
