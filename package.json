@@ -243,6 +243,9 @@
         "sha256"
       ]
     },
+    "appx": {
+      "publisher": "CN=Xcoding Labs Inc., O=Xcoding Labs Inc., L=Westminster, S=Colorado, C=US"
+    },
     "linux": {
       "target": [
         "AppImage",
