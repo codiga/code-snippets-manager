@@ -26,6 +26,17 @@ To set up the `APPLE_ID` and `APPLE_ID_PASS` variables:
 - `APPLE_ID` is your Apple account
 - `APPLE_ID_PASS` is a password generated on the [Apple ID page](https://appleid.apple.com/account/manage) in App-Specific Passwords
 
+## Uploading to the Microsoft Store
+
+Detailed step-by-step instructions can be found in this [blog post](https://www.codiga.io/blog/submit-electron-app-to-microsoft-store/).
+
+- Download the `.exe` file from [our latest releases](https://github.com/codiga/code-snippets-manager/releases/latest)
+- Download the [MSIX Packaging Tool](https://apps.microsoft.com/store/detail/msix-packaging-tool/9N5LW3JBCXKF)
+- Update the "Package Information" per the blog post instructions above
+- Create your new `.msix` file
+- Upload your new file and make any necessary changes to the submission
+- Submit your new submission
+
 ## Contact
 
 If you have any question, please ask on our [Slack channel](https://join.slack.com/t/codigahq/shared_invite/zt-9hvmfwie-9BUVFwZDwvpIGlkHv2mzYQ)
