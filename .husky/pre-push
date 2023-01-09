@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+while read local_ref local_sha remote_ref remote_sha
+do
+  npx @codiga/cli git-push-hook --remote-sha $remote_sha --local-sha $local_sha
+done
+
+exit 0
