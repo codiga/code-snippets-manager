@@ -105,6 +105,8 @@ export default function SideMenu({ openLoginModal }: SideMenuProps) {
                 localStorage.removeItem(TOKEN);
                 setUser({});
                 navigate('/');
+                await apolloClient.clearStore();
+                await apolloClient.cache.reset();
                 await apolloClient.resetStore();
               } catch (err) {
                 // eslint-disable-next-line no-console

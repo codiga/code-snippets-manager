@@ -53,9 +53,12 @@ export default function Login({ isOpen, closeModal }: LoginProps) {
       // set the token in localStorarge, which the apollo client will grab
       localStorage.setItem(TOKEN, formData.token);
       // check if a user is returned now
-      const { data } = await validateToken();
+      const { data, error } = await validateToken({
+        fetchPolicy: 'network-only',
+        nextFetchPolicy: 'network-only',
+      });
       // valid token, close/reset modal, otherwise remove token and show an error to the user
-      if (data?.user) {
+      if (data?.user && !error) {
         setUser(data.user);
         closeAndReset();
       } else {

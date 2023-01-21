@@ -15,7 +15,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useQuery<{ user: Partial<User> }>(CHECK_USER, {
     pollInterval: POLL_USER_FOR_LOGOUT_MSEC,
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'network-only',
     onCompleted: (respData) => {
       if (respData?.user) {
         setUser(respData?.user);
